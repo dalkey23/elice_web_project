@@ -2,6 +2,10 @@ import React from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
 
+
+
+
+
 const Header  = () => {
   return (    
     <>
@@ -14,11 +18,11 @@ const Header  = () => {
 
           <div className = "col-md-5">
           <Nav className="me-auto1">
-            <Nav.Link href="/">육아</Nav.Link>
-            <Nav.Link href="/About">생활</Nav.Link>
-            <Nav.Link href="/Projects">스포츠</Nav.Link>
-            <Nav.Link href="/Questions">패션</Nav.Link>
-            <Nav.Link href="/ReactDoc">가구</Nav.Link>
+            <Nav.Link href="/parenting">육아</Nav.Link>
+            <Nav.Link href="/living">생활</Nav.Link>
+            <Nav.Link href="/sports">스포츠</Nav.Link>
+            <Nav.Link href="/fassion">패션</Nav.Link>
+            <Nav.Link href="/furniture">가구</Nav.Link>
           </Nav>
           </div>
 
@@ -37,6 +41,8 @@ redeem</span></Nav.Link>
         </Container>
       </Navbar>
     </div>
+
+
     </>
     )
 }
