@@ -13,18 +13,15 @@ function App() {
   return (
     <Router>
     <Header/>
-    <BodySlides />
-    <button>aaa</button>
-    <Routes>
-        <Route path="/" element = { <Home /> }>dddd</Route>
-        <Route path="/About" element = { <About /> }></Route>
-        <Route path="/Projects" element = { <Projects /> }></Route>
-        <Route path="/Questions" element = { <Questions /> }></Route>
-        <Route path="/ReactDoc" element = { <ReactDoc /> }></Route>
+      <Routes>
+          <Route path="/" element = { <Home /> }></Route>
+          <Route path="/About" element = { <About /> }></Route>
+          <Route path="/Projects" element = { <Projects /> }></Route>
+          <Route path="/Questions" element = { <Questions /> }></Route>
+          <Route path="/ReactDoc" element = { <ReactDoc /> }></Route>
       </Routes>
     <Footer />
     </Router>
-
   )
 }
 
