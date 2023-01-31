@@ -15,6 +15,7 @@ const BodyRoutes = () =>{
         <Routes>
             <Route path="/" element = { <Home /> } />
             <Route path="/LoginForm" element = { <LoginForm /> } />
+            <Route path="/RegisterForm" element = { <RegisterForm /> } />
             <Route path="/parenting" element = { <Parenting /> } />
             <Route path="/living" element = { <Living /> } />
             <Route path="/sports" element = { <Sports /> } />
