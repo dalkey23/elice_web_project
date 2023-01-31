@@ -8,7 +8,6 @@ import UserPage from './components/User/UserPage';
 function App() {
   return (<>
     <Header/>
-    <UserPage />
     <BodyRoutes />
     <Footer />
     </>

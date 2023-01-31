@@ -14,7 +14,6 @@ const Header  = () => {
           {/* 카테고리 간격 조정 */}
           <div className = "col-md-8">
             <Nav>
-              <Nav.Link href="/LoginForm">로그인</Nav.Link>
               <Nav.Link href="/parenting">육아</Nav.Link>
               <Nav.Link href="/living">생활</Nav.Link>
               <Nav.Link href="/sports">스포츠</Nav.Link>
@@ -25,7 +24,8 @@ const Header  = () => {
           {/* 아이콘 변경 */}
           <div>
             <Nav>
-              <Nav.Link href="#features">
+              {/* 로그인 아이콘 클릭시 로그인 폼으로 이동 (로그인 되어 있을 시 회원 정보) */}
+              <Nav.Link href='/LoginForm'>
               <span className="material-symbols-outlined">person</span>
               </Nav.Link>
               <Nav.Link href="#pricing">
