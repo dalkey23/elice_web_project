@@ -6,6 +6,7 @@ import Living from './bodyPages/Living';
 import Sports from './bodyPages/Sports';
 import Fassion from './bodyPages/Fassion';
 import Furniture from './bodyPages/Furniture';
+import Details from './bodyPages/Details';
 
 const BodyRoutes = () =>{
     return (<div>
@@ -17,6 +18,7 @@ const BodyRoutes = () =>{
             <Route path="/sports" element = { <Sports /> } />
             <Route path="/fassion" element = { <Fassion /> } />
             <Route path="/furniture" element = { <Furniture /> } />
+            <Route path="/details" element = { <Details /> } />
         </Routes>
     </Router>
   </div>
