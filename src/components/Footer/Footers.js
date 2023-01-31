@@ -13,7 +13,6 @@ const Footer = () => {
             </Row>
         </Container>
     </Navbar>
-
   )
 }
 

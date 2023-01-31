@@ -21,9 +21,10 @@ function RegisterForm() {
   // 값이 적절하지 않은 경우 빨간 테두리 로직 (Form.Control.Feedback 로직)
   return (
     <Register>
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="validationCustom01">
+    <Form noValidate validated={validated} onSubmit={handleSubmit}
+        style = {{ width : 600 }}>
+      <Row className="mb-3" >
+        <Form.Group as={Col} md="12" controlId="validationCustom01">
           <Form.Label>아이디</Form.Label>
           <Form.Control
             required
@@ -35,7 +36,7 @@ function RegisterForm() {
         </Form.Group> 
       </Row>
         <Row className="mb-3">
-        <Form.Group as={Col} lg="4" controlId="validationCustom02">
+        <Form.Group as={Col} controlId="validationCustom02">
           <Form.Label>이름</Form.Label>
           <Form.Control
             required
@@ -47,11 +48,12 @@ function RegisterForm() {
         </Form.Group>
         </Row>
         <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
+        <Form.Group as={Col} controlId="validationCustom02">
           <Form.Label>비밀번호</Form.Label>
           <Form.Control
             required
-            type="text"
+            type="password"
+            // type을 password로 해주어야 안보이게 타이핑 가능
             placeholder="*****"
             defaultValue=""
           />
@@ -59,7 +61,7 @@ function RegisterForm() {
         </Form.Group>
         </Row>
         <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
+        <Form.Group as={Col} controlId="validationCustom02">
           <Form.Label>전화번호</Form.Label>
           <Form.Control
             required
@@ -71,7 +73,7 @@ function RegisterForm() {
         </Form.Group>
         </Row>
         <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
+        <Form.Group as={Col} controlId="validationCustom02">
           <Form.Label>주소</Form.Label>
           <Form.Control
             required
@@ -82,16 +84,19 @@ function RegisterForm() {
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
         </Row>
-      <Button type="submit">회원가입</Button>
+      <Button type="submit" style = {{
+        backgroundColor : 'grey',
+        border : 'grey'
+      }}>회원가입</Button>
     </Form>
     </Register>
   );
 }
 
-// 리액트 부트스트랩의 값을 styled-component로 감싸서 css 처리
-// 현재 우측으로 정렬이 되지 않음
 const Register = styled.div`
-    padding : 20px; 900px;
+    display : flex;
+    justify-content : space-around;
+    padding : 100px;
 `
 
 export default RegisterForm;
