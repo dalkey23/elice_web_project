@@ -6,7 +6,7 @@ function BodySlides () {
       <Carousel fade>
         <Carousel.Item>
           <img
-            className="d-block w-100%"
+            className="d-block w-100 h-50"
             src="https://img.hankyung.com/photo/201903/AA.18836542.1.jpg"
             alt="First slide"
           />
@@ -17,7 +17,7 @@ function BodySlides () {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-100%"
+            className="d-block w-100 h-50"
             src="https://img.hankyung.com/photo/201903/AA.18836542.1.jpg"
             alt="Second slide"
           />
@@ -29,7 +29,7 @@ function BodySlides () {
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-100%"
+            className="d-block w-100 h-50"
             src="https://img.hankyung.com/photo/201903/AA.18836542.1.jpg"
             alt="Third slide"
           />
