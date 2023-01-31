@@ -6,16 +6,15 @@ import Living from './bodyPages/Living';
 import Sports from './bodyPages/Sports';
 import Fassion from './bodyPages/Fassion';
 import Furniture from './bodyPages/Furniture';
-import Details from './bodyPages/Details';
 import RegisterForm from '../Register/RegisterForm';
-
+import LoginForm from '../Login/LoginForm';
 
 const BodyRoutes = () =>{
     return (<div>
     <Router>
         <Routes>
             <Route path="/" element = { <Home /> } />
-            <Route path="/RegisterForm" element = { <RegisterForm /> } />
+            <Route path="/LoginForm" element = { <LoginForm /> } />
             <Route path="/parenting" element = { <Parenting /> } />
             <Route path="/living" element = { <Living /> } />
             <Route path="/sports" element = { <Sports /> } />
