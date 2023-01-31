@@ -22,14 +22,14 @@ const Header  = () => {
               <Nav.Link href="/furniture">가구</Nav.Link>
             </Nav>
           </div>
-
+          {/* 아이콘 변경 */}
           <div>
             <Nav>
               <Nav.Link href="#features">
-                <span class="material-symbols-outlined">shopping_cart</span>
+              <span className="material-symbols-outlined">person</span>
               </Nav.Link>
               <Nav.Link href="#pricing">
-                <span className="material-symbols-outlined">redeem</span>
+              <span className="material-symbols-outlined">shopping_bag</span>
               </Nav.Link>
             </Nav>
           </div>
