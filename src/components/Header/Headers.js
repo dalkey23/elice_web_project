@@ -1,11 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
-
-
-
-
-
 const Header  = () => {
   return (    
     <>
@@ -18,6 +13,7 @@ const Header  = () => {
 
           <div className = "col-md-5">
           <Nav className="me-auto1">
+            <Nav.Link href="/RegisterForm">회원가입테스트</Nav.Link>
             <Nav.Link href="/parenting">육아</Nav.Link>
             <Nav.Link href="/living">생활</Nav.Link>
             <Nav.Link href="/sports">스포츠</Nav.Link>
