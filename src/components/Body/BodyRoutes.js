@@ -8,6 +8,7 @@ import Fassion from './bodyPages/Fassion';
 import Furniture from './bodyPages/Furniture';
 import RegisterForm from '../Register/RegisterForm';
 import LoginForm from '../Login/LoginForm';
+import Details from './bodyPages/Details';
 
 const BodyRoutes = () =>{
     return (<div>
