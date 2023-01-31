@@ -11,7 +11,6 @@ const ProductSchema = new Schema(
     totalstocks: { type: Number, required: true },
     price: { type: Number, required: true },
     searchKeywords: { type: String },
-    sku: { type: String },
   },
   { timestamps: true }
 );

@@ -1,5 +1,7 @@
 import cors from "cors";
 import express from "express";
+import rootRouter from "./routers/rootRouter";
+import userRouter from "./routers/userRouter";
 
 const app = express();
 
@@ -13,4 +15,7 @@ app.use(express.json());
 // 인식하고 핸들링할 수 있게 함.
 app.use(express.urlencoded({ extended: false }));
 
-export { app };
+app.use("/", rootRouter);
+app.use("/users", userRouter);
+
+export default app;

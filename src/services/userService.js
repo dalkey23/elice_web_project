@@ -1,5 +1,6 @@
 import User from "../db/models/userModel";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 //회원가입
 export const postJoin = async (req, res) => {
@@ -34,7 +35,8 @@ export const postJoin = async (req, res) => {
 //로그인
 export const postLogin = async (res, req) => {
   const { email, password } = req.body;
-  //DB에 있는 사용자 인지
+
+  //DB에 있는 사용자 인지 확인
   const user = await User.findByEmail(email);
   if (!user) {
     throw new Error("해당 이메일은 가입한 사용자가 아닙니다.");
@@ -47,4 +49,6 @@ export const postLogin = async (res, req) => {
   if (!comparePassword) {
     throw new Error("비밀번호가 일치하지 않습니다.");
   }
+  const token = jwt.sign({ userId: user._id });
+  return token;
 };
