@@ -14,6 +14,7 @@ const ListContainer = styled.div`
 
 `
 
+
 const ListItems = styled.div`
     flex : 1;
     background : gray;
