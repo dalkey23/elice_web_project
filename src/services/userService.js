@@ -12,6 +12,7 @@ export const postJoin = async (req, res) => {
     throw new Error("이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.");
   }
   //패스워드가 같은지 확인
+
   if (password !== password2) {
     throw new Error("패스워드가 일치하지 않습니다.");
   }
@@ -51,4 +52,9 @@ export const postLogin = async (res, req) => {
   }
   const token = jwt.sign({ userId: user._id });
   return token;
+};
+
+//회원 정보 수정
+export const changeUser = async (req, res) => {
+  res.send("1");
 };

@@ -3,7 +3,7 @@ import { postJoin, postLogin } from "../services/userService";
 
 const rootRouter = express.Router();
 
-rootRouter.route("/join").post(postJoin);
-rootRouter.route("/login").post(postLogin);
+rootRouter.post("/join", postJoin);
+rootRouter.post("/login", postLogin);
 
 export default rootRouter;
