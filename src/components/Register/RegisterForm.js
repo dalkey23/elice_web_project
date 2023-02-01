@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
+
+// 아직 사용안하는 import그룹
+import InputGroup from 'react-bootstrap/InputGroup';
 
 function RegisterForm() {
   const [email, setEmail] = useState('');
