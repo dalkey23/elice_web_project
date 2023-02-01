@@ -68,12 +68,18 @@ export const seeMyPage = async (res, req) => {
 
 //회원 정보 수정
 export const changeUser = async (req, res) => {
-  res.send("1");
+  // let user = await User.findById({ _id });
+  // // db에서 찾지 못한 경우, 에러 메시지 반환
+  // if (!user) {
+  //   const errorMessage = "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
+  //   return { errorMessage };
+  // }
 };
 
 //로그아웃
 // jwt를 이용해 토큰 제거 하는게 쉽지않음 일단 보류
 
 export const logOut = async (req, res) => {
-  return res.cookies.set("token");
+  res.cookie("token", null, { maxAge: 0 });
+  res.json({ message: "logout" });
 };

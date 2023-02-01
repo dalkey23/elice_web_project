@@ -1,5 +1,6 @@
 import cors from "cors";
 import express from "express";
+import "./db/index";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 
