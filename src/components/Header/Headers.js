@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import logo from './logo.png';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
 const Header  = () => {
@@ -8,7 +9,12 @@ const Header  = () => {
       <Navbar bg="white" variant="black">
         <Container>
           <div>
-          <Navbar.Brand href="/">벌써 12시</Navbar.Brand>
+            <Navbar.Brand href="/">
+              <img src = { logo } alt = 'Logo' style = {{
+              height : '100px',
+              margin : '10px'
+            }}/>
+            </Navbar.Brand>
           </div>
           
           {/* 카테고리 간격 조정 */}
