@@ -5,24 +5,35 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
+import axios from 'axios';
 
 function RegisterForm() {
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [address, setAddress] = useState('');
+  // 유효성 검사 로직 보류
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+  // post로 데이터 등록
+  const handleSubmit = () => {
+      axios.post("", { email , name, password, phoneNumber, address })
+  }
 
-    setValidated(true);
-  };
+  // 유효성 검사하는 로직인데 onSubmit에 2개의 함수를 넣어야 해서 보류
+  // const handleSubmitCorrect = (event) => {
+  //   const form = event.currentTarget;
+  //   if (form.checkValidity() === false) {
+  //     event.preventDefault();
+  //     event.stopPropagation();
+  //   }
+  //   setValidated(true);
   // 값이 적절하지 않은 경우 빨간 테두리 (Form.Control.Feedback)
   return (
     <Register>
-    <Form noValidate validated={validated} onSubmit={handleSubmit}
-        style = {{ width : 600 }}>
+    <Form noValidate validated={validated} style = {{ width : 600 }}>
+      {/* 아이디 */}
       <Row className="mb-3" >
         <Form.Group as={Col} md="12" controlId="validationCustom01">
           <Form.Label>아이디</Form.Label>
@@ -31,10 +42,13 @@ function RegisterForm() {
             type="text"
             placeholder="Elice@elice.com"
             defaultValue=""
-          />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            value={ email }
+            onChange={ (e) => setEmail(e.target.value)}
+            />
+          <Form.Control.Feedback></Form.Control.Feedback>
         </Form.Group> 
       </Row>
+        {/* 이름 */}
         <Row className="mb-3">
         <Form.Group as={Col} controlId="validationCustom02">
           <Form.Label>이름</Form.Label>
@@ -43,9 +57,11 @@ function RegisterForm() {
             type="text"
             placeholder="엘리스"
             defaultValue=""
+            onChange={ (e) => setName(e.target.value)}
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback></Form.Control.Feedback>
         </Form.Group>
+        {/* 비밀번호 */}
         </Row>
         <Row className="mb-3">
         <Form.Group as={Col} controlId="validationCustom02">
@@ -56,10 +72,24 @@ function RegisterForm() {
             // type을 password로 해주어야 안보이게 타이핑 가능
             placeholder="*****"
             defaultValue=""
+            onChange={ (e) => setPassword(e.target.value)}
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback></Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} controlId="validationCustom02">
+          <Form.Label>비밀번호 확인</Form.Label>
+          <Form.Control
+            required
+            type="password"
+            // type을 password로 해주어야 안보이게 타이핑 가능
+            placeholder="*****"
+            defaultValue=""
+            // onChange로 앞에 적은 password와 같은지 확인해야 함
+          />
+          <Form.Control.Feedback>비밀번호가 일치합니다.</Form.Control.Feedback>
         </Form.Group>
         </Row>
+        {/* 전화번호 */}
         <Row className="mb-3">
         <Form.Group as={Col} controlId="validationCustom02">
           <Form.Label>전화번호</Form.Label>
@@ -68,10 +98,12 @@ function RegisterForm() {
             type="text"
             placeholder="010-1234-5678"
             defaultValue=""
+            onChange={ (e) => setPhoneNumber(e.target.value)}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
         </Row>
+        {/* 주소 */}
         <Row className="mb-3">
         <Form.Group as={Col} controlId="validationCustom02">
           <Form.Label>주소</Form.Label>
@@ -80,6 +112,7 @@ function RegisterForm() {
             type="text"
             placeholder="서울특별시 광진구 화양동 123-456 1동 2호"
             defaultValue=""
+            onChange={ (e) => setAddress(e.target.value)}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
@@ -91,13 +124,12 @@ function RegisterForm() {
           <Button type="submit" style = {{
             backgroundColor : 'grey',
             border : 'grey',
-          }}>회원가입</Button>
+          }} onSubmit={ handleSubmit }>회원가입</Button>
       </div>
     </Form>
     </Register>
   );
-}
-
+};
 const Register = styled.div`
     display : flex;
     justify-content : space-around;
