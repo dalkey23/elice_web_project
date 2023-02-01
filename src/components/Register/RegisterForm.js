@@ -19,10 +19,22 @@ function RegisterForm() {
   const [validated, setValidated] = useState(false);
 
   // post로 데이터 등록
-  const handleSubmit = () => {
-      axios.post("", { email , name, password, phoneNumber, address })
+  const handleSubmit = (e) => {
+    
+    e.prevent.default();
+    
+    const formData = {
+      email,
+      name,
+      password,
+      phoneNumber,
+      address
+    }
+    const onSubmit = () => {
+      axios.post("", { formData })
+    }
+    onSubmit();
   }
-
   // 유효성 검사하는 로직인데 onSubmit에 2개의 함수를 넣어야 해서 보류
   // const handleSubmitCorrect = (event) => {
   //   const form = event.currentTarget;
@@ -59,6 +71,7 @@ function RegisterForm() {
             type="text"
             placeholder="엘리스"
             defaultValue=""
+            value={ name }
             onChange={ (e) => setName(e.target.value)}
           />
           <Form.Control.Feedback></Form.Control.Feedback>
@@ -74,22 +87,22 @@ function RegisterForm() {
             // type을 password로 해주어야 안보이게 타이핑 가능
             placeholder="*****"
             defaultValue=""
+            value={ password }
             onChange={ (e) => setPassword(e.target.value)}
           />
           <Form.Control.Feedback></Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} controlId="validationCustom02">
+        {/* <Form.Group as={Col} controlId="validationCustom02">
           <Form.Label>비밀번호 확인</Form.Label>
           <Form.Control
             required
             type="password"
-            // type을 password로 해주어야 안보이게 타이핑 가능
             placeholder="*****"
             defaultValue=""
             // onChange로 앞에 적은 password와 같은지 확인해야 함
           />
           <Form.Control.Feedback>비밀번호가 일치합니다.</Form.Control.Feedback>
-        </Form.Group>
+        </Form.Group> */}
         </Row>
         {/* 전화번호 */}
         <Row className="mb-3">
@@ -100,6 +113,7 @@ function RegisterForm() {
             type="text"
             placeholder="010-1234-5678"
             defaultValue=""
+            value={ phoneNumber }
             onChange={ (e) => setPhoneNumber(e.target.value)}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -114,6 +128,7 @@ function RegisterForm() {
             type="text"
             placeholder="서울특별시 광진구 화양동 123-456 1동 2호"
             defaultValue=""
+            value={ address }
             onChange={ (e) => setAddress(e.target.value)}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -126,7 +141,7 @@ function RegisterForm() {
           <Button type="submit" style = {{
             backgroundColor : 'grey',
             border : 'grey',
-          }} onSubmit={ handleSubmit }>회원가입</Button>
+          }} onClick={ handleSubmit }>회원가입</Button>
       </div>
     </Form>
     </Register>
