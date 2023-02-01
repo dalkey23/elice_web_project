@@ -31,11 +31,14 @@ const ButtonWrapper = styled.div`
         color : white;
         background : grey;
         border : grey;
-        width : 45%;
+        width :30%;
         margin : 10px;
     }
 
 `    
+const clickHandler = ()=>{
+    alert("완료");
+}
 
 const Details = ()=>{
     return <Container>
@@ -45,9 +48,11 @@ const Details = ()=>{
                     <Items>{Product1.productName}</Items>
                     <Items>{Product1.price}</Items>
                     <Items>{Product1.detailDesc}</Items>
+                    <Items><input type={"number"}/>&nbsp;{Product1.sku}</Items>
                     <ButtonWrapper>
-                        <button>장바구니 추가하기</button>
-                        <button>바로 구매하기</button>
+                        <button onClick={clickHandler}>장바구니 추가하기</button>
+                        <button onClick={clickHandler}>찜 하기</button>
+                        <a href="/order"><button>바로 구매하기</button></a>
                     </ButtonWrapper>
                 </Wrapper>
             </Container>

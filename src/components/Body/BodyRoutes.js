@@ -10,6 +10,7 @@ import RegisterForm from '../Register/RegisterForm';
 import LoginForm from '../Login/LoginForm';
 import Details from './bodyPages/Details';
 import Favorite from '../Favorite/Favorites';
+import Order from './bodyPages/Order';
 
 const BodyRoutes = () =>{
     return (<div>
@@ -25,6 +26,7 @@ const BodyRoutes = () =>{
             <Route path="/fassion" element = { <Fassion /> } />
             <Route path="/furniture" element = { <Furniture /> } />
             <Route path="/details" element = { <Details /> } />
+            <Route path="/order" element = { <Order /> } />
         </Routes>
     </Router>
   </div>
