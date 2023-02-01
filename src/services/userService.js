@@ -1,6 +1,7 @@
 import User from "../db/models/userModel";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { loginRequired } from "../middlewares/loginRequired.js";
 
 //회원가입
 export const postJoin = async (req, res) => {
@@ -50,8 +51,13 @@ export const postLogin = async (res, req) => {
   if (!comparePassword) {
     throw new Error("비밀번호가 일치하지 않습니다.");
   }
-  const token = jwt.sign({ userId: user._id });
-  return token;
+  // 로그인 성공 -> JWT 웹 토큰 생성
+  const secretKey = process.env.JWT_SECRET_KEY || "secret-key";
+
+  // jwt 토큰에 유저 아이디 담기
+  const token = jwt.sign({ userId: user._id }, secretKey);
+
+  return { token };
 };
 
 //회원 정보 수정
