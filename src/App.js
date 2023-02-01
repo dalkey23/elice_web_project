@@ -4,7 +4,8 @@ import Footer from './components/Footer/Footers';
 import BodyRoutes from './components/Body/BodyRoutes'
 
 function App() {
-  return (<>
+  return (
+    <>
     <Header/>
     <BodyRoutes />
     <Footer />

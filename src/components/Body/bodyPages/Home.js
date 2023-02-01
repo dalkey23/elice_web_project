@@ -1,23 +1,58 @@
 import React from 'react'
+import styled from 'styled-components';
 import {Button, Container} from 'react-bootstrap';
 import BodySlides from '../bodySlides';
 
 const Home = () => {
   return (
-    <>
-    <Container className="d-flex flex-column min-vh-100">
-      <BodySlides />
-        <div className = "d-flex justify-content-around"
-        style = {{margin : '40px 0',height : 'auto', minHeight: '100%'}}>
-        <Button href="/parenting" variant="success">육아</Button>{' '}
-        <Button href="/living" variant="danger">생활</Button>{' '}
-        <Button href="/sports" variant="warning">스포츠</Button>{' '}
-        <Button href="/fassion" variant="dark">패션</Button>{' '}
-        <Button href="/furniture" variant="info">가구</Button>{' '}
-        </div>
-    </Container>
-    </>
+    <div style = {{
+      padding : '100px'
+    }}>
+      <Container className="d-flex flex-column min-vh-50">
+          <BodySlides />
 
+          <div className = "d-flex justify-content-around"
+          style = {{
+            padding : '50px'
+          }}>
+          <Button href="/parenting" variant="success"
+          style = {{
+            height : '100px',
+            width : '100px'
+          }}><p style = {{
+            padding : '30px 0 0 0'
+          }}>육아</p></Button>{' '}
+          <Button href="/living" variant="danger"
+          style = {{
+            height : '100px',
+            width : '100px'
+          }}><p style = {{
+            padding : '30px 0 0 0'
+          }}>생활</p></Button>{' '}
+          <Button href="/sports" variant="warning"
+          style = {{
+            height : '100px',
+            width : '100px'
+          }}><p style = {{
+            padding : '30px 0 0 0'
+          }}>스포츠</p></Button>{' '}
+          <Button href="/fassion" variant="dark"
+          style = {{
+            height : '100px',
+            width : '100px'
+          }}><p style = {{
+            padding : '30px 0 0 0'
+          }}>패션</p></Button>{' '}
+          <Button href="/furniture" variant="info"
+          style = {{
+            height : '100px',
+            width : '100px'
+          }}><p style = {{
+            padding : '30px 0 0 0'
+          }}>가구</p></Button>{' '}
+          </div>
+      </Container>
+    </div>
   )
 }
 

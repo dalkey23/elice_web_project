@@ -152,7 +152,7 @@ function RegisterForm() {
 const Register = styled.div`
     display : flex;
     justify-content : space-around;
-    padding : 100px;
+    padding : 150px;
 `
 
 export default RegisterForm;

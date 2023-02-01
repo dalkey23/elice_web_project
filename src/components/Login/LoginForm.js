@@ -83,7 +83,7 @@ function LoginForm() {
 }
 
 const Login = styled.div`
-    padding : 200px;
+    padding : 300px;
     width : 60%;
 `
 
