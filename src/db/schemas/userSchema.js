@@ -11,4 +11,4 @@ const UserSchema = new Schema(
   { timestamps: true }
 );
 
-export { UserSchema };
+export default UserSchema;
