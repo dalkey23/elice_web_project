@@ -17,18 +17,21 @@ function LoginForm() {
 
     setValidated(true);
   };
-  // 값이 적절하지 않은 경우 빨간 테두리 (Form.Control.Feedback)
+  
   return (
-    <>
+    <div style = {{
+      display : 'flex',
+      justifyContent : 'center'
+    }}>
     <Login>
       <FloatingLabel
         controlId="floatingInput"
         label="이메일"
         className="mb-3">
-        <Form.Control type="email" placeholder="exam@example.com" />
+        <Form.Control type="email"/>
       </FloatingLabel>
       <FloatingLabel controlId="floatingPassword" label="비밀번호">
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Control type="password"/>
       </FloatingLabel>
     <div style = {{
       display : 'flex',
@@ -56,15 +59,13 @@ function LoginForm() {
       </Button>
     </div>
     </Login>
-  </>
+  </div>
   );
 }
 
-// 리액트 부트스트랩의 값을 styled-component로 감싸서 css 처리
-// 현재 우측으로 정렬이 되지 않음
 const Login = styled.div`
     padding : 200px;
-    width : 70%;
+    width : 60%;
 `
 
 export default LoginForm;
