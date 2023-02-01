@@ -5,7 +5,7 @@ const Header  = () => {
   return (    
     <>
     <div>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="white" variant="black">
         <Container>
           <div>
           <Navbar.Brand href="/">벌써 12시</Navbar.Brand>
@@ -27,6 +27,9 @@ const Header  = () => {
               {/* 로그인 아이콘 클릭시 로그인 폼으로 이동 (로그인 되어 있을 시 회원 정보) */}
               <Nav.Link href='/LoginForm'>
               <span className="material-symbols-outlined">person</span>
+              </Nav.Link>
+              <Nav.Link href="#pricing">
+              <span class="material-symbols-outlined">favorite</span>
               </Nav.Link>
               <Nav.Link href="#pricing">
               <span className="material-symbols-outlined">shopping_bag</span>
