@@ -28,8 +28,8 @@ const Header  = () => {
               <Nav.Link href='/LoginForm'>
               <span className="material-symbols-outlined">person</span>
               </Nav.Link>
-              <Nav.Link href="#pricing">
-              <span class="material-symbols-outlined">favorite</span>
+              <Nav.Link href='/Favorites'>
+              <span className="material-symbols-outlined">favorite</span>
               </Nav.Link>
               <Nav.Link href="#pricing">
               <span className="material-symbols-outlined">shopping_bag</span>

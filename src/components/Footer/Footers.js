@@ -3,7 +3,8 @@ import {Container, Navbar, Row, Col} from 'react-bootstrap';
 
 const Footer = () => {
   return (
-    <Navbar bg="dark" variant="dark" style = {{height : '100px'}}>
+    <Navbar bg="dark" variant="dark" style = {{height : '100px'}}
+    className="py-5 bg-dark mt-auto">
         <Container>
             <Row className="text-light">
                 <Col style ={{fontSize : '10px', color : 'grey'}}>

@@ -9,12 +9,14 @@ import Furniture from './bodyPages/Furniture';
 import RegisterForm from '../Register/RegisterForm';
 import LoginForm from '../Login/LoginForm';
 import Details from './bodyPages/Details';
+import Favorite from '../Favorite/Favorites';
 
 const BodyRoutes = () =>{
     return (<div>
     <Router>
         <Routes>
             <Route path="/" element = { <Home /> } />
+            <Route path="/Favorites" element = { <Favorite /> } />
             <Route path="/LoginForm" element = { <LoginForm /> } />
             <Route path="/RegisterForm" element = { <RegisterForm /> } />
             <Route path="/parenting" element = { <Parenting /> } />
