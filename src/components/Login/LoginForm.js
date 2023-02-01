@@ -15,9 +15,13 @@ function LoginForm() {
   const [password, setPassword] = useState('');
 
   // email, password 불러오는 get 요청
-  const handleSubmit = () => {
-    axios.get("", { email , password })
-}
+  const handleSubmit = (e) => {
+    
+    e.prevent.default();
+
+    axios
+      .get("", { email , password })
+      }
 
   // const handleSubmitCorrect = (event) => {
   //   const form = event.currentTarget;
@@ -57,7 +61,7 @@ function LoginForm() {
         backgroundColor : 'grey',
         borderColor : 'grey'
       }}
-        onSubmit={ handleSubmit } >
+        onClick={ handleSubmit } >
           로그인
       </Button>
       <Button style = {{
