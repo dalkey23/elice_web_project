@@ -4,6 +4,11 @@ import Table from 'react-bootstrap/Table';
 
 function UserPage() {
   return (
+  <div style = {{
+    padding : '100px',
+    display : 'flex',
+    justifyContent : 'center'
+  }}>  
     <Table bordered style = {{
         width : '400px'
     }}>
@@ -23,19 +28,21 @@ function UserPage() {
           <td>주소</td>
         </tr>
       </tbody>
-      <div style = {{
-        display : 'flex',
-        justifyContent : 'space-between',
-        padding : '10px'
-      }}>
-        <Button style = {{
-                borderWidth: '1px',
-        }} variant="outline-dark">회원 정보 수정</Button>
-        <Button style = {{
-                borderWidth: '1px'
-        }} variant="outline-danger">회원 탈퇴</Button>
-      </div>
-    </Table>
+        {/* 회원 정보 수정 탈퇴 버튼 */}
+        <div style = {{
+          display : 'flex',
+          justifyContent : 'space-between',
+          padding : '10px'
+        }}>
+          <Button style = {{
+                  borderWidth: '1px',
+          }} variant="outline-dark">회원 정보 수정</Button>
+          <Button style = {{
+                  borderWidth: '1px'
+          }} variant="outline-danger">회원 탈퇴</Button>
+        </div>
+      </Table>
+    </div>
   );
 }
 

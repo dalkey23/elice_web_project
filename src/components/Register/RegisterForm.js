@@ -84,10 +84,15 @@ function RegisterForm() {
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
         </Row>
-      <Button type="submit" style = {{
-        backgroundColor : 'grey',
-        border : 'grey'
-      }}>회원가입</Button>
+        <div style={{
+          display : 'flex',
+          justifyContent : 'flex-end'
+        }}>
+          <Button type="submit" style = {{
+            backgroundColor : 'grey',
+            border : 'grey',
+          }}>회원가입</Button>
+      </div>
     </Form>
     </Register>
   );
