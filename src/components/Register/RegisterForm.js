@@ -44,6 +44,7 @@ function RegisterForm() {
   //   }
   //   setValidated(true);
   // 값이 적절하지 않은 경우 빨간 테두리 (Form.Control.Feedback)
+
   return (
     <Register>
     <Form noValidate validated={validated} style = {{ width : 600 }}>
@@ -62,6 +63,7 @@ function RegisterForm() {
           <Form.Control.Feedback></Form.Control.Feedback>
         </Form.Group> 
       </Row>
+      
         {/* 이름 */}
         <Row className="mb-3">
         <Form.Group as={Col} controlId="validationCustom02">
