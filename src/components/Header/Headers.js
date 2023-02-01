@@ -11,7 +11,7 @@ const Header  = () => {
           <div>
             <Navbar.Brand href="/">
               <img src = { logo } alt = 'Logo' style = {{
-              height : '100px',
+              height : '70px',
               margin : '10px'
             }}/>
             </Navbar.Brand>
