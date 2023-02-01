@@ -1,5 +1,7 @@
 import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
+import Pagination from "./Pagination";
 
 const ListContainer = styled.div`
     display : flex;
@@ -67,12 +69,21 @@ const listItems = [{
 }];
 
 
+
+
 function Parenting() {
+    // useState, useEffect 이용해서 게시글 불러와야 함
+    // limit : 페이지당 게시물 수, page : 현재페이지 번호
+    // const [ limit, setLimit ] = useState(8); -> 페이지당 게시글 수 사용자지정
+    const limit = 8;
+    const [ page, setPage ] = useState(1);
+    //offset : 페이지의 첫 게시글 index
+    const offset = (page - 1)*limit;
 
 
-    return <ListContainer>
-
-        {listItems.map((listItem) => {
+    return <><ListContainer>
+        {/* slice : offset부터 offset+limit 인덱스까지의 값을 복사하여 반환 */}
+        {listItems.slice(offset, offset+limit).map((listItem) => {
             return <a href="/details">
                         <ListItems>
                             <Item>{listItem.imgUrl}</Item>
@@ -83,8 +94,14 @@ function Parenting() {
                     </a>
 
         })}
-
     </ListContainer>
+    <Pagination
+          total={listItems.length}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+        />
+    </>
 }
 
 
