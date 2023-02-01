@@ -17,20 +17,21 @@ export const postJoin = async (req, res) => {
   //   throw new Error("패스워드가 일치하지 않습니다.");
   // }
 
-  //패스워드 해쉬화
-  const hashedPassword = await bcrypt.hash(password, 10);
+  // 패스워드 해쉬화
+  // let saltRounds = await bcrypt.genSalt(10);
+  // let hashedPassword = await bcrypt.hash(password, saltRounds);
 
   try {
     await User.create({
       name,
       email,
-      password: hashedPassword,
+      password,
       phoneNumber,
       address,
     });
-    return res.redirect("/login");
+    return res.send("/login");
   } catch (error) {
-    return res.status(400);
+    throw new Error(error);
   }
 };
 
