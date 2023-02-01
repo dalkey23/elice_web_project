@@ -3,6 +3,7 @@ import express from "express";
 import "./db/index";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
+import productRouter from "./routers/productRouter";
 
 const app = express();
 
@@ -19,5 +20,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/", rootRouter);
 app.use("/users", userRouter);
+app.use("/products", productRouter);
 
 export default app;
