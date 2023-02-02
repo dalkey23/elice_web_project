@@ -1,4 +1,4 @@
-import { nanoid } from ('nanoid');
+import { nanoid } from "nanoid";
 
 const shortId = {
   type: String,
@@ -7,6 +7,6 @@ const shortId = {
   },
   require: true,
   index: true,
-}
+};
 
-export  { shortId };
+export { shortId };

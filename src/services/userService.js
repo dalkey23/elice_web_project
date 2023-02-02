@@ -29,7 +29,7 @@ export const postJoin = async (req, res) => {
       phoneNumber,
       address,
     });
-    return res.send("/login");
+    return res.send("join");
   } catch (error) {
     throw new Error(error);
   }
