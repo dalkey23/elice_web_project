@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {Container, Row, Col} from 'react-bootstrap';
+
+// const LocalStorage = () => {
+//   const [state, setState] = useState("")
+//   useEffect(() => {
+//     const Product1 = localStorage.Product1; //setItem
+//     if(Product1) {
+//       this.setState({
+//         Product1: JSON.parse(Product1) //getItem
+//       })
+//     }
+// },[])
+// }
 
 const Favorite = () => {
   return (
+    <>
+    <LocalStorage></LocalStorage>
     <Container style = {{display : 'flex', justifyContent : 'center', margin : '200px'}}>
       <Row style = {{
         backgroundColor : 'grey',
@@ -16,6 +30,7 @@ const Favorite = () => {
           </Col>
       </Row>
     </Container>
+    </>
   );
 }
 

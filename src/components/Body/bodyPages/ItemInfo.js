@@ -45,9 +45,9 @@ const ButtonWrapper = styled.div`
 
 const Details = () => {
     
-    const clickHandler = (e) => {
-        // const productName = e.target.productName.value
-        alert("완료");
+    const clickHandler = () => {
+        alert("완료")
+        localStorage.setItem('Product1', JSON.stringify(Product1));
     }
 
     return <Container>
