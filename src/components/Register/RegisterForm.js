@@ -50,14 +50,14 @@ function RegisterForm() {
     <Form noValidate validated={validated} style = {{ width : 600 }}>
       {/* 아이디 */}
       <Row className="mb-3" >
-        <Form.Group as={Col} md="12" controlId="validationCustom01">
+        <Form.Group as={Col} md="12" controlId="validationCustom02">
           <Form.Label>아이디</Form.Label>
           <Form.Control
             required
             type="text"
             placeholder="Elice@elice.com"
             defaultValue=""
-            value={ email }
+            value= { email }
             onChange={ (e) => setEmail(e.target.value)}
             />
           <Form.Control.Feedback></Form.Control.Feedback>
