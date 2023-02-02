@@ -1,13 +1,8 @@
 import Product from "../db/models/productModel";
 import productRouter from "../routers/productRouter";
-import { shortId } from "../db/schemas/types/shortId";
+// import { shortId } from "../db/schemas/types/shortId";
 
-//참조
-// productRouter.get('/products', showAllProducts);
-// productRouter.get('/products/:shortId', findOneProduct);
-// productRouter.post('/products/regist', registProduct);
-// productRouter.post('/products/:shortId', updateProduct);
-// productRouter.delete('/products:shortId', deleteProduct);
+
 
 //상품리스트 전체 보여주기
 export const showAllProducts = async (req, res, next) => {
@@ -21,20 +16,25 @@ export const showAllProducts = async (req, res, next) => {
 
 //상품조회
 export const findOneProduct = async (req, res, next) => {
-  const { shortId } = req.params;
-  const post = await Product.findOne({ shortId }); // shortId 로 게시글 찾기
+  const { _id } = req.params;
+  await Product.findOne({ _id }); // shortId 로 게시글 찾기
 
-  if (req.query.edit) {
-    res.render("products/edit", { post });
-    return;
-  }
-
-  res.render("products/view", { post });
+  // if (req.query.edit) {
+  //   res.send();
+  //   return;
+  // }
+  res.send ("상품조회완료")
+  // res.render("products/view", { post });
 };
 
 //상품등록
-export const registProduct = async (req, res, next) => {
-  const { productName } = req.body;
+export const addProduct = async (req, res, next) => {
+  const { productName, categoryId, manufacturer, shortDesc, detailDesc, imgUrl, totalstocks, price, searchKeywords } = req.body;
+
+
+
+
+
 
   try {
     // if (!productName || !categoryId || !detailDesc || !imgUrl || !price) {
@@ -45,7 +45,7 @@ export const registProduct = async (req, res, next) => {
     // 게시글 생성
     await Product.create({
       // id: { shortId },
-      productName,
+      productName, categoryId, manufacturer, shortDesc, detailDesc, imgUrl, totalstocks, price, searchKeywords
     });
     res.send("연결완료");
   } catch (err) {
@@ -55,7 +55,7 @@ export const registProduct = async (req, res, next) => {
 //상품수정
 //shortId 로 게시글 수정하는 코드를 작성
 //shortId를 새 요청값( req.params) 에 저장
-export const updateProduct = async (req, res, next) => {
+export const editProduct = async (req, res, next) => {
   const { shortId } = req.params;
 
   try {

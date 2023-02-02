@@ -1,12 +1,12 @@
 import express from "express";
-import { showAllProducts, findOneProduct, registProduct, updateProduct, deleteProduct } from "../services/productService";
+import { showAllProducts, findOneProduct, addProduct, editProduct, deleteProduct } from "../services/productService";
 
 const productRouter = express.Router();
 
-productRouter.get("/products", showAllProducts);
-productRouter.get("/products/:shortId", findOneProduct);
-productRouter.post("/products/regist", registProduct);
-productRouter.post("/products/:shortId", updateProduct);
-productRouter.delete("/products:shortId", deleteProduct);
+productRouter.get("/", showAllProducts);
+productRouter.get("/:id", findOneProduct);
+productRouter.post("/add", addProduct);
+productRouter.post("/edit", editProduct);
+productRouter.delete("/delete", deleteProduct);
 
 export default productRouter;
