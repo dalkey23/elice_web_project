@@ -1,6 +1,6 @@
 import "dotenv/config";
 import app from "./src/app";
-// 테스트용 문구입니다
+// 테스트용 문구입니다.
 // const PORT = process.env.PORT || 3000;
 
 app.listen(() => {
