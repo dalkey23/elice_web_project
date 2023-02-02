@@ -8,6 +8,10 @@ const UserSchema = new Schema(
     email: { type: String, unique: true },
     phoneNumber: { type: String, unique: true },
     address: { type: String },
+    role: {
+      type: String,
+      default: "user",
+    },
   },
   { timestamps: true }
 );
