@@ -34,21 +34,20 @@ export const findOneProduct = async (req, res, next) => {
 
 //상품등록
 export const registProduct = async (req, res, next) => {
-  const { title, content } = req.body;
+  const { productName } = req.body;
 
   try {
-    if (!productName || !categoryId || !detailDesc || !imgUrl || !price) {
-      throw new Error("제목과 내용을 입력해 주세요");
-    }
+    // if (!productName || !categoryId || !detailDesc || !imgUrl || !price) {
+    //   throw new Error("제목과 내용을 입력해 주세요");
+    // }
 
     // 서버에 postReqest를 보내서 브라우저에서 CREATE 작업을 수행
     // 게시글 생성
-    const postReqest = await Product.create({
-      id: { shortId },
-      title: title,
-      content: content,
+    await Product.create({
+      // id: { shortId },
+      productName,
     });
-    res.redirect(`/products/${postReqest.shortId}`);
+    res.send("연결완료");
   } catch (err) {
     next(err);
   }

@@ -4,14 +4,14 @@ import { Schema } from "mongoose";
 const ProductSchema = new Schema(
   {
     // shortId,
-    productName: { type: String, required: true },
-    categoryId: { type: String, required: true },
+    productName: { type: String },
+    categoryId: { type: String },
     manufacturer: { type: String },
     shortDesc: { type: String },
-    detailDesc: { type: String, required: true },
-    imgUrl: { type: String, required: true },
+    detailDesc: { type: String },
+    imgUrl: { type: String },
     totalstocks: { type: Number },
-    price: { type: Number, required: true },
+    price: { type: Number },
     searchKeywords: { type: String },
   },
   { timestamps: true }
