@@ -1,11 +1,11 @@
 import { Schema } from "mongoose";
-import { shortId } from "./types/shortId";
+// import { shortId } from "./types/shortId";
 
 const ProductSchema = new Schema(
   {
-    shortId,
+    // shortId,
     productName: { type: String, required: true },
-    categoryId: { required: true },
+    categoryId: { type: String, required: true },
     manufacturer: { type: String },
     shortDesc: { type: String },
     detailDesc: { type: String, required: true },

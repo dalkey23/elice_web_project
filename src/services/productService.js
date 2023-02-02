@@ -1,5 +1,5 @@
 import Product from "../db/models/productModel";
-
+import productRouter from "../routers/productRouter";
 import { shortId } from "../db/schemas/types/shortId";
 
 //참조
@@ -19,8 +19,6 @@ export const showAllProducts = async (req, res, next) => {
   res.render("products/list", { products });
 };
 
-productRouter.get("/:shortId", findOneProduct);
-
 //상품조회
 export const findOneProduct = async (req, res, next) => {
   const { shortId } = req.params;
@@ -33,8 +31,6 @@ export const findOneProduct = async (req, res, next) => {
 
   res.render("products/view", { post });
 };
-
-productRouter.post("/", registProduct);
 
 //상품등록
 export const registProduct = async (req, res, next) => {
@@ -97,7 +93,6 @@ export const updateProduct = async (req, res, next) => {
   res.render("post/view", { post });
 };
 //shortId의 게시글을 삭제
-productRouter.delete("/:shortId", deleteProduct);
 
 //deleteProduct
 export const deleteProduct = async (req, res, next) => {
