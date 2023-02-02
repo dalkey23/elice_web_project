@@ -18,14 +18,14 @@ export const postJoin = async (req, res) => {
   // }
 
   // 패스워드 해쉬화
-  // let saltRounds = await bcrypt.genSalt(10);
-  // let hashedPassword = await bcrypt.hash(password, saltRounds);
+  let saltRounds = await bcrypt.genSalt(10);
+  let hashedPassword = await bcrypt.hash(password, saltRounds);
 
   try {
     await User.create({
       name,
       email,
-      password,
+      password: hashedPassword,
       phoneNumber,
       address,
     });
@@ -36,17 +36,17 @@ export const postJoin = async (req, res) => {
 };
 
 //로그인
-export const postLogin = async (res, req) => {
+export const postLogin = async (req, res) => {
   const { email, password } = req.body;
 
-  //DB에 있는 사용자 인지 확인
+  // //DB에 있는 사용자 인지 확인
   const user = await User.findOne({ email });
   if (!user) {
     throw new Error("해당 이메일은 가입한 사용자가 아닙니다.");
   }
 
-  //비밀번호 확인
-  //1번째는 프론트에서 가져온 비밀번호, 2번째는 db비밀번호
+  // //비밀번호 확인
+  // //1번째는 프론트에서 가져온 비밀번호, 2번째는 db비밀번호
   const comparePassword = await bcrypt.compare(password, user.password);
 
   if (!comparePassword) {
@@ -58,23 +58,57 @@ export const postLogin = async (res, req) => {
   // jwt 토큰에 유저 아이디 담기
   const token = jwt.sign({ userId: user._id }, secretKey);
 
+  res.send(token);
+
   return { token };
 };
 
 //마이 페이지
-export const seeMyPage = async (res, req) => {
-  const { id } = req.params;
-  res.send("mypage");
+export const seeMyPage = async (req, res) => {
+  res.send("1");
 };
 
 //회원 정보 수정
 export const changeUser = async (req, res) => {
-  // let user = await User.findById({ _id });
-  // // db에서 찾지 못한 경우, 에러 메시지 반환
-  // if (!user) {
-  //   const errorMessage = "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
-  //   return { errorMessage };
-  // }
+  try {
+    const { name, email, phoneNumber, address } = req.body;
+    let user = await User.findOne({ name });
+    // // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (!user) {
+      const errorMessage = "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+    await User.updateOne({
+      email,
+      phoneNumber,
+      address,
+    });
+    res.write("<script>alert('success')</script>");
+  } catch (error) {
+    return error;
+  }
+};
+
+//회원탈퇴
+export const deleteUser = async (req, res) => {
+  const { password } = req.body;
+  //입력한 비밀번호 해쉬화
+  const saltRounds = await bcrypt.genSalt(10); //소금 몇번 칠건지
+  const hassedPassword = await bcrypt.hash(password, saltRounds);
+
+  const user = await User.findOne({ password: hassedPassword });
+
+  // //비밀번호 확인
+  // //1번째는 프론트에서 가져온 비밀번호, 2번째는 db비밀번호
+  const comparePassword = bcrypt.compare(hassedPassword, user.password);
+
+  if (!comparePassword) {
+    throw new Error("비밀번호가 일치하지 않습니다.");
+  }
+
+  await User.deleteOne({ password: hassedPassword });
+
+  res.send("!");
 };
 
 //로그아웃
@@ -82,5 +116,6 @@ export const changeUser = async (req, res) => {
 
 export const logOut = async (req, res) => {
   res.cookie("token", null, { maxAge: 0 });
-  res.json({ message: "logout" });
+
+  return res.send("logout");
 };
