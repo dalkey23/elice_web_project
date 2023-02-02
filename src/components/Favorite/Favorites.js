@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import {Container, Row, Col} from 'react-bootstrap';
 
 // const LocalStorage = () => {
@@ -16,7 +16,7 @@ import {Container, Row, Col} from 'react-bootstrap';
 const Favorite = () => {
   return (
     <>
-    <LocalStorage></LocalStorage>
+    {/* <LocalStorage></LocalStorage> */}
     <Container style = {{display : 'flex', justifyContent : 'center', margin : '200px'}}>
       <Row style = {{
         backgroundColor : 'grey',
