@@ -31,14 +31,19 @@ function UserInfo() {
         {/* 회원 정보 수정 탈퇴 버튼 */}
         <div style = {{
           display : 'flex',
-          justifyContent : 'space-between',
+          justifyContent : 'flex-end',
           padding : '10px'
         }}>
           <Button style = {{
                   borderWidth: '1px',
           }} variant="outline-dark">회원 정보 수정</Button>
           <Button style = {{
-                  borderWidth: '1px'
+                  borderWidth: '1px',
+                  margin: '0 0 0 10px'
+          }} variant="outline-dark" href="">주문 내역</Button>
+          <Button style = {{
+                  borderWidth: '1px',
+                  margin: '0 0 0 10px'
           }} variant="outline-danger">회원 탈퇴</Button>
         </div>
       </Table>

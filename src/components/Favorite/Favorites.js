@@ -1,22 +1,21 @@
 import React from 'react'
 import {Container, Row, Col} from 'react-bootstrap';
+// import { useState, useEffect } from 'react';
 
-// const LocalStorage = () => {
-//   const [state, setState] = useState("")
+// const GetDataLocalStorage = () => {
+//   const [items, setItems] = useState([]);
 //   useEffect(() => {
-//     const Product1 = localStorage.Product1; //setItem
-//     if(Product1) {
-//       this.setState({
-//         Product1: JSON.parse(Product1) //getItem
-//       })
-//     }
-// },[])
+//   const items = JSON.parse(localStorage.getItem('Product1'));
+//   if (items) {
+//    setItems(items);
+//   }
+// }, []);
 // }
 
 const Favorite = () => {
   return (
     <>
-    {/* <LocalStorage></LocalStorage> */}
+    {/* <GetDataLocalStorage/> */}
     <Container style = {{display : 'flex', justifyContent : 'center', margin : '200px'}}>
       <Row style = {{
         backgroundColor : 'grey',
