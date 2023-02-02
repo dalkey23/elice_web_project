@@ -8,7 +8,7 @@ import Fassion from './bodyPages/Fassion';
 import Furniture from './bodyPages/Furniture';
 import RegisterForm from '../Register/RegisterForm';
 import LoginForm from '../Login/LoginForm';
-import Details from './bodyPages/Details';
+import ItemInfo from './bodyPages/ItemInfo';
 import Favorite from '../Favorite/Favorites';
 import Order from './bodyPages/Order';
 
@@ -25,7 +25,7 @@ const BodyRoutes = () =>{
             <Route path="/sports" element = { <Sports /> } />
             <Route path="/fassion" element = { <Fassion /> } />
             <Route path="/furniture" element = { <Furniture /> } />
-            <Route path="/details" element = { <Details /> } />
+            <Route path="/itemInfo" element = { <ItemInfo /> } />
             <Route path="/order" element = { <Order /> } />
         </Routes>
     </Router>

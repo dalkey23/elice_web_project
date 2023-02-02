@@ -84,7 +84,7 @@ function Parenting() {
     return <><ListContainer>
         {/* slice : offset부터 offset+limit 인덱스까지의 값을 복사하여 반환 */}
         {listItems.slice(offset, offset+limit).map((listItem) => {
-            return <a href="/details">
+            return <a href="/itemInfo">
                         <ListItems>
                             <Item>{listItem.imgUrl}</Item>
                             <Item>{listItem.productName}</Item>
