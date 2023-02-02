@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
+const Container = styled.form`
     display : flex;
     padding : 10px 80px;
 `
@@ -55,22 +55,13 @@ const PaymentInfo = styled.div`
     color : white;
   }
 `
-const TitleDiv = styled.div`
-    border-bottom : 1px grey solid;
-    padding-bottom : 10px;
-  
-  & ul {
-    list-style-type : none;
-    
-  }
+const submitHandler = () => {
+    alert("주문완료!")
+}
 
-  & li {
-    display : inline;
-  }
-`
 const OrderComplete = () => {
     return <>
-    <Container>
+    <Container action="/payments/orderComplete" onSubmit={submitHandler}>
         <OrderInfo>
             <h3>배송지 정보</h3>
             <label>

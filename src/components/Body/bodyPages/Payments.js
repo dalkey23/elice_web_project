@@ -1,10 +1,16 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Cart from "./Cart";
 import Order from "./Order";
 import OrderComplete from "./OrderComplete";
 
+
+const Container = styled.div`
+    display : flex;
+    flex-direction : column;
+    padding : 10px ;
+`
 const TitleDiv = styled.div`
     border-bottom : 1px grey solid;
     padding-bottom : 10px;
@@ -17,29 +23,40 @@ const TitleDiv = styled.div`
   & li {
     display : inline;
   }
+  
+  & a {
+    text-decoration : none;
+    color : black;
+  }
 `
-const Container = styled.div`
-    display : flex;
-    padding : 10px 80px;
+
+const BodyDiv = styled.div`
+    //border : 1px red solid;
+    
 `
 
 const Payments = () => {
-    return <>
-    <TitleDiv>
-        <ul>
-            <li><a href="/payments/cart">장바구니</a></li>{">"}
-            <li><a href="/payments/order">주문결제</a></li>{">"}
-            <li><a href="/payments/orderComplete">주문완료</a></li>
-        </ul>
-    </TitleDiv>
-    <Container>
-        <Routes>
-            <Route path="cart" exact element={<Cart />} />
-            <Route path="order" element={<Order />} />
-            <Route path="orderComplete" element={<OrderComplete />} /> 
-        </Routes>
+    const currentPage = {
+        fontWeight : "bold",
+        fontSize : "40px",
+    }
+
+    return <Container>
+        <TitleDiv>
+            <ul>
+                <li><NavLink to="/payments/cart" style={({ isActive }) => isActive ? currentPage : undefined} >장바구니</NavLink></li>{" > "}
+                <li><NavLink to="/payments/order" style={({ isActive }) => isActive ? currentPage : undefined}>주문결제</NavLink></li>{" > "}
+                <li><NavLink to="/payments/orderComplete" style={({ isActive }) => isActive ? currentPage : undefined}>주문완료</NavLink></li>
+            </ul>
+        </TitleDiv>
+        <BodyDiv>
+            <Routes>
+                <Route path="cart" exact element={<Cart />} />
+                <Route path="order" element={<Order />} />
+                <Route path="orderComplete" element={<OrderComplete />} />
+            </Routes>
+        </BodyDiv>
     </Container>
-    </>
 }
 
 export default Payments;
