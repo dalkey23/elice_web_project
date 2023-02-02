@@ -31,7 +31,7 @@ function RegisterForm() {
       address
     }
     const onSubmit = () => {
-      axios.post("", { formData })
+      axios.post("https://httpbin.org/post", { formData })
     }
     onSubmit();
   }
