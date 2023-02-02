@@ -71,7 +71,7 @@ function RegisterForm() {
           <Form.Control
             required
             type="text"
-            placeholder="엘리스"
+            placeholder="홍길동"
             defaultValue=""
             value={ name }
             onChange={ (e) => setName(e.target.value)}
@@ -143,7 +143,7 @@ function RegisterForm() {
           <Button type="submit" style = {{
             backgroundColor : 'grey',
             border : 'grey',
-          }} onClick={ handleSubmit }>회원가입</Button>
+          }} onClick = { handleSubmit }>회원가입</Button>
       </div>
     </Form>
     </Register>

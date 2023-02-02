@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import UserInfo from '../User/UserInfo';
 import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -37,6 +38,9 @@ function LoginForm() {
       display : 'flex',
       justifyContent : 'center'
     }}>
+    {/* 임시 유저인포 디스플레이 */}
+    <UserInfo />
+    
     <Login>
       <FloatingLabel
         controlId="floatingInput"

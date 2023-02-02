@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 
-function UserPage() {
+function UserInfo() {
   return (
   <div style = {{
     padding : '100px',
@@ -46,4 +46,4 @@ function UserPage() {
   );
 }
 
-export default UserPage;
+export default UserInfo;
