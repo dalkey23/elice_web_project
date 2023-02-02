@@ -37,7 +37,7 @@ const Header  = () => {
               <Nav.Link href='/Favorites'>
               <span className="material-symbols-outlined">favorite</span>
               </Nav.Link>
-              <Nav.Link href="#pricing">
+              <Nav.Link href="/payments/cart">
               <span className="material-symbols-outlined">shopping_bag</span>
               </Nav.Link>
             </Nav>

@@ -61,7 +61,7 @@ const Details = () => {
             <ButtonWrapper>
                 <button type="button" onClick={clickHandler}>장바구니 추가하기</button>
                 <button type="button" onClick={clickHandler}>찜 하기</button>
-                <button formAction="/order" >바로 구매하기</button>
+                <button formAction="/payments/order" >바로 구매하기</button>
             </ButtonWrapper>
         </Wrapper>
     </Container>

@@ -68,15 +68,8 @@ const TitleDiv = styled.div`
     display : inline;
   }
 `
-const Order = () => {
+const OrderComplete = () => {
     return <>
-    <TitleDiv>
-        <ul>
-            <li>장바구니</li>{">"}
-            <li>주문결제</li>{">"}
-            <li>주문완료</li>
-        </ul>
-    </TitleDiv>
     <Container>
         <OrderInfo>
             <h3>배송지 정보</h3>
@@ -118,4 +111,4 @@ const Order = () => {
     </>
 }
 
-export default Order;
+export default OrderComplete;
