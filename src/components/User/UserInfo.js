@@ -7,9 +7,7 @@ function UserInfo() {
 
     axios
     .get("http://localhost:8080/users/14")
-    .then(() => {
-        alert('성공했습니다.')
-        })
+    .then(alert('성공했습니다.'))
     .catch(alert('실패했습니다.'))
   
   return (
@@ -23,20 +21,21 @@ function UserInfo() {
     }}>
       <thead>
         <tr>
-          <th>이름</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>아이디</td>
+          <td></td>
         </tr>
         <tr>
-          <td>전화번호</td>
+          <td></td>
         </tr>
         <tr>
-          <td>주소</td>
+          <td></td>
         </tr>
       </tbody>
+
         {/* 회원 정보 수정 탈퇴 버튼 */}
         <div style = {{
           display : 'flex',
@@ -49,7 +48,7 @@ function UserInfo() {
           <Button style = {{
                   borderWidth: '1px',
                   margin: '0 0 0 10px'
-          }} variant="outline-dark" href="">주문 내역</Button>
+          }} variant="outline-dark">주문 내역</Button>
           <Button style = {{
                   borderWidth: '1px',
                   margin: '0 0 0 10px'
