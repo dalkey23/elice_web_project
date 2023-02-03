@@ -38,9 +38,6 @@ function LoginForm() {
       display : 'flex',
       justifyContent : 'center'
     }}>
-    {/* 임시 유저인포 디스플레이 */}
-    <UserInfo />
-    
     <Login>
       <FloatingLabel
         controlId="floatingInput"

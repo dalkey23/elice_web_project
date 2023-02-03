@@ -17,6 +17,7 @@ import Payments from "./bodyPages/Payments"
 import Cart from './bodyPages/Cart'
 import Order from './bodyPages/Order'
 import OrderComplete from './bodyPages/OrderComplete';
+import UserInfo from '../User/UserInfo';
 
 const Container = styled.div`
     display : flex;
@@ -65,6 +66,7 @@ const BodyRoutes = () => {
                   <NavLink to="/"><img src = { logo } alt = 'Logo' /></NavLink>
                 </LogoDiv>
                 <NavUl>
+                    <li><NavLink to="/UserInfo">유저상세 테스트</NavLink></li>
                     <li><NavLink to="/parenting">육아</NavLink></li>
                     <li><NavLink to="/living">생활</NavLink></li>
                     <li><NavLink to="/sports">스포츠</NavLink></li>
@@ -79,6 +81,7 @@ const BodyRoutes = () => {
             </Container>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/UserInfo" element={<UserInfo />} />
                 <Route path="/Favorites" element={<Favorite />} />
                 <Route path="/LoginForm" element={<LoginForm />} />
                 <Route path="/RegisterForm" element={<RegisterForm />} />
