@@ -21,7 +21,7 @@ return (
                     backgroundColor : 'white'
                 }}>유저 정보</button>
             </NavLink>
-            <NavLink to="/UserInfo" style = {{
+            <NavLink to="/OrderList" style = {{
                 textDecorationLine : 'none',
                 display : 'flex',
                 justifyContent : 'center',
@@ -37,7 +37,11 @@ return (
                 display : 'flex',
                 justifyContent : 'center'
             }}>
-            <button style = {{
+            <button 
+            onClick = {() => {
+                alert('로그아웃 되었습니다')
+            }}
+            style = {{
                     padding : '8px',
                     width : '15%',
                     borderRadius : '5px',

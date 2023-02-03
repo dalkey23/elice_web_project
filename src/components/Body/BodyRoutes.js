@@ -19,6 +19,7 @@ import Order from './bodyPages/Order'
 import OrderComplete from './bodyPages/OrderComplete';
 import UserMain from '../User/UserMain';
 import UserInfo from '../User/UserInfo';
+import OrderList from './bodyPages/OrderList';
 
 const Container = styled.div`
     display : flex;
@@ -82,6 +83,7 @@ const BodyRoutes = () => {
             </Container>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/OrderList" element={<OrderList />} />
                 <Route path="/UserInfo" element={<UserInfo />} />
                 <Route path="/UserMain" element={<UserMain />} />
                 <Route path="/Favorites" element={<Favorite />} />

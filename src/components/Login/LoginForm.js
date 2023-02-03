@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -70,11 +71,11 @@ function LoginForm() {
         backgroundColor : 'grey',
         borderColor : 'grey'
       }}>
-        <a href='/RegisterForm' style = {{
+        <Link to='/RegisterForm' style = {{
               textDecoration : 'none',
               color : 'white'
               }}>회원가입
-        </a>
+        </Link>
       </Button>
     </div>
     </Login>
