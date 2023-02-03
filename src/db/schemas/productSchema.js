@@ -1,9 +1,8 @@
-import { Schema } from "mongoose";
-// import { shortId } from "./types/shortId";
+const mongoose = require("mongoose");
+const AutoIncrement = require("mongoose-sequence")(mongoose);
 
-const ProductSchema = new Schema(
+const ProductSchema = new mongoose.Schema(
   {
-    // shortId,
     productName: { type: String },
     categoryId: { type: String },
     manufacturer: { type: String },
@@ -16,5 +15,5 @@ const ProductSchema = new Schema(
   },
   { timestamps: true }
 );
-
+ProductSchema.plugin(AutoIncrement, { inc_field: "id" });
 export { ProductSchema };
