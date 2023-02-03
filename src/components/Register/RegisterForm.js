@@ -21,7 +21,7 @@ function RegisterForm() {
   // post로 데이터 등록
   const handleSubmit = (e) => {
     
-    e.prevent.default();
+    e.preventDefault();
     
     const formData = {
       email,
@@ -32,9 +32,11 @@ function RegisterForm() {
     }
     const onSubmit = () => {
       // formData로 묶은 값을 구조분해해서 전달
-      axios.post("", { ...formData })
+      axios
+        .post("", { ...formData })
       // test
       console.log('post success');
+      alert('post success')
     }
     onSubmit();
   }
@@ -146,7 +148,7 @@ function RegisterForm() {
           <Button type="submit" style = {{
             backgroundColor : 'grey',
             border : 'grey',
-          }} onClick = { handleSubmit }>회원가입</Button>
+          }} onClick = { handleSubmit } >회원가입</Button>
       </div>
     </Form>
     </Register>
