@@ -77,7 +77,7 @@ export const seeMyPage = async (req, res) => {
       phoneNumber: user.phoneNumber,
       address: user.address,
     };
-    res.status(200).json(info);
+    res.status(200).send(info);
   } catch (error) {
     throw new Error(err);
   }
