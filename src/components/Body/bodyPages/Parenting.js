@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import Pagination from "./Pagination";
+import { Link } from "react-router-dom";
 
 const ListContainer = styled.div`
     display : flex;
@@ -84,14 +85,14 @@ function Parenting() {
     return <><ListContainer>
         {/* slice : offset부터 offset+limit 인덱스까지의 값을 복사하여 반환 */}
         {listItems.slice(offset, offset+limit).map((listItem) => {
-            return <a href="/itemInfo">
+            return <Link to="/itemInfo">
                         <ListItems>
                             <Item>{listItem.imgUrl}</Item>
                             <Item>{listItem.productName}</Item>
                             <Item>{listItem.shortDesc}</Item>
                             <Item>{listItem.price}</Item>
                         </ListItems>
-                    </a>
+                    </Link>
 
         })}
     </ListContainer>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.form`
     display : flex;
@@ -55,11 +56,18 @@ const PaymentInfo = styled.div`
     color : white;
   }
 `
-const submitHandler = () => {
-    alert("주문완료!")
-}
+
 
 const OrderComplete = () => {
+
+    const navigate = useNavigate();
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        alert("주문완료!")
+        navigate('/payments/orderComplete')
+    }
+
     return <>
     <Container action="/payments/orderComplete" onSubmit={submitHandler}>
         <OrderInfo>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Product1 = {
     productName: "제품명1", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
@@ -57,13 +58,22 @@ const ButtonWrapper = styled.div`
 
 const Details = () => {
     
+    const navigate = useNavigate();
+    
     const clickHandler = () => {
         alert("완료")
         
         localStorage.setItem('product1', JSON.stringify(Product1));
     }
 
-    return <Container>
+    const SubmitHandler = (e) => {
+        e.preventDefault();
+        navigate('/payments/order')
+    }
+
+    
+
+    return <Container onSubmit={SubmitHandler}>
         <ProductImg name="imgUrl">{Product1.imgUrl}</ProductImg>
         <Wrapper>
             <Items type="text" name="manufacturer" value={Product1.manufacturer}/>
@@ -74,7 +84,7 @@ const Details = () => {
             <ButtonWrapper>
                 <button type="button" onClick={clickHandler}>장바구니 추가하기</button>
                 <button type="button" onClick={clickHandler}>찜 하기</button>
-                <button formAction="/payments/order" >바로 구매하기</button>
+                <button>바로 구매하기</button>
             </ButtonWrapper>
         </Wrapper>
     </Container>
