@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
@@ -16,11 +16,10 @@ function RegisterForm() {
   const [password, setPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
-  const navigate = useNavigate();
-
   // 유효성 검사 로직 보류
   const [validated, setValidated] = useState(false);
-  
+  const navigate = useNavigate();
+
   // post로 데이터 등록
   const handleSubmit = (e) => {
     
@@ -35,16 +34,18 @@ function RegisterForm() {
     }
     const onSubmit = () => {
       // formData로 묶은 값을 구조분해해서 전달
+      // useEffect 고민
       axios
         .post("http://localhost:8080/join", { ...formData })
         .then(() => {
-          return navigate("/LoginForm")
+          alert('회원가입이 완료되었습니다.')
         })
-        .catch((error) => {
-          alert(error)
+        .then(() => {
+          navigate("/LoginForm")
         })
-      // test
-      alert('회원가입이 완료되었습니다.');
+        .catch((err) => {
+          alert('에러가 발생했습니다. 다시 시도해주세요.')
+        })
     }
     onSubmit();
   }
@@ -156,7 +157,7 @@ function RegisterForm() {
           <Button type="submit" style = {{
             backgroundColor : 'grey',
             border : 'grey',
-          }} onClick = { handleSubmit } >회원가입</Button>
+          }} onClick = { handleSubmit }>회원가입</Button>
       </div>
     </Form>
     </Register>
