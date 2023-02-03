@@ -67,7 +67,20 @@ export const postLogin = async (req, res) => {
 
 //마이 페이지
 export const seeMyPage = async (req, res) => {
-  res.send("1");
+  const userId = req.params.userId;
+
+  try {
+    const user = await User.findOne({ userId });
+    const info = {
+      name: user.name,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      address: user.address,
+    };
+    res.status(200).json(info);
+  } catch (error) {
+    throw new Error(err);
+  }
 };
 
 //회원 정보 수정
