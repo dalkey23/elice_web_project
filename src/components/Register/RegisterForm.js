@@ -33,7 +33,7 @@ function RegisterForm() {
     const onSubmit = () => {
       // formData로 묶은 값을 구조분해해서 전달
       axios
-        .post("", { ...formData })
+        .post("http://localhost:8080/join", { ...formData })
       // test
       console.log('post success');
       alert('post success')
