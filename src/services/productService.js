@@ -1,6 +1,5 @@
 import Product from "../db/models/productModel";
-import productRouter from "../routers/productRouter";
-// import { shortId } from "../db/schemas/types/shortId";
+
 
 
 
