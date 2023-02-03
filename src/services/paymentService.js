@@ -2,7 +2,7 @@ import Payment from "../db/models/paymentModel";
 
 //배송지정보,주문정보 저장
 export const postPayment = async (req, res) => {
-  const { name, phoneNumber, address, requirement } = req.body;
+  const { name, phoneNumber, address, requirement, productName, total } = req.body;
 
   try {
     await Payment.create({
@@ -10,6 +10,8 @@ export const postPayment = async (req, res) => {
       phoneNumber,
       address,
       requirement,
+      productName,
+      total,
     });
   } catch (error) {
     throw new Error(error);

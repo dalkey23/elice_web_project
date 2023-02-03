@@ -56,9 +56,11 @@ export const postLogin = async (req, res) => {
   const secretKey = process.env.JWT_SECRET_KEY || "secret-key";
 
   // jwt 토큰에 유저 아이디 담기
-  const token = jwt.sign({ userId: user._id }, secretKey);
-  const isAdmin = user.role === "admin";
+  const token = jwt.sign({ userId: user._id, role: user.role }, secretKey);
   res.send(token);
+
+  const isAdmin = user.role === "admin";
+
   if (isAdmin) {
     res.redirect("/");
   }
@@ -77,9 +79,9 @@ export const seeMyPage = async (req, res) => {
       phoneNumber: user.phoneNumber,
       address: user.address,
     };
-    res.status(200).send(info);
+    res.status(200).json(info);
   } catch (error) {
-    throw new Error(err);
+    throw new Error(error);
   }
 };
 

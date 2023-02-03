@@ -7,7 +7,7 @@ const PaymentSchema = new Schema(
     address: { type: String },
     requirement: { type: String },
     productName: { type: String },
-    totalMoney: { type: Number },
+    total: { type: Number },
   },
   { timestamps: true }
 );
