@@ -1,8 +1,5 @@
 import Product from "../db/models/productModel";
 
-
-
-
 //상품리스트 전체 보여주기
 export const showAllProducts = async (req, res, next) => {
   if (req.query.write) {
@@ -22,18 +19,13 @@ export const findOneProduct = async (req, res, next) => {
   //   res.send();
   //   return;
   // }
-  res.send ("상품조회완료")
+  res.send("상품조회완료");
   // res.render("products/view", { post });
 };
 
 //상품등록
 export const addProduct = async (req, res, next) => {
   const { productName, categoryId, manufacturer, shortDesc, detailDesc, imgUrl, totalstocks, price, searchKeywords } = req.body;
-
-
-
-
-
 
   try {
     // if (!productName || !categoryId || !detailDesc || !imgUrl || !price) {
@@ -44,7 +36,15 @@ export const addProduct = async (req, res, next) => {
     // 게시글 생성
     await Product.create({
       // id: { shortId },
-      productName, categoryId, manufacturer, shortDesc, detailDesc, imgUrl, totalstocks, price, searchKeywords
+      productName,
+      categoryId,
+      manufacturer,
+      shortDesc,
+      detailDesc,
+      imgUrl,
+      totalstocks,
+      price,
+      searchKeywords,
     });
     res.send("연결완료");
   } catch (err) {
