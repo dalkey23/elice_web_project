@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-const Container = styled.form`
+const FormContainer = styled.form`
     display : flex;
     padding : 10px 80px;
 `
@@ -63,6 +64,7 @@ const PaymentInfo = styled.div`
   }
 `
 const Cart = ()=>{
+    const navigate = useNavigate();
 
     const listItems = [{
     productName: "육아1", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
@@ -74,8 +76,16 @@ const Cart = ()=>{
     sku: "개", count : 2
 }]
 
+    const SubmitHandler = (e)=>{
+        e.preventDefault();
+        console.log("s");
+
+        
+        navigate('/payments/order')
+    }
+
     return <>
-    <Container action="/payments/order">
+    <FormContainer onSubmit={SubmitHandler}>
         <CartInfo>
             {listItems.map((item)=>{
                 return <CartItem>
@@ -95,7 +105,7 @@ const Cart = ()=>{
             <h4>총 결제금액</h4>
             <button>구매하기</button>
         </PaymentInfo>
-    </Container>
+    </FormContainer>
     </>
 }
 
