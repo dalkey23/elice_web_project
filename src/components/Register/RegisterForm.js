@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -15,9 +16,11 @@ function RegisterForm() {
   const [password, setPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
+  const navigate = useNavigate();
+
   // 유효성 검사 로직 보류
   const [validated, setValidated] = useState(false);
-
+  
   // post로 데이터 등록
   const handleSubmit = (e) => {
     
@@ -34,8 +37,14 @@ function RegisterForm() {
       // formData로 묶은 값을 구조분해해서 전달
       axios
         .post("http://localhost:8080/join", { ...formData })
+        .then(() => {
+          return navigate("/LoginForm")
+        })
+        .catch((error) => {
+          alert(error)
+        })
       // test
-      alert('post success');
+      alert('회원가입이 완료되었습니다.');
     }
     onSubmit();
   }
