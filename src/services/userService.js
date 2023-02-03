@@ -93,24 +93,26 @@ export const changeUser = async (req, res) => {
 
 //회원탈퇴
 export const deleteUser = async (req, res) => {
+  const userId = req.params.userId;
   const { password } = req.body;
-  //입력한 비밀번호 해쉬화
-  const saltRounds = await bcrypt.genSalt(10); //소금 몇번 칠건지
-  const hassedPassword = await bcrypt.hash(password, saltRounds);
 
-  const user = await User.findOne({ password: hassedPassword });
+  const user = await User.findOne({ userId });
+  // //입력한 비밀번호 해쉬화
 
-  // //비밀번호 확인
-  // //1번째는 프론트에서 가져온 비밀번호, 2번째는 db비밀번호
-  const comparePassword = bcrypt.compare(hassedPassword, user.password);
+  // // //비밀번호 확인
+  // // //1번째는 프론트에서 가져온 비밀번호, 2번째는 db비밀번호
+  const comparePassword = bcrypt.compareSync(password, user.password);
 
   if (!comparePassword) {
     throw new Error("비밀번호가 일치하지 않습니다.");
   }
 
-  await User.deleteOne({ password: hassedPassword });
-
-  res.send("!");
+  try {
+    await User.deleteOne({ userId });
+    res.json({ message: "안전하게 삭제 완료했습니다." });
+  } catch (error) {
+    res.json({ message: "삭제에 실패했습니다.", error });
+  }
 };
 
 //로그아웃
