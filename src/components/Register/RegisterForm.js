@@ -1,4 +1,4 @@
-import React, { useState, useNavigate } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -10,7 +10,6 @@ import axios from 'axios';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 function RegisterForm() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -34,14 +33,10 @@ function RegisterForm() {
     const onSubmit = () => {
       // formData로 묶은 값을 구조분해해서 전달
       axios
-        .post("", { ...formData })
-        .then(navigate("/login"))
-        .catch((err) => {
-          alert(err.message)
-        })
-        
+        .post("http://localhost:8080/join", { ...formData })
       // test
       console.log('post success');
+      alert('post success')
     }
     onSubmit();
   }
@@ -153,7 +148,7 @@ function RegisterForm() {
           <Button type="submit" style = {{
             backgroundColor : 'grey',
             border : 'grey',
-          }} onClick = { handleSubmit }>회원가입</Button>
+          }} onClick = { handleSubmit } >회원가입</Button>
       </div>
     </Form>
     </Register>
