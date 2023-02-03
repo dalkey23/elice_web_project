@@ -10,7 +10,7 @@ import axios from 'axios';
 // 아직 사용안하는 import그룹
 import InputGroup from 'react-bootstrap/InputGroup';
 
-function RegisterForm() {
+const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -163,6 +163,7 @@ function RegisterForm() {
     </Register>
   );
 };
+
 const Register = styled.div`
     display : flex;
     justify-content : space-around;

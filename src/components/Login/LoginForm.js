@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import UserInfo from '../User/UserInfo';
 import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';

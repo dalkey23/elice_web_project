@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
-function UserInfo() {
+const UserInfo = () => {
 
     const [data, setData] = useState('');
-
     useEffect(() => {
       axios
       .get("http://localhost:8080/users/14")
@@ -58,10 +57,6 @@ function UserInfo() {
           <Button style = {{
                   borderWidth: '1px',
           }} variant="outline-dark">회원 정보 수정</Button>
-          <Button style = {{
-                  borderWidth: '1px',
-                  margin: '0 0 0 10px'
-          }} variant="outline-dark">주문 내역</Button>
           <Button style = {{
                   borderWidth: '1px',
                   margin: '0 0 0 10px'
