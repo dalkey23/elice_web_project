@@ -1,4 +1,4 @@
-import React, { useState, useNavigate } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -10,7 +10,6 @@ import axios from 'axios';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 function RegisterForm() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -22,7 +21,7 @@ function RegisterForm() {
   // post로 데이터 등록
   const handleSubmit = (e) => {
     
-    e.preventDefault();
+    e.prevent.default();
     
     const formData = {
       email,
@@ -33,13 +32,7 @@ function RegisterForm() {
     }
     const onSubmit = () => {
       // formData로 묶은 값을 구조분해해서 전달
-      axios
-        .post("", { ...formData })
-        .then(navigate("/login"))
-        .catch((err) => {
-          alert(err.message)
-        })
-        
+      axios.post("", { ...formData })
       // test
       console.log('post success');
     }
