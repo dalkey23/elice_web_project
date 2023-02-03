@@ -1,8 +1,17 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
+import axios from 'axios';
 
 function UserInfo() {
+
+    axios
+    .get("http://localhost:8080/users/14")
+    .then(() => {
+        alert('성공했습니다.')
+        })
+    .catch(alert('실패했습니다.'))
+  
   return (
   <div style = {{
     padding : '100px',

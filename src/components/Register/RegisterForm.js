@@ -35,8 +35,7 @@ function RegisterForm() {
       axios
         .post("http://localhost:8080/join", { ...formData })
       // test
-      console.log('post success');
-      alert('post success')
+      alert('post success');
     }
     onSubmit();
   }
