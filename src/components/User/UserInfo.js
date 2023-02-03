@@ -1,18 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 
 function UserInfo() {
+
+    const [data, setData] = useState('');
 
     useEffect(() => {
       axios
       .get("http://localhost:8080/users/14")
       .then((response) => {
-        // 확실하게 하기
-        if (response.status === 200) {
-          alert(response)
-        }
+        setData(response.data)
       })
       .catch((error) => {
         alert(error)
@@ -20,35 +18,41 @@ function UserInfo() {
     }, [])
   
   return (
-  <div style = {{
-    padding : '100px',
+    <>
+    <div style = {{
     display : 'flex',
     justifyContent : 'center'
-  }}>  
-    <Table bordered style = {{
-        width : '400px'
-    }}>
-      <thead>
-        <tr>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-        </tr>
-      </tbody>
-
-        {/* 회원 정보 수정 탈퇴 버튼 */}
-        <div style = {{
+    }}>  
+      <div  style = {{
+        border : '1px solid black'
+      }}>
+        <h1 style = {{
           display : 'flex',
-          justifyContent : 'flex-end',
+          justifyContent : 'center'
+          }}>{`${JSON.stringify(data.name)}님 환영합니다!`}</h1>
+        <div>
+          <h2 style = {{
+            border : '1px solid black'
+          }}>
+            {JSON.stringify(data.email)}
+          </h2>
+          <h2 style = {{
+            border : '1px solid black'
+          }}>
+            {JSON.stringify(data.address)}
+          </h2>
+          <h2 style = {{
+            border : '1px solid black'
+          }}>
+            {JSON.stringify(data.phoneNumber)}
+          </h2>
+        </div>
+      </div>
+    </div>
+    {/* 회원 정보 수정 탈퇴 버튼 */}
+    <div style = {{
+          display : 'flex',
+          justifyContent : 'center',
           padding : '10px'
         }}>
           <Button style = {{
@@ -63,8 +67,7 @@ function UserInfo() {
                   margin: '0 0 0 10px'
           }} variant="outline-danger">회원 탈퇴</Button>
         </div>
-      </Table>
-    </div>
+    </>
   );
 }
 
