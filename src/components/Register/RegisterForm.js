@@ -31,7 +31,10 @@ function RegisterForm() {
       address
     }
     const onSubmit = () => {
-      axios.post("https://httpbin.org/post", { ...formData })
+      // formData로 묶은 값을 구조분해해서 전달
+      axios.post("", { ...formData })
+      // test
+      console.log('post success');
     }
     onSubmit();
   }
