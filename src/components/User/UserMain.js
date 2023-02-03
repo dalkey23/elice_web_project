@@ -10,7 +10,9 @@ return (
         justifyContent : 'center'
     }}>
         <UserMainDiv>
-            <NavLink to="/UserInfo" style = {{
+            <NavLink 
+                to="/UserInfo"
+                style = {{
                 textDecorationLine : 'none',
                 display : 'flex',
                 justifyContent : 'center'
@@ -18,36 +20,44 @@ return (
                 <button style = {{
                     padding : '8px',
                     borderRadius : '5px',
-                    backgroundColor : 'white'
+                    borderColor : 'white',
+                    backgroundColor : 'grey',
+                    color : 'white'
                 }}>유저 정보</button>
             </NavLink>
-            <NavLink to="/OrderList" style = {{
+            <NavLink 
+                to="/OrderList"
+                style = {{
                 textDecorationLine : 'none',
                 display : 'flex',
                 justifyContent : 'center',
             }}>
                 <button style = {{
                     padding : '8px',
-                    margin : '50px',
+                    margin : '40px',
                     borderRadius : '5px',
-                    backgroundColor : 'white'
+                    borderColor : 'white',
+                    backgroundColor : 'grey',
+                    color : 'white'
                 }}>주문 내역</button>
             </NavLink>
-            <div style = {{
+            <NavLink to="/" style = {{
+                textDecorationLine : 'none',
                 display : 'flex',
-                justifyContent : 'center'
+                justifyContent : 'center',
             }}>
-            <button 
-            onClick = {() => {
-                alert('로그아웃 되었습니다')
-            }}
-            style = {{
-                    padding : '8px',
-                    width : '15%',
+                <button 
+                onClick = {() => {
+                    alert('로그아웃 되었습니다.')
+                }}
+                style = {{
+                    padding : '10px',
                     borderRadius : '5px',
-                    backgroundColor : 'white'
-            }}>로그아웃</button>
-            </div>
+                    borderColor : 'white',
+                    backgroundColor : 'grey',
+                    color : 'white'
+                }}>로그아웃</button>
+            </NavLink>
         </UserMainDiv>
     </div>
 )
@@ -60,7 +70,7 @@ const UserMainDiv = styled.div`
     display : flex;
     flex-direction : column;
     justify-content : center;
-    background-color : grey;
+    background-color : white;
 `
 
 export default UserMain;

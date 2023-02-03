@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
@@ -17,52 +19,67 @@ const UserInfo = () => {
     }, [])
   
   return (
-    <>
     <div style = {{
-    display : 'flex',
-    justifyContent : 'center'
-    }}>  
-      <div  style = {{
-        border : '1px solid black'
-      }}>
-        <h1 style = {{
-          display : 'flex',
-          justifyContent : 'center'
-          }}>{`${JSON.stringify(data.name)}님 환영합니다!`}</h1>
-        <div>
-          <h2 style = {{
-            border : '1px solid black'
-          }}>
-            {JSON.stringify(data.email)}
-          </h2>
-          <h2 style = {{
-            border : '1px solid black'
-          }}>
-            {JSON.stringify(data.address)}
-          </h2>
-          <h2 style = {{
-            border : '1px solid black'
-          }}>
-            {JSON.stringify(data.phoneNumber)}
-          </h2>
-        </div>
-      </div>
-    </div>
-    {/* 회원 정보 수정 탈퇴 버튼 */}
-    <div style = {{
+      margin : '30px'
+    }}>
+      <h1 style = {{
           display : 'flex',
           justifyContent : 'center',
           padding : '10px'
-        }}>
-          <Button style = {{
-                  borderWidth: '1px',
-          }} variant="outline-dark">회원 정보 수정</Button>
-          <Button style = {{
-                  borderWidth: '1px',
-                  margin: '0 0 0 10px'
-          }} variant="outline-danger">회원 탈퇴</Button>
+        }}>{`${JSON.stringify(data.name)}님 환영합니다!`}</h1>
+      <div style = {{
+      display : 'flex',
+      justifyContent : 'center'
+      }}>
+        <div style = {{
+      height : '50%',
+      padding : '100px'
+      }}>
+          <Card className="mb-5">
+            <Card.Body>이메일 : {JSON.stringify(data.email)}</Card.Body>
+          </Card>
+          <Card className="mb-5">
+            <Card.Body>전화번호 : {JSON.stringify(data.phoneNumber)}</Card.Body>
+          </Card>
+          <Card className="mb-5">
+            <Card.Body>주소 : {JSON.stringify(data.address)}</Card.Body>
+          </Card>
+          {/* 회원 정보 수정 탈퇴 버튼 */}
+          <div style = {{
+                padding : '5px',
+                margin : '20px'
+              }}>
+                <NavLink to="/UserUpdate" style = {{
+                textDecorationLine : 'none'
+            }}>
+                <button style = {{
+                    padding : '8px',
+                    borderRadius : '8px',
+                    borderColor : 'white',
+                    backgroundColor : 'grey',
+                    color : 'white'
+                }}>정보 수정</button>
+            </NavLink>
+              <NavLink to="/" style = {{
+                textDecorationLine : 'none',
+                margin : '10px'
+            }}>
+                <button 
+                onClick = {() => {
+                  alert('탈퇴되었습니다.')
+                }}
+                style = {{
+                    padding : '8px',
+                    borderRadius : '8px',
+                    borderColor : 'white',
+                    backgroundColor : 'red',
+                    color : 'white'
+                }}>회원 탈퇴</button>
+            </NavLink>
+          </div>
         </div>
-    </>
+      </div>
+    </div>
   );
 }
 

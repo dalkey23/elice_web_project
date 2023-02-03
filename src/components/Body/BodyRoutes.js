@@ -17,9 +17,10 @@ import Payments from "./bodyPages/Payments"
 import Cart from './bodyPages/Cart'
 import Order from './bodyPages/Order'
 import OrderComplete from './bodyPages/OrderComplete';
+import OrderList from './bodyPages/OrderList';
 import UserMain from '../User/UserMain';
 import UserInfo from '../User/UserInfo';
-import OrderList from './bodyPages/OrderList';
+import UserUpdate from '../User/UserUpdate';
 
 const Container = styled.div`
     display : flex;
@@ -84,6 +85,7 @@ const BodyRoutes = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/OrderList" element={<OrderList />} />
+                <Route path="/UserUpdate" element={<UserUpdate />} />
                 <Route path="/UserInfo" element={<UserInfo />} />
                 <Route path="/UserMain" element={<UserMain />} />
                 <Route path="/Favorites" element={<Favorite />} />
