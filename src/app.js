@@ -4,6 +4,7 @@ import "./db/index";
 import rootRouter from "./routers/rootRouter";
 import userRouter from "./routers/userRouter";
 import productRouter from "./routers/productRouter";
+import adminRouter from "./routers/adminRouter";
 
 const app = express();
 
@@ -21,5 +22,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/", rootRouter);
 app.use("/users", userRouter);
 app.use("/products", productRouter);
+app.use("/admin", adminRouter);
 
 export default app;
