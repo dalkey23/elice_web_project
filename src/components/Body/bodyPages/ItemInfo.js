@@ -2,23 +2,24 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Product1 = {
+const Product1 = [{
     productName: "제품명1", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
     detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: "가격",
     sku: "개수단위"
-}
-
-const Product2 = {
-    productName: "제품명2", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
+}, {
+    productName: "제품명2", categoryId: 2, manufacturer: "제조사", shortDesc: "짧은 설명",
     detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: "가격",
     sku: "개수단위"
-}
-
-const Product3 = {
-    productName: "제품명3", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
+}, {
+    productName: "제품명3", categoryId: 3, manufacturer: "제조사", shortDesc: "짧은 설명",
     detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: "가격",
     sku: "개수단위"
-}
+}, {
+    productName: "제품명4", categoryId: 4, manufacturer: "제조사", shortDesc: "짧은 설명",
+    detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: "가격",
+    sku: "개수단위"
+}]
+
 
 const Container = styled.form`
     display : flex;
@@ -63,7 +64,8 @@ const Details = () => {
     const clickHandler = () => {
         alert("완료")
         
-        localStorage.setItem('product1', JSON.stringify(Product1));
+        localStorage.setItem('Product1', JSON.stringify(Product1));
+
     }
 
     const SubmitHandler = (e) => {
