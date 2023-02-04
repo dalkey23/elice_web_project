@@ -1,16 +1,17 @@
-import Payment from "../db/models/paymentModel";
+import Order from "../db/models/orderModel";
+//import 주문정보 from "../"
 
 //배송지정보,주문정보 저장
-export const postPayment = async (req, res) => {
-  const { name, phoneNumber, address, requirement, productName, total } = req.body;
+export const postOrder = async (req, res) => {
+  const { name, phoneNumber, address, requirement, product, total } = req.body;
 
   try {
-    await Payment.create({
+    await Order.create({
       name,
       phoneNumber,
       address,
       requirement,
-      productName,
+      product,
       total,
     });
   } catch (error) {

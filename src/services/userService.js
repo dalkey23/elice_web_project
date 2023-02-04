@@ -96,6 +96,7 @@ export const changeUser = async (req, res) => {
       return { errorMessage };
     }
     await User.updateOne({
+      name,
       email,
       phoneNumber,
       address,
