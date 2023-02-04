@@ -28,13 +28,11 @@ const UserUpdate = () => {
     const onUpdSubmit = () => {
     
     // formCreData로 묶은 값을 구조분해해서 전달
+    // patch로 회원 정보 변경 patch : 하나만 바뀌어도 변경 // put : 전체 다 바뀌는거
     axios
-      // update로 회원 정보 변경
-      .update("", { ...formUpdData })
+      .post("http://localhost:8080/users/21/edit", { ...formUpdData })
       .then(() => {
         alert('회원정보 수정이 완료되었습니다.')
-      })
-      .then(() => {
         navigate("/UserInfo")
       })
       .catch((err) => {
@@ -44,9 +42,10 @@ const UserUpdate = () => {
     
     onUpdSubmit();
   }
+
     useEffect(() => {
       axios
-      .get("http://localhost:8080/users/14")
+      .get("http://localhost:8080/users/21")
       .then((response) => {
         setData(response.data)
       })
