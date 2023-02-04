@@ -57,7 +57,7 @@ export const postLogin = async (req, res) => {
 
   // jwt 토큰에 유저 아이디 담기
   const token = jwt.sign({ userId: user._id, role: user.role }, secretKey);
-  res.send(token);
+  res.json(token);
 
   const isAdmin = user.role === "admin";
 
