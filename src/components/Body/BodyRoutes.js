@@ -21,6 +21,11 @@ import OrderList from './bodyPages/OrderList';
 import UserMain from '../User/UserMain';
 import UserInfo from '../User/UserInfo';
 import UserUpdate from '../User/UserUpdate';
+import AdminMain from './Admin/AdminMain';
+import AdminOrders from './Admin/AdminOrders';
+import AdminCategories from './Admin/AdminCategories'
+import AdminUsers from './Admin/AdminUsers';
+import AdminProducts from './Admin/AdminProducts'
 
 const Container = styled.div`
     display : flex;
@@ -75,6 +80,7 @@ const BodyRoutes = () => {
                     <li><NavLink to="/sports">스포츠</NavLink></li>
                     <li><NavLink to="/fassion">패션</NavLink></li>
                     <li><NavLink to="/furniture">가구</NavLink></li>
+                    <li><NavLink to="/AdminMain">관리자 테스트</NavLink></li>
                 </NavUl>
                 <IconUl>
                     <li><NavLink to="/LoginForm"><span className="material-symbols-outlined">person</span></NavLink></li>
@@ -102,6 +108,12 @@ const BodyRoutes = () => {
                     <Route path="order" element={<Order />} />
                     <Route path="orderComplete" element={<OrderComplete />} /> 
                 </Route>
+                {/* 관리자페이지 */}
+                <Route path="/AdminMain" element={<AdminMain />} />
+                <Route path="/adminOrders" element={<AdminOrders />} />
+                <Route path="/adminCategories" element={<AdminCategories />} />
+                <Route path="/adminUsers" element={<AdminUsers />} />
+                <Route path="/adminProducts" element={<AdminProducts />} />
             </Routes>
         </Router>
     </div>
