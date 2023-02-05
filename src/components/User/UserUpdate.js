@@ -29,11 +29,8 @@ const UserUpdate = () => {
     
     // formCreData로 묶은 값을 구조분해해서 전달
     axios
-      // update로 회원 정보 변경
+      // post로 회원 정보 변경
       .post("http://localhost:8080/users/21/edit", { ...formUpdData })
-      .then(() => {
-        alert('회원정보 수정이 완료되었습니다.')
-      })
       .then(() => {
         navigate("/UserInfo")
       })
