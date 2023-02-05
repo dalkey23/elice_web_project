@@ -1,11 +1,10 @@
 import Order from "../db/models/orderModel";
-import Payment from "../db/models/paymentModel";
 
 // 관리자페이지 (필요없을듯)
 export const getAdmin = async (req, res) => {
   res.send("admin page");
 };
-//주문관리 (주문건 조회)
+//주문관리 (총 주문건 조회)
 export const handleOrder = async (req, res) => {
   const orders = await Order.find({});
   res.json(orders);

@@ -87,21 +87,25 @@ export const seeMyPage = async (req, res) => {
 
 //회원 정보 수정
 export const changeUser = async (req, res) => {
+  const { email, phoneNumber, address } = req.body;
+  const { userId } = req.params;
+  console.log(1);
+
   try {
-    const { name, email, phoneNumber, address } = req.body;
-    let user = await User.findOne({ name });
+    let user = await User.findOne({ userId });
+    console.log(2);
     // // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
       const errorMessage = "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
-    await User.updateOne({
-      name,
+    await user.updateOne({
       email,
       phoneNumber,
       address,
     });
-    res.write("<script>alert('success')</script>");
+    console.log(3);
+    return res.send("info change");
   } catch (error) {
     return error;
   }
