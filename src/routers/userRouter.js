@@ -5,8 +5,8 @@ import { loginRequired } from "../middlewares/loginRequired.js";
 const userRouter = express.Router();
 
 userRouter.get("/logout", logOut);
-userRouter.get("/:userId", loginRequired, seeMyPage);
-userRouter.post("/:userId/edit", loginRequired, changeUser);
+userRouter.get("/:userId", seeMyPage);
+userRouter.post("/:userId/edit", changeUser);
 userRouter.delete("/:userId/delete", deleteUser);
 
 export default userRouter;

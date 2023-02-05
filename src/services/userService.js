@@ -56,9 +56,11 @@ export const postLogin = async (req, res) => {
   const secretKey = process.env.JWT_SECRET_KEY || "secret-key";
 
   // jwt 토큰에 유저 아이디 담기
-  const token = jwt.sign({ userId: user._id }, secretKey);
+  const token = jwt.sign({ userId: user._id, role: user.role }, secretKey);
+  res.json(token);
+
   const isAdmin = user.role === "admin";
-  res.send(token);
+
   if (isAdmin) {
     res.redirect("/");
   }
@@ -67,25 +69,43 @@ export const postLogin = async (req, res) => {
 
 //마이 페이지
 export const seeMyPage = async (req, res) => {
-  res.send("1");
+  const userId = req.params.userId;
+
+  try {
+    const user = await User.findOne({ userId });
+    const info = {
+      name: user.name,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      address: user.address,
+    };
+    res.status(200).json(info);
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 //회원 정보 수정
 export const changeUser = async (req, res) => {
+  const { email, phoneNumber, address } = req.body;
+  const { userId } = req.params;
+  console.log(1);
+
   try {
-    const { name, email, phoneNumber, address } = req.body;
-    let user = await User.findOne({ name });
+    let user = await User.findOne({ userId });
+    console.log(2);
     // // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
       const errorMessage = "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
-    await User.updateOne({
+    await user.updateOne({
       email,
       phoneNumber,
       address,
     });
-    res.write("<script>alert('success')</script>");
+    console.log(3);
+    return res.send("info change");
   } catch (error) {
     return error;
   }
