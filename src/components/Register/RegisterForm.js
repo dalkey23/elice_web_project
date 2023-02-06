@@ -17,7 +17,6 @@ const RegisterForm = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
   const navigate = useNavigate();
-  
   // 유효성 검사 로직 보류
   const [validated, setValidated] = useState(false);
 
