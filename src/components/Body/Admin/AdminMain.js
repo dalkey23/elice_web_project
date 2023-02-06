@@ -19,6 +19,8 @@ const ListContainer = styled.div`
 
 const ListItem = styled.div`
     flex : 1;
+    display : flex;
+    flex-direct : column;
     border : 1px solid red;
     width : 95%;
     height : 250px;
@@ -26,11 +28,27 @@ const ListItem = styled.div`
     
 `
 
-const menuIcon = styled.div`
-    border : 1px solid red;
+const MenuIcon = styled.div`
+    border : 1px solid green;
+    width : 30%
+
+    & .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 600,
+        'GRAD' 0,
+        'opsz' 48
+      }
+
+    }
 `
-const menuDesc = styled.div`
-    border : 1px solid red;
+const MenuDesc = styled.div`
+    border : 1px solid orange;
+    padding : 20px;
+    & span {
+        font-size : 30px;
+        font-weight : bold;
+    }
 `
 
 
@@ -39,9 +57,11 @@ const AdminMain = () => {
 
 
     return <ListContainer>
-        <Link to="/adminOrders"><ListItem><span class="material-symbols-outlined">
-            shopping_cart
-        </span><menuDesc>주문관리</menuDesc></ListItem></Link>
+        <Link to="/adminOrders"><ListItem><MenuIcon>
+            <span class="material-symbols-outlined" style={{width:"20px"}}>
+                shopping_cart
+            </span>
+        </MenuIcon><MenuDesc><span>주문 관리</span><p>모든 주문 내역을 확인 및 관리할 수 있습니다.</p></MenuDesc></ListItem></Link>
         <Link to="/adminCategories"><ListItem><span class="material-symbols-outlined">
             view_cozy
         </span>카테고리관리</ListItem></Link>

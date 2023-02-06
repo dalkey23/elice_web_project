@@ -1,20 +1,36 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const GetDataLocalStorage = () => {
   const [items, setItems] = useState([]);
+  const [data, setData] = useState('');
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('product1'));
+    const items = JSON.parse(localStorage.getItem('Product1'));
     console.log(items);
     if (items) {
       setItems(items);
     }
 
+    axios
+      .get("http://localhost:8080/users/21")
+      .then((response) => {
+        setData(response.data)
+      })
+      .catch((error) => {
+        alert(error)
+      })
+
+
+
+
   }, []);
 
-  return <div>{items.productName}</div>
+
+
+  return <div>{data.name}{data.email}</div>
 }
 
 const Favorite = () => {
