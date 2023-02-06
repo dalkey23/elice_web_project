@@ -60,9 +60,9 @@ const Details = () => {
     
     const clickHandler = () => {
         alert("완료")
-        
-        localStorage.setItem('Product1', JSON.stringify(data.email));
-
+        // key부분에 각 상품마다 달라지는 값을 `${변수}`로 담아서 지정 하면
+        // key가 각자 달라서 쌓일듯
+        localStorage.setItem(`${data}`,JSON.stringify(data));
     }
 
     const SubmitHandler = (e) => {

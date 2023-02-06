@@ -8,7 +8,8 @@ const GetDataLocalStorage = () => {
   const [data, setData] = useState('');
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('Product1'));
+    
+    const items = JSON.parse(localStorage.getItem(data));
     console.log(items);
     if (items) {
       setItems(items);
@@ -30,7 +31,7 @@ const GetDataLocalStorage = () => {
 
 
 
-  return <div>{data.name}{data.email}</div>
+  return <div>{data}</div>
 }
 
 const Favorite = () => {
