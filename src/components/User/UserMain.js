@@ -50,7 +50,7 @@ const UserMain = () => {
                 }}>
                     <button 
                     onClick = {() => {
-                        localStorage.removeItem('jwt-token')
+                        localStorage.removeItem('accessToken')
                         alert('로그아웃 되었습니다.')
                         navigate('/')
                     }}
