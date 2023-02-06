@@ -1,12 +1,15 @@
 import express from "express";
-import { changeUser, seeMyPage, logOut, deleteUser } from "../services/userService";
+import { changeUser, seeMyPage, deleteUser } from "../services/userService";
+
+import { getOrder, deleteOrder } from "../services/orderService";
 import { loginRequired } from "../middlewares/loginRequired.js";
 
 const userRouter = express.Router();
 
-userRouter.get("/logout", logOut);
-userRouter.get("/:userId", seeMyPage);
-userRouter.post("/:userId/edit", changeUser);
-userRouter.delete("/:userId/delete", deleteUser);
+userRouter.get("/myPage", loginRequired, seeMyPage);
+userRouter.get("/orders", loginRequired, getOrder);
+userRouter.get("/orders/:orderId", deleteOrder);
+userRouter.post("/edit/:userId", changeUser);
+userRouter.delete("/delete/:userId", deleteUser);
 
 export default userRouter;
