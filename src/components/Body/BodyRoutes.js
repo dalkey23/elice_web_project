@@ -84,7 +84,7 @@ const BodyRoutes = () => {
                 </NavUl>
                 <IconUl>
                     <li><NavLink to="/LoginForm"><span className="material-symbols-outlined">person</span></NavLink></li>
-                    <li><NavLink to="/Favorites"><span className="material-symbols-outlined">favorite</span></NavLink></li>
+            
                     <li><NavLink to="/payments/cart"><span className="material-symbols-outlined">shopping_bag</span></NavLink></li>
                 </IconUl>
             </Container>

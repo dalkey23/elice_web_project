@@ -62,7 +62,7 @@ const Details = () => {
         alert("완료")
         // key부분에 각 상품마다 달라지는 값을 `${변수}`로 담아서 지정 하면
         // key가 각자 달라서 쌓일듯
-        localStorage.setItem(`${data}`,JSON.stringify(data));
+        localStorage.setItem(`elice_whishlist_${data.name}`,JSON.stringify(data));
     }
 
     const SubmitHandler = (e) => {
@@ -82,7 +82,6 @@ const Details = () => {
             <SkuDiv><input type="number" name="sku" />&nbsp;{data.sku}</SkuDiv> */}
             <ButtonWrapper>
                 <button type="button" onClick={clickHandler}>장바구니 추가하기</button>
-                <button type="button" onClick={clickHandler}>찜 하기</button>
                 <button>바로 구매하기</button>
             </ButtonWrapper>
         </Wrapper>
