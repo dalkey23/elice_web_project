@@ -1,24 +1,24 @@
 import Category from "../db/models/categoryModel";
 
 
-//카테고리 카테고리리스트 전체 보여주기 (포스트맨 작동함)
+//카테고리 카테고리리스트 전체 보여주기 (포스트맨 작동함 )
 
 export const showAllCategories = async (req, res, next) => {
-  const some = req.params.id;
-  const serchAll = await Category.find({ categoryId: some });
+//   const  = req.params;
+  const serchAll = await Category.find({});
   res.json({ serchAll });
 };
 
 //카테고리  한개 조회(포스트맨 작동함)
-export const findOnecategory = async (req, res, next) => {
-  const productName = req.params.name;
-  const serchOne = await Product.findOne({ productName });
+export const findOneCategory = async (req, res, next) => {
+  const name = req.params.name;
+  const searchOne = await Category.findOne({ name });
 
   // if (req.query.edit) {
   //   res.send("req.query.edit");
   //   return;
   // }
-  res.json({ serchOne });
+  res.json({ searchOne });
 };
 
 //카테고리등록(포스트맨 작동함)
@@ -68,16 +68,16 @@ export const editCategory = async (req, res, next) => {
 
 //id로 카테고리를 찾아서 삭제 (포스트맨 작동함)
 
-export const deleteProduct = async (req, res, next) => {
+export const deleteCategory = async (req, res, next) => {
 
   try {
-    const { id } = req.params;
-    const delOne = await Product.findOne({ id });
+    const { categoryId } = req.params;
+    const delOne = await Category.findOne({ categoryId });
 
 
     if (!delOne) throw new Error("카테고리가 존재하지 않습니다.");
 
-    await Product.deleteOne({ id });
+    await Category.deleteOne({ categoryId });
     // alert("카테고리가 삭제되었습니다.")
 
     // 삭제후 다시 업데이트된 카테고리 리스트를 보내줌.

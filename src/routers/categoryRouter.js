@@ -3,10 +3,10 @@ import { showAllCategories, findOneCategory, addCategory, editCategory, deleteCa
 
 const categoryRouter = express.Router();
 
-// categoryRouter.get("/all/:id", showAllCategories);
-// categoryRouter.get("/:name", findOneCategory);
+categoryRouter.get("/", showAllCategories);
+categoryRouter.get("/:name", findOneCategory);
 categoryRouter.post("/add", addCategory);
 categoryRouter.post("/edit/:id", editCategory);
-// categoryRouter.delete("/delete/:id", deleteCategory);
+categoryRouter.delete("/delete/:id", deleteCategory);
 
 export default categoryRouter;
