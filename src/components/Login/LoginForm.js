@@ -31,7 +31,15 @@ const LoginForm = () => {
       .post("http://localhost:8080/login", { ...formdata })
       .then((response) => {
       localStorage.setItem('jwt-token', JSON.stringify(response.data))
-      navigate("/")
+      
+      let jwttoken = localStorage.getItem('jwt-token') || '';
+
+        fetch('http://localhost:3000/', {
+          headers: {
+            'Authorization': jwttoken,
+          }
+        })
+        .then(navigate("/"))
       })
       .catch((err) => {
         alert(err)

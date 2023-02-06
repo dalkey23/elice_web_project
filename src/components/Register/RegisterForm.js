@@ -42,7 +42,7 @@ const RegisterForm = () => {
           navigate("/LoginForm")
         })
         .catch((err) => {
-          alert('에러가 발생했습니다. 다시 시도해주세요.')
+          alert(err)
         })
     }
     onSubmit();

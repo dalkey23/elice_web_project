@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink , useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 const UserInfo = () => {
-
+    const navigate = useNavigate();
     const [data, setData] = useState('');
     useEffect(() => {
       axios
-      .get("http://localhost:8080/users/:userId")
+      .get("http://localhost:8080/users/27")
       .then((response) => {
         setData(response.data)
       })
@@ -66,7 +66,15 @@ const UserInfo = () => {
             }}>
                 <button 
                 onClick = {() => {
-                  alert('탈퇴되었습니다.')
+                  axios
+                    .delete("http://localhost:8080/users/21/delete")
+                    .then(() => {
+                      alert('회원 탈퇴 되었습니다.')
+                      navigate("/")
+                    })
+                    .catch((err) => {
+                      alert(err)
+                    })
                 }}
                 style = {{
                     padding : '8px',
