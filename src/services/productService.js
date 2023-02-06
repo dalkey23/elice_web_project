@@ -4,7 +4,7 @@ import Product from "../db/models/productModel";
 
 //카테고리 상품리스트 전체 보여주기 (포스트맨 작동함)
 
-export const showAllProducts = async (req, res, next) => {
+export const inCategoryAll = async (req, res, next) => {
   const some = req.params.id;
   const serchAll = await Product.find({ categoryId: some });
   res.json({ serchAll });
@@ -51,15 +51,15 @@ export const editProduct = async (req, res, next) => {
     detailDesc, imgUrl, totalstocks, price, searchKeywords } = req.body;
   const { id } = req.params;
   try {
-    let serchForEdit = await Product.findOne({ id });
+    let searchForEdit = await Product.findOne({ id });
     // db에서 찾지 못한 경우, 에러 메시지 반환
-    if (!serchForEdit) {
+    if (!searchForEdit) {
       const err = "해당 상품이 없습니다. 정확한 상품명을 다시 한번 확인해 주세요.";
       return { err };
     }
     // if (!productName || !categoryId || !price)
     //   throw new Error('필수값은 반드시 입력해 주셔야 합니다.');
-    await serchForEdit.updateOne({
+    await searchForEdit.updateOne({
       productName, categoryId, manufacturer, shortDesc,
       detailDesc, imgUrl, totalstocks, price, searchKeywords,
     });
