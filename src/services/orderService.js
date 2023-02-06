@@ -3,7 +3,7 @@ import Order from "../db/models/orderModel";
 
 //배송지정보,주문정보 저장
 export const postOrder = async (req, res) => {
-  const { name, phoneNumber, address, requirement, product, total } = req.body;
+  const { name, phoneNumber, address, requirement, products, total } = req.body;
 
   try {
     await Order.create({
@@ -11,7 +11,7 @@ export const postOrder = async (req, res) => {
       phoneNumber,
       address,
       requirement,
-      product,
+      products,
       total,
     });
   } catch (error) {

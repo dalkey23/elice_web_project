@@ -88,7 +88,9 @@ export const seeMyPage = async (req, res) => {
 //회원 정보 수정
 export const changeUser = async (req, res) => {
   const { email, phoneNumber, address } = req.body;
+
   const { userId } = req.params;
+
   console.log(1);
 
   try {

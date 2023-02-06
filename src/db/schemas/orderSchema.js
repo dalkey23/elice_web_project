@@ -1,10 +1,11 @@
-import { Schema } from "mongoose";
+import { Schema, mongoose } from "mongoose";
 
+const autoIncrement = require("mongoose-sequence")(mongoose);
 const OrderSchema = new Schema(
   {
     userId: {
       type: Schema.Types.ObjectId,
-      required: true,
+
       ref: "User",
     },
     name: { type: String },
@@ -14,8 +15,21 @@ const OrderSchema = new Schema(
     orderDate: {
       type: String,
     },
+
     //product 어떻게 할지 한번 생각해보기
-    product: {},
+    products: [
+      {
+        productName: {
+          type: String,
+          required: true,
+        },
+        quantity: {
+          type: Number,
+          required: true,
+        },
+      },
+    ],
+
     total: { type: Number },
     date: { type: Date, default: Date.now() },
     orderStatus: {
@@ -29,5 +43,5 @@ const OrderSchema = new Schema(
     timestamps: true,
   }
 );
-
+OrderSchema.plugin(autoIncrement, { inc_field: "orderId" });
 export default OrderSchema;
