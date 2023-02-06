@@ -50,7 +50,7 @@ const UserMain = () => {
                 }}>
                     <button 
                     onClick = {() => {
-                        localStorage.clear()
+                        localStorage.removeItem('jwt-token')
                         alert('로그아웃 되었습니다.')
                         navigate('/')
                     }}
@@ -61,7 +61,6 @@ const UserMain = () => {
                         backgroundColor : 'grey',
                         color : 'white'
                     }}
-
                     >로그아웃</button>
                 </NavLink>
             </UserMainDiv>
