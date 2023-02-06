@@ -16,9 +16,10 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
+  const navigate = useNavigate();
+  
   // 유효성 검사 로직 보류
   const [validated, setValidated] = useState(false);
-  const navigate = useNavigate();
 
   // post로 데이터 등록
   const handleSubmit = (e) => {
@@ -39,8 +40,6 @@ const RegisterForm = () => {
         .post("http://localhost:8080/join", { ...formData })
         .then(() => {
           alert('회원가입이 완료되었습니다.')
-        })
-        .then(() => {
           navigate("/LoginForm")
         })
         .catch((err) => {

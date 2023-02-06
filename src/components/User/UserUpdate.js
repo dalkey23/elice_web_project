@@ -30,7 +30,7 @@ const UserUpdate = () => {
     // formCreData로 묶은 값을 구조분해해서 전달
     axios
       // post로 회원 정보 변경
-      .post("http://localhost:8080/users/21/edit", { ...formUpdData })
+      .post("http://localhost:8080/users/:userId/edit", { ...formUpdData })
       .then(() => {
         navigate("/UserInfo")
       })
@@ -43,7 +43,7 @@ const UserUpdate = () => {
   }
     useEffect(() => {
       axios
-      .get("http://localhost:8080/users/21")
+      .get("http://localhost:8080/users/:userId")
       .then((response) => {
         setData(response.data)
       })

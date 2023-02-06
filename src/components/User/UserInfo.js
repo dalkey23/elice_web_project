@@ -9,7 +9,7 @@ const UserInfo = () => {
     const [data, setData] = useState('');
     useEffect(() => {
       axios
-      .get("http://localhost:8080/users/21")
+      .get("http://localhost:8080/users/:userId")
       .then((response) => {
         setData(response.data)
       })

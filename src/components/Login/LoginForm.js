@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -10,19 +10,36 @@ import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-function LoginForm() {
-  const [validated, setValidated] = useState(false);
+const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  // email, password 불러오는 get 요청
+  // 유효성 검사 로직 보류
+  const [validated, setValidated] = useState(false);
+
+  // email, password를 보내는 post 요청
   const handleSubmit = (e) => {
     
-    e.prevent.default();
+    e.preventDefault();
 
-    axios
-      .get("", { email , password })
+    const formdata = { email, password }
+    
+    const onSubmit = () => {
+
+      axios
+      .post("http://localhost:8080/login", { ...formdata })
+      .then((response) => {
+      localStorage.setItem('jwt-token', JSON.stringify(response.data))
+      navigate("/")
+      })
+      .catch((err) => {
+        alert(err)
+      })
       }
+
+    onSubmit();
+    }
 
   // const handleSubmitCorrect = (event) => {
   //   const form = event.currentTarget;
