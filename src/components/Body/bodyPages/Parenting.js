@@ -78,7 +78,7 @@ function Parenting() {
 
     useEffect(() => {
         axios
-        .get("http://localhost:8080products/all/육아")
+        .get("http://localhost:8080/products/all/육아")
         .then((response) => {
             setItems(response.data.serchAll)
         })
@@ -87,7 +87,7 @@ function Parenting() {
         })
       }, [])
       
-      console.log(`items : ${items}, type: ${typeof(items)}`)
+    
       
    
      
@@ -104,7 +104,7 @@ function Parenting() {
     return <><ListContainer>
         {/* slice : offset부터 offset+limit 인덱스까지의 값을 복사하여 반환 */}
         {items.slice(offset, offset+limit).map((listItem) => {
-            return <Link to="/itemInfo/:`${listItem.productName}`">
+            return <Link to={`/itemInfo/${listItem.productName}`}>
                         <ListItems>
                             <Item>{listItem.imgUrl}</Item>
                             <Item>{listItem.productName}</Item>
