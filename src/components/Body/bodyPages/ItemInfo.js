@@ -6,16 +6,18 @@ import axios from 'axios';
 
 
 const Container = styled.form`
-    display : flex;
     align-items : center;
     padding : 20px;
     
     `
 const ProductImg = styled.div`
-    width : 50%;
-    height : 200px;
+    display : flex;
+    flex-grow: 1;
     background : powderblue;
-
+    text-align: center;
+`
+const DetailImg = styled.div`
+    width : 100px;
 `
 const Wrapper = styled.div`
     padding : 10px;
@@ -80,7 +82,7 @@ const Details = () => {
     
 
     return <Container onSubmit={SubmitHandler}>
-        <ProductImg name="imgUrl">{data.imgUrl}</ProductImg>
+        <ProductImg><img src={data.imgUrl} style = {{width : "430px"}}alt="상품이미지"/>
         <Wrapper>
             <Items type="text" name="manufacturer" value={data.manufacturer}/>
             <Items type="text" name="productName" value={data.productName} />
@@ -92,7 +94,8 @@ const Details = () => {
                 <button>바로 구매하기</button>
             </ButtonWrapper>
         </Wrapper>
-
+        </ProductImg>
+        <DetailImg><img src={data.shortDesc} style = {{width: "860px"}} alt="상품이미지"/></DetailImg>
     </Container>
 }
 

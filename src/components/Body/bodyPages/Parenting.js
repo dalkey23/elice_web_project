@@ -20,11 +20,23 @@ const ListContainer = styled.div`
 
 const ListItems = styled.div`
     flex : 1;
-    background : gray;
+    background : white;
     width : 95%;
     height : 250px;
     margin : 10px;
+
     
+`
+
+const StringItems = styled.div`
+    float: right;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid lightgray;
+    color: ${(props) => props.color || 'green'};
+    background: ${(props) => props.background || 'pink'};
 `
 
 const Item = styled.div`
@@ -74,8 +86,10 @@ function Parenting() {
             return <Link to={`/itemInfo/${listItem.id}`}>
                         <ListItems>
                             <Item><img src={listItem.imgUrl} alt="상품이미지"/></Item>
+                            <StringItems>
                             <Item>{listItem.productName}</Item>
-                            <Item>{listItem.price}</Item>
+                            <Item>{listItem.price}원</Item>
+                            </StringItems>
                         </ListItems>
                     </Link>
 
