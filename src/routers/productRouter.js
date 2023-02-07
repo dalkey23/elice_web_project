@@ -3,7 +3,7 @@ import { inCategoryAll, findOneProduct, addProduct, editProduct, deleteProduct }
 
 const productRouter = express.Router();
 
-productRouter.get("/all/:id", inCategoryAll);
+productRouter.get("/all/:categoryId", inCategoryAll);
 productRouter.get("/:id", findOneProduct);
 productRouter.post("/add", addProduct);
 productRouter.post("/edit/:id", editProduct);

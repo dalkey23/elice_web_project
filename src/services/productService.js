@@ -1,12 +1,14 @@
 import Product from "../db/models/productModel";
-
+import Category from "../db/models/categoryModel";
 
 
 //카테고리 상품리스트 전체 보여주기 (포스트맨 작동함)
 
 export const inCategoryAll = async (req, res, next) => {
-  const some = req.params.id;
-  const searchAll = await Product.find({ categoryId: some });
+
+  const { categoryId } = req.params;
+  const findcategoryId = await Category.findOne({ categoryId });
+  const searchAll = await Product.find({ categoryId: findcategoryId.name  });
   res.json({ searchAll });
 };
 
