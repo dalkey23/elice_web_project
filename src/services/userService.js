@@ -111,6 +111,7 @@ export const deleteUser = async (req, res) => {
   console.log(comparePassword);
   if (!comparePassword) {
     res.status(404).json({ message: "비밀번호가 일치하지 않습니다" });
+    return;
   }
 
   try {
