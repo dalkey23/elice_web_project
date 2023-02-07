@@ -39,13 +39,16 @@ const Item = styled.div`
 function Parenting() {
 
     const [items, setItems] = useState([])
-    const { id } = useParams();
+    const { categoryId } = useParams();
+    
 
     useEffect(() => {
         axios
-        .get(`http://localhost:3000/products/all/9`)
+        .get(`http://localhost:3000/products/all/${categoryId}`)
         .then((response) => {
-            setItems(response.data.searchAll)
+            setItems(response.data)
+            console.log(items)
+            console.log(categoryId)
         })
         .catch((error) => {
           alert(error)
@@ -68,7 +71,7 @@ function Parenting() {
 
     return <><ListContainer>
         {/* slice : offset부터 offset+limit 인덱스까지의 값을 복사하여 반환 */}
-        {items.slice(offset, offset+limit).map((listItem) => {
+        {/* {items.slice(offset, offset+limit).map((listItem) => {
             return <Link to={`/itemInfo/${listItem.id}`}>
                         <ListItems>
                             <Item><img src={listItem.imgUrl} alt="상품이미지"/></Item>
@@ -77,7 +80,7 @@ function Parenting() {
                         </ListItems>
                     </Link>
 
-        })}
+        })} */}
     </ListContainer>
     <Pagination
           total={items.length}

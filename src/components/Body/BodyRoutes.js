@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import logo from '../Header/logo.png'
 import Home from './bodyPages/Home';
@@ -75,6 +76,27 @@ const BodyRoutes = () => {
 
     // const userToken = localStorage.getItem("accessToken")
 
+
+    const [ categories, setCategories] = useState([])
+
+
+    useEffect(() => {
+        axios
+        .get(`http://localhost:3000/categories`)
+        .then((response) => {
+            setCategories(response.data.searchAll)
+        })
+        .catch((error) => {
+          alert(error)
+        })
+
+        console.log(categories)
+      }, [])
+
+
+
+
+
     return (<div>
         <Router>
             <Container>
@@ -83,11 +105,9 @@ const BodyRoutes = () => {
                 </LogoDiv>
                 <NavUl>
                     <li><NavLink to="/UserMain">유저메인 테스트</NavLink></li>
-                    <li><NavLink to="/parenting">육아</NavLink></li>
-                    <li><NavLink to="/living">생활</NavLink></li>
-                    <li><NavLink to="/sports">스포츠</NavLink></li>
-                    <li><NavLink to="/fassion">패션</NavLink></li>
-                    <li><NavLink to="/furniture">가구</NavLink></li>
+                    {categories.map((category)=>{
+                        return <li><NavLink to={`/categories/${category.categoryId}`}>{category.name}</NavLink></li>
+                    })}
                     <li><NavLink to="/AdminMain">관리자 테스트</NavLink></li>
                 </NavUl>
                 <IconUl>
@@ -109,11 +129,7 @@ const BodyRoutes = () => {
                 <Route path="/Favorites" element={<Favorite />} />
                 <Route path="/LoginForm" element={<LoginForm />} />
                 <Route path="/RegisterForm" element={<RegisterForm />} />
-                <Route path="/parenting" element={<Parenting />} />
-                <Route path="/living" element={<Living />} />
-                <Route path="/sports" element={<Sports />} />
-                <Route path="/fassion" element={<Fassion />} />
-                <Route path="/furniture" element={<Furniture />} />
+                <Route path="/categories/:categoryId" element = { <Parenting /> } />
                 <Route path="/itemInfo/:id" element={<ItemInfo />} />
                 <Route path="/payments/*" element={<Payments />} >
                     <Route path="cart" element={<Cart />} />

@@ -31,7 +31,7 @@ const ListItem = styled.div`
     margin : 10px;
     
     &:hover {
-        background-color : skyblue;
+        background-color : lightgray;
     }
 
     
