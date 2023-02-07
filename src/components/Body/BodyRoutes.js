@@ -103,7 +103,7 @@ const BodyRoutes = () => {
                 <Route path="/sports" element={<Sports />} />
                 <Route path="/fassion" element={<Fassion />} />
                 <Route path="/furniture" element={<Furniture />} />
-                <Route path="/itemInfo/:productName" element={<ItemInfo />} />
+                <Route path="/itemInfo/:id" element={<ItemInfo />} />
                 <Route path="/payments/*" element={<Payments />} >
                     <Route path="cart" element={<Cart />} />
                     <Route path="order" element={<Order />} />

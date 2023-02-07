@@ -44,14 +44,14 @@ const ButtonWrapper = styled.div`
 const Details = () => {
     
     const [data, setData] = useState('');
-    const { productName } = useParams();
+    const { id } = useParams();
    
 
     useEffect(() => {
       axios
-      .get(`http://localhost:8080/products/${productName}`)
+      .get(`http://localhost:3000/products/${id}`)
       .then((response) => {
-        setData(response.data.serchOne)
+        setData(response.data.searchOne)
       })
       .catch((error) => {
         alert(error)
@@ -64,7 +64,7 @@ const Details = () => {
         alert("완료")
         // key부분에 각 상품마다 달라지는 값을 `${변수}`로 담아서 지정 하면
         // key가 각자 달라서 쌓일듯
-        localStorage.setItem(`elice_whishlist_${data.name}`,JSON.stringify(data));
+        localStorage.setItem(`elice_whishlist_${JSON.stringify(data.id)}`,JSON.stringify(data));
     }
 
     const SubmitHandler = (e) => {

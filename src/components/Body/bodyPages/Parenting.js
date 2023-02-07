@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Pagination from "./Pagination";
-import { Link } from "react-router-dom";
+import { Link , useParams} from "react-router-dom";
 import axios from "axios";
 
 const ListContainer = styled.div`
@@ -31,56 +31,18 @@ const Item = styled.div`
    
 `
 
-const listItems = [{
-    productName: "육아1", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
-    detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: "가격",
-    sku: "개수단위"
-}, {
-    productName: "육아2", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
-    detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: "가격",
-    sku: "개수단위"
-}, {
-    productName: "육아3", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
-    detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: "가격",
-    sku: "개수단위"
-}, {
-    productName: "육아4", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
-    detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: "가격",
-    sku: "개수단위"
-}, {
-    productName: "육아5", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
-    detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: "가격",
-    sku: "개수단위"
-}, {
-    productName: "육아6", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
-    detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: "가격",
-    sku: "개수단위"
-}, {
-    productName: "육아7", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
-    detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: "가격",
-    sku: "개수단위"
-}, {
-    productName: "육아8", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
-    detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: "가격",
-    sku: "개수단위"
-}, {
-    productName: "육아9", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
-    detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: "가격",
-    sku: "개수단위"
-}];
-
-
 
 
 function Parenting() {
 
     const [items, setItems] = useState([])
+    const { id } = useParams();
 
     useEffect(() => {
         axios
-        .get("http://localhost:8080/products/all/육아")
+        .get(`http://localhost:3000/products/all/9`)
         .then((response) => {
-            setItems(response.data.serchAll)
+            setItems(response.data.searchAll)
         })
         .catch((error) => {
           alert(error)
@@ -104,11 +66,11 @@ function Parenting() {
     return <><ListContainer>
         {/* slice : offset부터 offset+limit 인덱스까지의 값을 복사하여 반환 */}
         {items.slice(offset, offset+limit).map((listItem) => {
-            return <Link to={`/itemInfo/${listItem.productName}`}>
+            return <Link to={`/itemInfo/${listItem.id}`}>
                         <ListItems>
                             <Item>{listItem.imgUrl}</Item>
                             <Item>{listItem.productName}</Item>
-                            <Item>{listItem.shortDesc}</Item>
+                            <Item>{listItem.id}</Item>
                             <Item>{listItem.price}</Item>
                         </ListItems>
                     </Link>

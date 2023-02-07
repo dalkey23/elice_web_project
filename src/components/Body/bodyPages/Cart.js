@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
@@ -66,6 +66,26 @@ const PaymentInfo = styled.div`
 const Cart = ()=>{
     const navigate = useNavigate();
 
+    const [items, setItems] = useState([]);
+
+  
+    useEffect(() => {
+      let newItems = [];
+
+      for(let i=0;i<localStorage.length;i++){
+        const key = localStorage.key(i);
+        if(key.startsWith("elice_whishlist_")){
+            newItems = [...items];
+            newItems.push(localStorage.getItem(key));
+            setItems(newItems)
+            console.log(newItems)
+        }
+      }
+    }, []);
+
+
+
+    console.log(items)
     const listItems = [{
     productName: "육아1", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
     detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: 5000,
