@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 
 
@@ -44,12 +44,14 @@ const ButtonWrapper = styled.div`
 const Details = () => {
     
     const [data, setData] = useState('');
+    const { productName } = useParams();
+   
 
     useEffect(() => {
       axios
-      .get("http://localhost:8080/users/21")
+      .get(`http://localhost:8080/products/${productName}`)
       .then((response) => {
-        setData(response.data)
+        setData(response.data.serchOne)
       })
       .catch((error) => {
         alert(error)
@@ -75,11 +77,11 @@ const Details = () => {
     return <Container onSubmit={SubmitHandler}>
         {/* <ProductImg name="imgUrl">{Product1.imgUrl}</ProductImg> */}
         <Wrapper>
-            <Items type="text" name="manufacturer" value={data.name}/>
-            <Items type="text" name="productName" value={data.email} />
-            {/* <Items type="text" name="price" value={data.price} />
+            <Items type="text" name="manufacturer" value={data.manufacturer}/>
+            <Items type="text" name="productName" value={data.productName} />
+            <Items type="text" name="price" value={data.price} />
             <Items type="text" name="detailDesc" value={data.detailDesc} /> 
-            <SkuDiv><input type="number" name="sku" />&nbsp;{data.sku}</SkuDiv> */}
+            {/* <SkuDiv><input type="number" name="sku" />&nbsp;{data.sku}</SkuDiv> */}
             <ButtonWrapper>
                 <button type="button" onClick={clickHandler}>장바구니 추가하기</button>
                 <button>바로 구매하기</button>
