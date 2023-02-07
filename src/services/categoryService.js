@@ -45,9 +45,11 @@ export const addCategory= async (req, res, next) => {
 //카테고리수정 (포스트맨 작동함)
 export const editCategory = async (req, res, next) => {
   const { name, description, imgUrl, } = req.body;
-  const { id } = req.params;
+  const  { categoryId }  = req.params;
+  
   try {
-    let searchForEdit = await Category.findOne({ id });
+    let searchForEdit = await Category.findOne({ categoryId });
+   
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!searchForEdit) {
       const err = "해당 카테고리가 없습니다. 정확한 카테고리명을 다시 한번 확인해 주세요.";
@@ -57,7 +59,7 @@ export const editCategory = async (req, res, next) => {
     //   throw new Error('필수값은 반드시 입력해 주셔야 합니다.');
     await searchForEdit.updateOne({ name, description, imgUrl, });
     // const updated = Product.findOne({ id });
-
+   
     return res.send('카테고리 수정을 완료하였습니다.')
     // res.write("<script>alert('카테고리 수정 완료')</script>");
   } catch (error) {
@@ -66,12 +68,14 @@ export const editCategory = async (req, res, next) => {
 };
 
 
-//id로 카테고리를 찾아서 삭제 (포스트맨 작동함)
+
+
+//id로 카테고리를 찾아서 삭제 (포스트맨 )
 
 export const deleteCategory = async (req, res, next) => {
 
   try {
-    const { categoryId } = req.params;
+    const  {categoryId}  = req.params;
     const delOne = await Category.findOne({ categoryId });
 
 
