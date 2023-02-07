@@ -86,15 +86,7 @@ const UserInfo = () => {
             >
               <button
                 onClick={() => {
-                  axios
-                    .delete("http://localhost:8080/users/21/delete")
-                    .then(() => {
-                      alert("회원 탈퇴 되었습니다.");
-                      navigate("/");
-                    })
-                    .catch((err) => {
-                      alert(err);
-                    });
+                  navigate('/')
                 }}
                 style={{
                   padding: "8px",
