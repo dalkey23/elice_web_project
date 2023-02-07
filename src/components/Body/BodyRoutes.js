@@ -24,7 +24,6 @@ import UserUpdate from '../User/UserUpdate';
 import AdminMain from './Admin/AdminMain';
 import AdminOrders from './Admin/AdminOrders';
 import AdminCategories from './Admin/AdminCategories'
-import AdminUsers from './Admin/AdminUsers';
 import AdminProducts from './Admin/AdminProducts'
 
 const Container = styled.div`
@@ -112,7 +111,6 @@ const BodyRoutes = () => {
                 <Route path="/AdminMain" element={<AdminMain />} />
                 <Route path="/adminOrders" element={<AdminOrders />} />
                 <Route path="/adminCategories" element={<AdminCategories />} />
-                <Route path="/adminUsers" element={<AdminUsers />} />
                 <Route path="/adminProducts" element={<AdminProducts />} />
             </Routes>
         </Router>

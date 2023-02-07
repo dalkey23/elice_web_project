@@ -1,8 +1,8 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Pagination from "./Pagination";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const ListContainer = styled.div`
     display : flex;
@@ -73,6 +73,25 @@ const listItems = [{
 
 
 function Parenting() {
+
+    const [items, setItems] = useState([])
+
+    useEffect(() => {
+        axios
+        .get("http://localhost:8080products/all/육아")
+        .then((response) => {
+            setItems(response.data.serchAll)
+        })
+        .catch((error) => {
+          alert(error)
+        })
+      }, [])
+      
+      console.log(`items : ${items}, type: ${typeof(items)}`)
+      
+   
+     
+
     // useState, useEffect 이용해서 게시글 불러와야 함
     // limit : 페이지당 게시물 수, page : 현재페이지 번호
     // const [ limit, setLimit ] = useState(8); -> 페이지당 게시글 수 사용자지정
@@ -84,8 +103,8 @@ function Parenting() {
 
     return <><ListContainer>
         {/* slice : offset부터 offset+limit 인덱스까지의 값을 복사하여 반환 */}
-        {listItems.slice(offset, offset+limit).map((listItem) => {
-            return <Link to="/itemInfo">
+        {items.slice(offset, offset+limit).map((listItem) => {
+            return <Link to="/itemInfo/:`${listItem.productName}`">
                         <ListItems>
                             <Item>{listItem.imgUrl}</Item>
                             <Item>{listItem.productName}</Item>
@@ -97,7 +116,7 @@ function Parenting() {
         })}
     </ListContainer>
     <Pagination
-          total={listItems.length}
+          total={items.length}
           limit={limit}
           page={page}
           setPage={setPage}

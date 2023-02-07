@@ -69,7 +69,7 @@ const OrderComplete = () => {
     }
 
     return <>
-    <Container action="/payments/orderComplete" onSubmit={submitHandler}>
+    <Container onSubmit={submitHandler}>
         <OrderInfo>
             <h3>배송지 정보</h3>
             <label>
