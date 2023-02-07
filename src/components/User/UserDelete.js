@@ -18,7 +18,6 @@ const UserDelete = () => {
         <FloatingLabel controlId="floatingPassword" label="비밀번호" onChange={(e) => setPassword(e.target.value)}>
           <Form.Control type="password" />
         </FloatingLabel>
-        </Delete>
         <div style = {{
             margin : '10px',
             display : 'flex',
@@ -47,6 +46,7 @@ const UserDelete = () => {
           회원 탈퇴
         </button>
         </div>
+        </Delete>
       </div>
     )
 }

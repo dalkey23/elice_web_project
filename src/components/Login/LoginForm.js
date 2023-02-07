@@ -108,7 +108,6 @@ const LoginForm = () => {
 
 const Login = styled.div`
   padding: 300px;
-  width: 60%;
 `;
 
 export default LoginForm;
