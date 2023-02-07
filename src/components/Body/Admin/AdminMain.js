@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 
+import inventory from '../../Header/inventory_2.png'
+import categories from '../../Header/view_cozy.png'
+import shopping_cart from '../../Header/shopping_cart.png'
+
 const ListContainer = styled.div`
     display : flex;
     align-items : center;
@@ -25,26 +29,18 @@ const ListItem = styled.div`
     width : 95%;
     height : 250px;
     margin : 10px;
+
     
 `
 
 const MenuIcon = styled.div`
-    border : 1px solid green;
-    width : 30%
-
-    & .material-symbols-outlined {
-        font-variation-settings:
-        'FILL' 0,
-        'wght' 600,
-        'GRAD' 0,
-        'opsz' 48
-      }
 
     }
 `
 const MenuDesc = styled.div`
-    border : 1px solid orange;
+
     padding : 20px;
+
     & span {
         font-size : 30px;
         font-weight : bold;
@@ -57,20 +53,18 @@ const AdminMain = () => {
 
 
     return <ListContainer>
-        <Link to="/adminOrders"><ListItem><MenuIcon>
-            <span class="material-symbols-outlined" style={{width:"20px"}}>
-                shopping_cart
-            </span>
-        </MenuIcon><MenuDesc><span>주문 관리</span><p>모든 주문 내역을 확인 및 관리할 수 있습니다.</p></MenuDesc></ListItem></Link>
-        <Link to="/adminCategories"><ListItem><span class="material-symbols-outlined">
-            view_cozy
-        </span>카테고리관리</ListItem></Link>
-        <Link to="/adminUsers"><ListItem><span class="material-symbols-outlined">
-            groups
-        </span>회원관리</ListItem></Link>
-        <Link to="/adminProducts"><ListItem><span class="material-symbols-outlined">
-            inventory_2
-        </span>제품관리</ListItem></Link>
+        <Link to="/adminOrders"><ListItem>
+            <MenuIcon><img src={shopping_cart} alt='shopping_cart' /></MenuIcon>
+            <MenuDesc><span>주문 관리</span><p>모든 주문 내역을 확인 및 관리할 수 있습니다.</p></MenuDesc>
+        </ListItem></Link>
+        <Link to="/adminCategories"><ListItem>
+            <MenuIcon><img src={categories} alt='categories' /></MenuIcon>
+            <MenuDesc><span>카테고리관리</span><p>제품이 속할 수 있는, 카테고리정보를 관리할 수 있습니다.</p></MenuDesc>
+        </ListItem></Link>
+        <Link to="/adminProducts"><ListItem>
+            <MenuIcon><img src={inventory} alt='inventory' /></MenuIcon>
+            <MenuDesc><span>제품 관리</span><p>모든 제품 정보를 확인 및 관리할 수 있습니다.</p></MenuDesc>
+            </ListItem></Link>
     </ListContainer>
 }
 
