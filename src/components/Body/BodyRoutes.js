@@ -52,8 +52,6 @@ const NavUl = styled.ul`
         margin-right : 20px;
         display : inline
     }
-
-    
 `
 
 const IconUl = styled.ul`
@@ -68,12 +66,12 @@ const IconUl = styled.ul`
 
 const BodyRoutes = () => {
 
-    const [userToken, setUserToken] = useState('');
     
-    useEffect(() => {
-        setUserToken(localStorage.getItem("accessToken"))
-        console.log(userToken)
-    })
+    
+    
+    const token = localStorage.getItem("accessToken")
+    console.log(`${JSON.stringify(token)}`)
+    
 
     // const userToken = localStorage.getItem("accessToken")
 
@@ -94,7 +92,7 @@ const BodyRoutes = () => {
                 </NavUl>
                 <IconUl>
                     <li>
-                    { userToken === 'null' ? <NavLink to="/UserMain"><span className="material-symbols-outlined">person</span></NavLink>
+                    { !token === 'true' ? <NavLink to="/UserMain"><span className="material-symbols-outlined">person</span></NavLink>
                     : <NavLink to="/LoginForm"><span className="material-symbols-outlined">person</span></NavLink>}
                     </li>
             

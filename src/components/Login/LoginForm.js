@@ -28,7 +28,7 @@ const LoginForm = () => {
       axios
         .post("http://localhost:8080/login", { ...formdata })
         .then((res) => {
-          localStorage.setItem("accessToken", res.data);
+          localStorage.setItem("accessToken", res.data)
           axios.defaults.headers.common["Authorization"] = res.data;
           alert('로그인 되었습니다')
           navigate('/')
