@@ -42,18 +42,16 @@ function Parenting() {
     const { categoryId } = useParams();
     
 
-    useEffect(() => {
+   
         axios
         .get(`http://localhost:3000/products/all/${categoryId}`)
         .then((response) => {
-            setItems(response.data)
-            console.log(items)
-            console.log(categoryId)
+            setItems(response.data.searchAll)
         })
         .catch((error) => {
           alert(error)
         })
-      }, [])
+
       
     
       
@@ -69,9 +67,10 @@ function Parenting() {
     const offset = (page - 1)*limit;
 
 
-    return <><ListContainer>
-        {/* slice : offset부터 offset+limit 인덱스까지의 값을 복사하여 반환 */}
-        {/* {items.slice(offset, offset+limit).map((listItem) => {
+    return <>
+    <ListContainer>
+        {/* slice : offset부터 offset+limit 인덱스까지의 값을 복사하여 반환  */}
+        {items.slice(offset, offset+limit).map((listItem) => {
             return <Link to={`/itemInfo/${listItem.id}`}>
                         <ListItems>
                             <Item><img src={listItem.imgUrl} alt="상품이미지"/></Item>
@@ -80,7 +79,7 @@ function Parenting() {
                         </ListItems>
                     </Link>
 
-        })} */}
+        })}
     </ListContainer>
     <Pagination
           total={items.length}
