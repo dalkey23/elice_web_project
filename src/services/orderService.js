@@ -5,9 +5,9 @@ import User from "../db/models/userModel";
 //배송지정보,주문정보 저장
 export const postOrder = async (req, res) => {
   const { name, phoneNumber, address, requirement, products, total } = req.body;
+  //토큰의 유저 아이디 불러오기
   const userId = req.currentUserId;
-  const user = await User.find({ userId });
-  console.log(1);
+  const user = await User.findOne({ userId });
 
   try {
     await Order.create({
@@ -29,7 +29,9 @@ export const postOrder = async (req, res) => {
 //사용자 주문조회(사용자가)
 
 export const getOrder = async (req, res) => {
-  const id = req.currentUserId;
+  //토큰의 유저 아이디 불러오기
+  const userId = req.currentUserId;
+  const user = await User.findOne({ userId });
 
   res.send(1);
 };
