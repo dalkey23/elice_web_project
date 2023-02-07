@@ -93,17 +93,37 @@ const BodyRoutes = () => {
                     {categories.map((category)=>{
                         return <li><NavLink to={`/categories/${category.categoryId}`}>{category.name}</NavLink></li>
                     })}
-                    {/* AdminToken이 admin값일때 관리자 테스트 노출 */}
-                    <li>{ AdminToken === 'admin' ? <NavLink to="/AdminMain">관리자페이지</NavLink>
-                    : <></> }</li>
+                    {/* AdminToken이 admin값일때 관리자페이지 노출 */}
+                    {/* <></>이 아닌 다른 방법으로 노출을 조정할 수 있을지 고민 */}
+                    <li>
+                        { AdminToken === 'admin' ? <NavLink to="/AdminMain">관리자페이지</NavLink>
+                    : <></> }
+                    </li>
                 </NavUl>
                 <IconUl>
-                    <li>
+
+                    {/* 삼항 연산자에 삼항 연산자를 넣어서 코드의 가독성이 조금 떨어 질 것 같아서 고민 */}
+                    { AdminToken === 'admin' ? <></>
+                    : <li>
                     { Token || !Token === 'null' ? <NavLink to="/UserMain"><span className="material-symbols-outlined">person</span></NavLink>
                     : <NavLink to="/LoginForm"><span className="material-symbols-outlined">person</span></NavLink> }
-                    </li>
+                    </li>}
             
-                    <li><NavLink to="/payments/cart"><span className="material-symbols-outlined">shopping_bag</span></NavLink></li>
+                    <li>{ AdminToken === 'admin' ? <button 
+                    onClick = {() => {
+                        localStorage.removeItem('role')
+                        alert('관리자 로그아웃 되었습니다.')
+                        window.location.href = '/'
+                    }}
+                    style = {{
+                        padding : '10px',
+                        borderRadius : '5px',
+                        borderColor : 'white',
+                        backgroundColor : 'grey',
+                        color : 'white'
+                    }}
+                    >관리자 로그아웃</button>
+                    :<NavLink to="/payments/cart"><span className="material-symbols-outlined">shopping_bag</span></NavLink>}</li>
                 </IconUl>
             </Container>
             <Routes>
