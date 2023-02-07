@@ -10,6 +10,6 @@ userRouter.get("/myPage", loginRequired, seeMyPage);
 userRouter.get("/orders", loginRequired, getOrder);
 userRouter.get("/orders/:orderId", deleteOrder);
 userRouter.post("/edit/:userId", loginRequired, changeUser);
-userRouter.delete("/delete/:userId", loginRequired, deleteUser);
+userRouter.post("/delete/:userId", loginRequired, deleteUser);
 
 export default userRouter;

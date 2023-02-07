@@ -107,11 +107,11 @@ export const deleteUser = async (req, res) => {
   const { password } = req.body;
   console.log(password);
   // //1번째는 프론트에서 가져온 비밀번호, 2번째는 db비밀번호
-  // const comparePassword = bcrypt.compare(password, user.password);
-  // console.log(comparePassword);
-  // if (!comparePassword) {
-  //   throw new Error("비밀번호가 일치하지 않습니다.");
-  // }
+  const comparePassword = bcrypt.compareSync(password, user.password);
+  console.log(comparePassword);
+  if (!comparePassword) {
+    res.status(404).json({ message: "비밀번호가 일치하지 않습니다" });
+  }
 
   try {
     //찾은 유저의 비밀번호를 삭제
