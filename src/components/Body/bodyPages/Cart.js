@@ -40,6 +40,14 @@ const CartItem = styled.div`
     }
 `
 
+const ImgDiv = styled.div`
+    border : 1px solid red;
+
+    & img {
+        width : 100px;
+    }
+`
+
 const PaymentInfo = styled.div`
   box-shadow: 0 5px 10px grey;
   padding : 10px;
@@ -67,6 +75,7 @@ const Cart = ()=>{
     const navigate = useNavigate();
 
     const [items, setItems] = useState([]);
+    const [count, setCount] = useState(1);
 
   
     useEffect(() => {
@@ -75,30 +84,27 @@ const Cart = ()=>{
       for(let i=0;i<localStorage.length;i++){
         const key = localStorage.key(i);
         if(key.startsWith("elice_whishlist_")){
-            newItems = [...items];
-            newItems.push(localStorage.getItem(key));
-            setItems(newItems)
-            console.log(newItems)
+            console.log(JSON.parse(localStorage.getItem(key)))
+            // for(let j = 0; j< localStorage.getItem(key).length;j++) {
+            //     console.log(`${j}번 ${localStorage.getItem(key)}`)
+            //     // newItems.push(JSON.parse(localStorage.getItem(key)));
+            //     // console.log(localStorage.getItem(key)[0])
+            //     // setItems(newItems)
+            // }
+
         }
       }
     }, []);
 
 
 
-    console.log(items)
-    const listItems = [{
-    productName: "육아1", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
-    detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: 5000,
-    sku: "묶음", count : 1
-}, {
-    productName: "육아2", categoryId: 1, manufacturer: "제조사", shortDesc: "짧은 설명",
-    detailDesc: "상세 설명", imgUrl: "이미지", totalstocks: "재고수", price: 3000,
-    sku: "개", count : 2
-}]
+    const ChanegeHandler = (e)=>{
+        setCount(e.target.value)
+    }
 
     const SubmitHandler = (e)=>{
         e.preventDefault();
-        console.log("s");
+    
 
         
         navigate('/payments/order')
@@ -107,22 +113,22 @@ const Cart = ()=>{
     return <>
     <FormContainer onSubmit={SubmitHandler}>
         <CartInfo>
-            {listItems.map((item)=>{
+            {items.map((item)=>{
                 return <CartItem>
-                    <div>{item.imgUrl}</div>
+                    <ImgDiv><img src={item.imgUrl} alt="썸네일" /></ImgDiv>
                     <div>{item.productName}</div>
                     <div>{item.price}원</div>{" X "}
-                    <div>{item.count}{item.sku}</div>{" = "}
-                    <div>{item.count*item.price}원</div>
+                    <input type="number" name="sku" onChange={ChanegeHandler} defaultValue={count}/>{" = "}
+                    <div>{item.price*count}원</div>
                 </CartItem>
             })}
         </CartInfo>
         <PaymentInfo>
             <h3>결제정보</h3>
-            <h5>상품수   {listItems.length} 개</h5> 
-            <h5>상품금액 </h5>
+            <h5>상품수   5 개</h5> 
+            <h5>상품금액  27,000원</h5>
             <h5>배송비  3,000원</h5>
-            <h4>총 결제금액</h4>
+            <h4>총 결제금액 30,000원</h4>
             <button>구매하기</button>
         </PaymentInfo>
     </FormContainer>
