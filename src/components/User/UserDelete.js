@@ -12,18 +12,22 @@ const UserDelete = () => {
 
     return (
         <div style = {{
-            margin : '50px',
-            display : 'column'
+            margin : '20%'
         }}>
         <Delete>
         <FloatingLabel controlId="floatingPassword" label="비밀번호" onChange={(e) => setPassword(e.target.value)}>
           <Form.Control type="password" />
         </FloatingLabel>
         </Delete>
+        <div style = {{
+            margin : '10px',
+            display : 'flex',
+            justifyContent : 'center'
+        }}>
         <button
           onClick={() => {
             axios
-              .delete("http://localhost:8080/users/21/delete")
+              .delete("http://localhost:8080/users/delete/:userId")
               .then(() => {
                 alert("회원 탈퇴 되었습니다.");
                 navigate("/");
@@ -42,6 +46,7 @@ const UserDelete = () => {
         >
           회원 탈퇴
         </button>
+        </div>
       </div>
     )
 }
@@ -49,7 +54,6 @@ const UserDelete = () => {
 const Delete = styled.div`
     display : flex;
     justify-content : center;
-    padding : 150px;
 `
 
 export default UserDelete;
