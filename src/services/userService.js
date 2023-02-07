@@ -11,11 +11,6 @@ export const postJoin = async (req, res) => {
   if (user) {
     throw new Error("이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.");
   }
-  // //패스워드가 같은지 확인
-
-  // if (password !== password2) {
-  //   throw new Error("패스워드가 일치하지 않습니다.");
-  // }
 
   // 패스워드 해쉬화
   let saltRounds = await bcrypt.genSalt(10);
@@ -103,22 +98,25 @@ export const changeUser = async (req, res) => {
 
 //회원탈퇴
 export const deleteUser = async (req, res) => {
-  const userId = req.params.userId;
-  const { password } = req.body;
-
+  //토큰으로 유저 찾기
+  const userId = req.currentUserId;
   const user = await User.findOne({ userId });
-  // //입력한 비밀번호 해쉬화
 
-  // // //비밀번호 확인
-  // // //1번째는 프론트에서 가져온 비밀번호, 2번째는 db비밀번호
-  const comparePassword = bcrypt.compareSync(password, user.password);
+  console.log(user);
 
-  if (!comparePassword) {
-    throw new Error("비밀번호가 일치하지 않습니다.");
-  }
+  const { password } = req.body;
+  console.log(password);
+  // //1번째는 프론트에서 가져온 비밀번호, 2번째는 db비밀번호
+  // const comparePassword = bcrypt.compare(password, user.password);
+  // console.log(comparePassword);
+  // if (!comparePassword) {
+  //   throw new Error("비밀번호가 일치하지 않습니다.");
+  // }
 
   try {
-    await User.deleteOne({ userId });
+    //찾은 유저의 비밀번호를 삭제
+    await user.deleteOne({ password: user.password });
+    console.log("삭제완료");
     res.json({ message: "안전하게 삭제 완료했습니다." });
   } catch (error) {
     res.json({ message: "삭제에 실패했습니다.", error });

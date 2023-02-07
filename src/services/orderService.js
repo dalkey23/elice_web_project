@@ -31,9 +31,18 @@ export const postOrder = async (req, res) => {
 export const getOrder = async (req, res) => {
   //토큰의 유저 아이디 불러오기
   const userId = req.currentUserId;
+  //토큰에 맞는 유저 찾기
   const user = await User.findOne({ userId });
 
-  res.send(1);
+  try {
+    const id = user._id; // 유저 objectId
+    //Order에 user가 id 인 사람
+    const orderPerson = await Order.findOne({ user: id });
+    //OrderPerson의 주문 상품들 보내주기
+    res.status(200).json(orderPerson.products);
+  } catch (error) {
+    res.status(400).Error(error);
+  }
 };
 
 export const deleteOrder = async (req, res) => {
