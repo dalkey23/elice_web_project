@@ -6,20 +6,20 @@ import Product from "../db/models/productModel";
 
 export const inCategoryAll = async (req, res, next) => {
   const some = req.params.id;
-  const serchAll = await Product.find({ categoryId: some });
-  res.json({ serchAll });
+  const searchAll = await Product.find({ categoryId: some });
+  res.json({ searchAll });
 };
 
 //상품  한개 조회(포스트맨 작동함)
 export const findOneProduct = async (req, res, next) => {
-  const productName = req.params.name;
-  const serchOne = await Product.findOne({ productName });
+  const {id} = req.params;
+  const searchOne = await Product.findOne({id});
 
   // if (req.query.edit) {
   //   res.send("req.query.edit");
   //   return;
   // }
-  res.json({ serchOne });
+  res.json({searchOne});
 };
 
 //상품등록(포스트맨 작동함)
