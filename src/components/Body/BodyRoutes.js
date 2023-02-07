@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -67,6 +67,16 @@ const IconUl = styled.ul`
 `
 
 const BodyRoutes = () => {
+
+    const [userToken, setUserToken] = useState('');
+    
+    useEffect(() => {
+        setUserToken(localStorage.getItem("accessToken"))
+        console.log(userToken)
+    })
+
+    // const userToken = localStorage.getItem("accessToken")
+
     return (<div>
         <Router>
             <Container>
@@ -83,7 +93,10 @@ const BodyRoutes = () => {
                     <li><NavLink to="/AdminMain">관리자 테스트</NavLink></li>
                 </NavUl>
                 <IconUl>
-                    <li><NavLink to="/LoginForm"><span className="material-symbols-outlined">person</span></NavLink></li>
+                    <li>
+                    { userToken === 'null' ? <NavLink to="/UserMain"><span className="material-symbols-outlined">person</span></NavLink>
+                    : <NavLink to="/LoginForm"><span className="material-symbols-outlined">person</span></NavLink>}
+                    </li>
             
                     <li><NavLink to="/payments/cart"><span className="material-symbols-outlined">shopping_bag</span></NavLink></li>
                 </IconUl>
