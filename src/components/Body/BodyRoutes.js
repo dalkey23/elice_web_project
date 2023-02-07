@@ -94,7 +94,7 @@ const BodyRoutes = () => {
                         return <li><NavLink to={`/categories/${category.categoryId}`}>{category.name}</NavLink></li>
                     })}
                     {/* AdminToken이 admin값일때 관리자 테스트 노출 */}
-                    <li>{ AdminToken === 'admin' ? <NavLink to="/AdminMain">관리자 테스트</NavLink>
+                    <li>{ AdminToken === 'admin' ? <NavLink to="/AdminMain">관리자페이지</NavLink>
                     : <></> }</li>
                 </NavUl>
                 <IconUl>
