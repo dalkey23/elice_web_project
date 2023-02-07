@@ -8,7 +8,7 @@ const UserSchema = new Schema(
     phoneNumber: { type: String },
     address: { type: String },
     order: {
-      type: [Schema.Types.ObjectId],
+      type: Schema.Types.ObjectId,
       ref: "Order",
       default: [],
     },

@@ -37,7 +37,7 @@ export const postJoin = async (req, res) => {
 
 //로그인
 export const postLogin = async (req, res) => {
-  const { email, password, name } = req.body;
+  const { email, password } = req.body;
 
   // //DB에 있는 사용자 인지 확인
   const user = await User.findOne({ email });
@@ -47,7 +47,7 @@ export const postLogin = async (req, res) => {
 
   // //비밀번호 확인
   // //1번째는 프론트에서 가져온 비밀번호, 2번째는 db비밀번호
-  const comparePassword = await bcrypt.compare(password, user.password);
+  const comparePassword = bcrypt.compare(password, user.password);
 
   if (!comparePassword) {
     throw new Error("비밀번호가 일치하지 않습니다.");
@@ -79,26 +79,23 @@ export const seeMyPage = async (req, res) => {
 //회원 정보 수정
 export const changeUser = async (req, res) => {
   const { email, phoneNumber, address } = req.body;
-
-  const { userId } = req.params;
-
-  console.log(1);
+  const userId = req.currentUserId;
+  let user = await User.findOne({ userId });
 
   try {
-    let user = await User.findOne({ userId });
-
     // // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
       const errorMessage = "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
-    await user.updateOne({
+    const updatedUser = await user.updateOne({
       email,
       phoneNumber,
       address,
     });
 
-    return res.send("info change");
+    res.json(updatedUser);
+    return updatedUser;
   } catch (error) {
     return error;
   }

@@ -3,9 +3,9 @@ import { Schema, mongoose } from "mongoose";
 const autoIncrement = require("mongoose-sequence")(mongoose);
 const OrderSchema = new Schema(
   {
-    userId: {
+    user: {
       type: Schema.Types.ObjectId,
-
+      required: true,
       ref: "User",
     },
     name: { type: String },
