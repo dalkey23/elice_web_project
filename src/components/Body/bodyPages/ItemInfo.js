@@ -44,7 +44,12 @@ const ButtonWrapper = styled.div`
 const Details = () => {
     
     const [data, setData] = useState('');
+    const [count, setCount] = useState(1);
     const { id } = useParams();
+
+    const ChanegeHandler = (e)=>{
+        setCount(e.target.value)
+    }
    
 
     useEffect(() => {
@@ -64,7 +69,7 @@ const Details = () => {
         alert("완료")
         // key부분에 각 상품마다 달라지는 값을 `${변수}`로 담아서 지정 하면
         // key가 각자 달라서 쌓일듯
-        localStorage.setItem(`elice_whishlist_${JSON.stringify(data.id)}`,JSON.stringify(data));
+        localStorage.setItem(`elice_whishlist_${JSON.stringify(data.id)}`,JSON.stringify([data, count]));
     }
 
     const SubmitHandler = (e) => {
@@ -75,18 +80,19 @@ const Details = () => {
     
 
     return <Container onSubmit={SubmitHandler}>
-        {/* <ProductImg name="imgUrl">{Product1.imgUrl}</ProductImg> */}
+        <ProductImg name="imgUrl">{data.imgUrl}</ProductImg>
         <Wrapper>
             <Items type="text" name="manufacturer" value={data.manufacturer}/>
             <Items type="text" name="productName" value={data.productName} />
             <Items type="text" name="price" value={data.price} />
             <Items type="text" name="detailDesc" value={data.detailDesc} /> 
-            {/* <SkuDiv><input type="number" name="sku" />&nbsp;{data.sku}</SkuDiv> */}
+            <SkuDiv><input type="number" name="sku" onChange={ChanegeHandler} defaultValue={count}/>&nbsp;개</SkuDiv>
             <ButtonWrapper>
                 <button type="button" onClick={clickHandler}>장바구니 추가하기</button>
                 <button>바로 구매하기</button>
             </ButtonWrapper>
         </Wrapper>
+
     </Container>
 }
 

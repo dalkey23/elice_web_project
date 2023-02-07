@@ -29,6 +29,10 @@ const ListItem = styled.div`
     width : 95%;
     height : 250px;
     margin : 10px;
+    
+    &:hover {
+        background-color : skyblue;
+    }
 
     
 `

@@ -22,13 +22,16 @@ const ListItems = styled.div`
     flex : 1;
     background : gray;
     width : 95%;
-    height : 200px;
+    height : 250px;
     margin : 10px;
     
 `
 
 const Item = styled.div`
-   
+    
+    & img {
+        width : 70%;
+    }
 `
 
 
@@ -68,9 +71,8 @@ function Parenting() {
         {items.slice(offset, offset+limit).map((listItem) => {
             return <Link to={`/itemInfo/${listItem.id}`}>
                         <ListItems>
-                            <Item>{listItem.imgUrl}</Item>
+                            <Item><img src={listItem.imgUrl} alt="상품이미지"/></Item>
                             <Item>{listItem.productName}</Item>
-                            <Item>{listItem.id}</Item>
                             <Item>{listItem.price}</Item>
                         </ListItems>
                     </Link>
