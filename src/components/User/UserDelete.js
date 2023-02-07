@@ -17,11 +17,12 @@ const UserDelete = () => {
       axios
         .post("http://localhost:8080/users/delete/:userId", { ...formData })
         .then(() => {
+          localStorage.removeItem('accessToken')
           alert("회원 탈퇴 되었습니다.");
           navigate("/");
         })
         .catch((err) => {
-          alert(err);
+          alert("비밀번호를 확인해주세요.");
         });
     };
     onSubmit();
