@@ -164,7 +164,7 @@ const RegisterForm = () => {
 
 const Register = styled.div`
     display : flex;
-    justify-content : space-around;
+    justify-content : center;
     padding : 150px;
 `
 

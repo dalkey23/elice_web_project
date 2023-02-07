@@ -25,6 +25,7 @@ import AdminMain from './Admin/AdminMain';
 import AdminOrders from './Admin/AdminOrders';
 import AdminCategories from './Admin/AdminCategories'
 import AdminProducts from './Admin/AdminProducts'
+import UserDelete from '../User/UserDelete';
 
 const Container = styled.div`
     display : flex;
@@ -91,6 +92,7 @@ const BodyRoutes = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/OrderList" element={<OrderList />} />
                 <Route path="/UserUpdate" element={<UserUpdate />} />
+                <Route path="/UserDelete" element={<UserDelete />} />
                 <Route path="/UserInfo" element={<UserInfo />} />
                 <Route path="/UserMain" element={<UserMain />} />
                 <Route path="/Favorites" element={<Favorite />} />

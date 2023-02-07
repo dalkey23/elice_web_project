@@ -78,16 +78,13 @@ const UserInfo = () => {
               </button>
             </NavLink>
             <NavLink
-              to="/"
+              to="/UserDelete"
               style={{
                 textDecorationLine: "none",
                 margin: "10px",
               }}
             >
               <button
-                onClick={() => {
-                  navigate('/')
-                }}
                 style={{
                   padding: "8px",
                   borderRadius: "8px",

@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from "react-bootstrap/Form";
+import axios from 'axios';
+import styled from 'styled-components';
 
 const UserDelete = () => {
 
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
     return (
-        <div>
+        <div style = {{
+            margin : '50px',
+            display : 'column'
+        }}>
+        <Delete>
         <FloatingLabel controlId="floatingPassword" label="비밀번호" onChange={(e) => setPassword(e.target.value)}>
           <Form.Control type="password" />
         </FloatingLabel>
+        </Delete>
         <button
           onClick={() => {
             axios
@@ -35,5 +45,11 @@ const UserDelete = () => {
       </div>
     )
 }
+
+const Delete = styled.div`
+    display : flex;
+    justify-content : center;
+    padding : 150px;
+`
 
 export default UserDelete;
