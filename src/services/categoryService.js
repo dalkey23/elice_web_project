@@ -4,15 +4,14 @@ import Category from "../db/models/categoryModel";
 //카테고리 카테고리리스트 전체 보여주기 (포스트맨 작동함 )
 
 export const showAllCategories = async (req, res, next) => {
-//   const  = req.params;
-  const serchAll = await Category.find({});
-  res.json({ serchAll });
+  const searchAll = await Category.find({});
+  res.json({ searchAll });
 };
 
 //카테고리  한개 조회(포스트맨 작동함)
 export const findOneCategory = async (req, res, next) => {
-  const name = req.params.name;
-  const searchOne = await Category.findOne({ name });
+  const { categoryId } = req.params;
+  const searchOne = await Category.findOne({ categoryId });
 
   // if (req.query.edit) {
   //   res.send("req.query.edit");
