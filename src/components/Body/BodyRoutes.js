@@ -70,8 +70,6 @@ const BodyRoutes = () => {
 
     const Token = localStorage.getItem("accessToken")
     const AdminToken = localStorage.getItem("role")
-    console.log(AdminToken)
-
     const [ categories, setCategories] = useState([])
 
     useEffect(() => {
@@ -92,16 +90,17 @@ const BodyRoutes = () => {
                   <NavLink to="/"><img src = { logo } alt = 'Logo' /></NavLink>
                 </LogoDiv>
                 <NavUl>
-                    <li><NavLink to="/UserMain">유저메인 테스트</NavLink></li>
                     {categories.map((category)=>{
                         return <li><NavLink to={`/categories/${category.categoryId}`}>{category.name}</NavLink></li>
                     })}
-                    <li><NavLink to="/AdminMain">관리자 테스트</NavLink></li>
+                    {/* AdminToken이 admin값일때 관리자 테스트 노출 */}
+                    <li>{ AdminToken === 'admin' ? <NavLink to="/AdminMain">관리자 테스트</NavLink>
+                    : <></> }</li>
                 </NavUl>
                 <IconUl>
                     <li>
                     { Token || !Token === 'null' ? <NavLink to="/UserMain"><span className="material-symbols-outlined">person</span></NavLink>
-                    : <NavLink to="/LoginForm"><span className="material-symbols-outlined">person</span></NavLink>}
+                    : <NavLink to="/LoginForm"><span className="material-symbols-outlined">person</span></NavLink> }
                     </li>
             
                     <li><NavLink to="/payments/cart"><span className="material-symbols-outlined">shopping_bag</span></NavLink></li>
