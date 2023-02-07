@@ -6,6 +6,7 @@ import axios from "axios";
 const UserInfo = () => {
   
   const [data, setData] = useState("");
+
   useEffect(() => {
     axios
       .get("http://localhost:8080/users/mypage")
@@ -16,6 +17,8 @@ const UserInfo = () => {
         alert(error);
       });
   }, []);
+
+  // if (!data) {return <></>}
 
   return (
     <div
