@@ -79,8 +79,6 @@ const Details = () => {
         navigate('/payments/order')
     }
 
-    
-
     return <Container onSubmit={SubmitHandler}>
         <ProductImg><img src={data.imgUrl} style = {{width : "430px"}}alt="상품이미지"/>
         <Wrapper>
