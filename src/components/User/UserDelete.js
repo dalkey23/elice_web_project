@@ -16,7 +16,7 @@ const UserDelete = () => {
 
       const onSubmit = () => {
         axios
-        .delete("http://localhost:8080/users/delete/:userId")
+        .delete("http://localhost:8080/users/delete/:userId", password)
         .then(() => {
           alert("회원 탈퇴 되었습니다.");
           navigate("/");

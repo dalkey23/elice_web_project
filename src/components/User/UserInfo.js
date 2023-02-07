@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import axios from "axios";
 
 const UserInfo = () => {
-  const navigate = useNavigate();
+  
   const [data, setData] = useState("");
   useEffect(() => {
     axios
