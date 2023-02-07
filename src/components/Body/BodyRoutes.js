@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router,
+    Routes, Route, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -67,18 +68,11 @@ const IconUl = styled.ul`
 
 const BodyRoutes = () => {
 
-    
-    
-    
-    const token = localStorage.getItem("accessToken")
-    console.log(`${JSON.stringify(token)}`)
-    
-
-    // const userToken = localStorage.getItem("accessToken")
-
+    const Token = localStorage.getItem("accessToken")
+    const AdminToken = localStorage.getItem("role")
+    console.log(AdminToken)
 
     const [ categories, setCategories] = useState([])
-
 
     useEffect(() => {
         axios
@@ -89,13 +83,7 @@ const BodyRoutes = () => {
         .catch((error) => {
           alert(error)
         })
-
-        console.log(categories)
       }, [])
-
-
-
-
 
     return (<div>
         <Router>
@@ -112,7 +100,7 @@ const BodyRoutes = () => {
                 </NavUl>
                 <IconUl>
                     <li>
-                    { !token === 'true' ? <NavLink to="/UserMain"><span className="material-symbols-outlined">person</span></NavLink>
+                    { Token || !Token === 'null' ? <NavLink to="/UserMain"><span className="material-symbols-outlined">person</span></NavLink>
                     : <NavLink to="/LoginForm"><span className="material-symbols-outlined">person</span></NavLink>}
                     </li>
             

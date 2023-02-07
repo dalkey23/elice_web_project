@@ -4,8 +4,6 @@ import styled from "styled-components";
 
 const UserMain = () => {
 
-    const navigate = useNavigate();
-
     return (
         <div style = {{
             display : 'flex',
@@ -51,8 +49,10 @@ const UserMain = () => {
                     <button 
                     onClick = {() => {
                         localStorage.removeItem('accessToken')
+                        localStorage.removeItem('role')
                         alert('로그아웃 되었습니다.')
-                        navigate('/')
+                        // 로컬스토리지에 토큰이 삭제된 상태를 인식시키기 위하여 새로고침으로 href로 이동
+                        window.location.href = '/'
                     }}
                     style = {{
                         padding : '10px',
