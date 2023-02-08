@@ -67,7 +67,7 @@ const BodyRoutes = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/categories`)
+      .get(`http://localhost:8080/categories`)
       .then((response) => {
         setCategories(response.data.searchAll);
       })

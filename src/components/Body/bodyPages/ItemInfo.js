@@ -57,7 +57,7 @@ const Details = () => {
 
     useEffect(() => {
       axios
-      .get(`http://localhost:3000/products/${id}`)
+      .get(`http://localhost:8080/products/${id}`)
       .then((response) => {
         setData(response.data.searchOne)
       })

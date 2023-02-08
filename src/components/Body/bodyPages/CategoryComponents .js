@@ -56,7 +56,7 @@ function Parenting() {
 
    
         axios
-        .get(`http://localhost:3000/products/all/${categoryId}`)
+        .get(`http://localhost:8080/products/all/${categoryId}`)
         .then((response) => {
             setItems(response.data.searchAll)
         })
