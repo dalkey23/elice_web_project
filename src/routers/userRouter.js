@@ -9,6 +9,7 @@ const userRouter = express.Router();
 userRouter.get("/myPage", loginRequired, seeMyPage);
 userRouter.get("/orders", loginRequired, getOrder);
 userRouter.get("/orders/:orderId", deleteOrder);
+
 userRouter.post("/edit/:userId", loginRequired, changeUser);
 userRouter.post("/delete/:userId", loginRequired, deleteUser);
 

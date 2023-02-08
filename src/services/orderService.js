@@ -46,5 +46,12 @@ export const getOrder = async (req, res) => {
 };
 
 export const deleteOrder = async (req, res) => {
+  const { orderId } = req.params;
+  try {
+    await Order.deleteOne({ orderId });
+    res.status(200);
+  } catch (error) {
+    res.status(400).send("삭제실패");
+  }
   res.send(1);
 };

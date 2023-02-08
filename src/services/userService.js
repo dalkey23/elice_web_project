@@ -52,8 +52,9 @@ export const postLogin = async (req, res) => {
 
   // jwt 토큰에 유저 아이디 담기
   const token = jwt.sign({ userId: user.userId, role: user.role }, secretKey);
+  const role = user.role;
 
-  res.json(token);
+  res.json({ token, role });
 
   return { token };
 };

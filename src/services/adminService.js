@@ -39,18 +39,3 @@ export const handleDelete = async (req, res) => {
     throw new Error(error);
   }
 };
-
-//카테고리 추가
-export const addCategory = async (req, res) => {
-  res.send("카테고리 추가");
-};
-
-//카테고리 수정
-export const editCategory = async (req, res) => {
-  res.send("카테고리 수정");
-};
-
-//카테고리 삭제
-export const deleteCategory = async (req, res) => {
-  res.send("카테고리 삭제");
-};
