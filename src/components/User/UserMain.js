@@ -35,7 +35,7 @@ const UserMain = () => {
 }
 
 const UserMainDiv = styled.div`
-    width : 50%;
+    width : 30%;
     height : 300px;
     padding : 100px;
     margin : 100px;
