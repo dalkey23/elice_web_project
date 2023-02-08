@@ -27,17 +27,18 @@ const LoginForm = () => {
       axios
         .post("http://localhost:8080/login", { ...formdata })
         .then((res) => {
-          if (email === 'admin@admin.com') {
-            localStorage.setItem('role', 'admin')
-            alert('관리자 로그인 되었습니다')
-          // 로컬스토리지에 토큰이 들어온 상태를 인식시키기 위하여 새로고침으로 href로 이동
-          window.location.href = '/'
+          if (res.data.role === "admin") {
+            localStorage.setItem("adminToken", res.data.token);
+            axios.defaults.headers.common["Authorization"] = res.data.token;
+            alert("관리자 로그인 되었습니다");
+            // 로컬스토리지에 토큰이 들어온 상태를 인식시키기 위하여 새로고침으로 href로 이동
+            window.location.href = "/";
           } else {
-            localStorage.setItem("accessToken", res.data)
-            axios.defaults.headers.common["Authorization"] = res.data;
-            alert('로그인 되었습니다')
-          // 로컬스토리지에 토큰이 들어온 상태를 인식시키기 위하여 새로고침으로 href로 이동
-            window.location.href = '/'
+            localStorage.setItem("accessToken", res.data.token);
+            axios.defaults.headers.common["Authorization"] = res.data.token;
+            alert("로그인 되었습니다");
+            // 로컬스토리지에 토큰이 들어온 상태를 인식시키기 위하여 새로고침으로 href로 이동
+            window.location.href = "/";
           }
         })
         .catch((err) => {
