@@ -1,8 +1,10 @@
 import React from "react";
-import { NavLink , useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const UserMain = () => {
+
+    const navigate = useNavigate()
 
     return (
         <div style = {{
@@ -10,43 +12,15 @@ const UserMain = () => {
             justifyContent : 'center'
         }}>
             <UserMainDiv>
-                <NavLink 
-                    to="/UserInfo"
-                    style = {{
-                    textDecorationLine : 'none',
-                    display : 'flex',
-                    justifyContent : 'center'
-                }}>
-                    <button style = {{
-                        padding : '8px',
-                        borderRadius : '5px',
-                        borderColor : 'white',
-                        backgroundColor : 'grey',
-                        color : 'white'
-                    }}>유저 정보</button>
-                </NavLink>
-                <NavLink 
-                    to="/OrderList"
-                    style = {{
-                    textDecorationLine : 'none',
-                    display : 'flex',
-                    justifyContent : 'center',
-                }}>
-                    <button style = {{
-                        padding : '8px',
-                        margin : '40px',
-                        borderRadius : '5px',
-                        borderColor : 'white',
-                        backgroundColor : 'grey',
-                        color : 'white'
-                    }}>주문 내역</button>
-                </NavLink>
-                <NavLink to="/" style = {{
-                    textDecorationLine : 'none',
-                    display : 'flex',
-                    justifyContent : 'center',
-                }}>
-                    <button 
+                    <UserInfoBtn
+                    onClick = {() => {
+                        navigate('/UserInfo')
+                    }}>유저 정보</UserInfoBtn>
+                    <OrderListBtn
+                    onClick = {() => {
+                        navigate('/OrderList')
+                    }}>주문 내역</OrderListBtn>
+                    <LogoutBtn 
                     onClick = {() => {
                         localStorage.removeItem('accessToken')
                         localStorage.removeItem('role')
@@ -54,28 +28,44 @@ const UserMain = () => {
                         // 로컬스토리지에 토큰이 삭제된 상태를 인식시키기 위하여 새로고침으로 href로 이동
                         window.location.href = '/'
                     }}
-                    style = {{
-                        padding : '10px',
-                        borderRadius : '5px',
-                        borderColor : 'white',
-                        backgroundColor : 'grey',
-                        color : 'white'
-                    }}
-                    >로그아웃</button>
-                </NavLink>
+                    >로그아웃</LogoutBtn>
             </UserMainDiv>
-        </div>
+            </div>
     )
 }
 
 const UserMainDiv = styled.div`
     width : 50%;
+    height : 300px;
     padding : 100px;
     margin : 100px;
     display : flex;
     flex-direction : column;
     justify-content : center;
-    background-color : white;
+`
+
+const LogoutBtn = styled.button`
+    padding : 10px;
+    border-radius : 5px;
+    border-color : white;
+    background-color : grey;
+    color : white;
+`
+
+const OrderListBtn = styled.button`
+    padding : 10px;
+    border-radius : 5px;
+    border-color : white;
+    background-color : grey;
+    color : white;
+`
+
+const UserInfoBtn = styled.button`
+    padding : 10px;
+    border-radius : 5px;
+    border-color : white;
+    background-color : grey;
+    color : white;
 `
 
 export default UserMain;

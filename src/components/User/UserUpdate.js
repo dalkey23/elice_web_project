@@ -9,15 +9,16 @@ import Row from 'react-bootstrap/Row';
 
 const UserUpdate = () => {
 
+    const [validated, setValidated] = useState(false);
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [address, setAddress] = useState('');
     const [data, setData] = useState('')
-    const [validated, setValidated] = useState(false);
     const navigate = useNavigate();
 
     const handleUpdSubmit = (e) => {
     
+    // 새로고침 방지
     e.preventDefault();
     
     const formUpdData = {
@@ -27,8 +28,8 @@ const UserUpdate = () => {
     }
     const onUpdSubmit = () => {
     
-    // formCreData로 묶은 값을 구조분해해서 전달
     axios
+      // formUpdData로 묶은 값을 구조분해해서 전달
       // post로 회원 정보 변경
       .post("http://localhost:8080/users/edit/:userId", { ...formUpdData })
       .then(() => {
@@ -111,15 +112,12 @@ const UserUpdate = () => {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               </Row>
-              <div style={{
-                display : 'flex',
-                justifyContent : 'flex-end'
-              }}>
+              <BtnDiv>
                 <Button type="submit" style = {{
                   backgroundColor : 'grey',
                   border : 'grey',
                 }} onClick = { handleUpdSubmit }>정보 수정</Button>
-            </div>
+            </BtnDiv>
           </Form>
           </Update>
         );
@@ -129,6 +127,11 @@ const Update = styled.div`
     display : flex;
     justify-content : space-around;
     padding : 150px;
+`
+
+const BtnDiv = styled.div`
+    display : flex;
+    justify-content : flex-end;
 `
 
 export default UserUpdate;
