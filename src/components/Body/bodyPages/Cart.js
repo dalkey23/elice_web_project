@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 
-import { WISHLIST_KEY } from '../../../constants/key'
+import { WISHLIST_KEY, NO_SHIPPING_FEE_PRICE } from '../../../constants/key'
+import { formatCurrency } from '../../../lib/utils'
 
 const FormContainer = styled.form`
     display : flex;
@@ -78,7 +79,8 @@ const Cart = ()=>{
     const navigate = useNavigate();
 
     const [items, setItems] = useState([]);
-    const [count, setCount] = useState(1);
+    const [isLoaded, setLoaded] = useState(false);
+    const [countObject, setCountObject] = useState({})
 
     useEffect(() => {
 
@@ -87,13 +89,42 @@ const Cart = ()=>{
         const wishList = savedWishList ? JSON.parse(savedWishList) : []
 
         setItems(wishList)
+
+
+        // count가 각 1개씩 들어가도록 초기세팅
+        const newCountObject = wishList.reduce((acc, current) => {
+            acc[current.id] = 1
+
+            return acc
+        }, {})
+
+        setCountObject(newCountObject)
+
+        setLoaded(true)
     }, []);
 
+    const totalCount = useMemo(() => {
+        return  Object.values(countObject).reduce((acc, current) => {
+            acc = acc + parseInt(current)
+            return acc
+        }, 0)
+    }, [countObject])
+
+    const totalItemPrice = useMemo(() => {
+        return items.reduce((acc, current) => {
+            acc = acc + (parseInt(current.price) * parseInt(countObject[current.id]))
+
+            return acc
+        }, 0)
+    }, [countObject, items])
+
+    const shippingFee = useMemo(() => {
+        return totalItemPrice >= NO_SHIPPING_FEE_PRICE ? 0 : 3000
+    }, [totalItemPrice])
+
+    const totalPrice = useMemo(() => totalItemPrice + shippingFee, [totalItemPrice, shippingFee])
 
 
-    const ChanegeHandler = (e)=>{
-        setCount(e.target.value)
-    }
 
     const SubmitHandler = (e)=>{
         e.preventDefault();
@@ -103,6 +134,8 @@ const Cart = ()=>{
         navigate('/payments/order')
     }
 
+    if (!isLoaded) return <></>
+
     return <>
     <FormContainer onSubmit={SubmitHandler}>
         <CartInfo>
@@ -111,17 +144,23 @@ const Cart = ()=>{
                     <ImgDiv><img src={item.imgUrl} alt="썸네일" /></ImgDiv>
                     <div>{item.productName}</div>
                     <div>{item.price}원</div>{" X "}
-                    <input type="number" name="sku" onChange={ChanegeHandler} defaultValue={count}/>{" = "}
-                    <div>{item.price*count}원</div>
+                    <input type="number" name="sku" onChange={(e) => {
+                        const newCountObject = {...countObject}
+
+                        newCountObject[item.id] = e.target.value
+
+                        setCountObject(newCountObject)
+                    }} defaultValue={countObject[item.id]}/>{" = "}
+                    <div>{item.price*countObject[item.id]}원</div>
                 </CartItem>
             })}
         </CartInfo>
         <PaymentInfo>
             <h3>결제정보</h3>
-            <h5>상품수   5 개</h5>
-            <h5>상품금액  27,000원</h5>
-            <h5>배송비  3,000원</h5>
-            <h4>총 결제금액 30,000원</h4>
+            <h5>상품수   {totalCount} 개</h5>
+            <h5>상품금액  {formatCurrency(totalItemPrice)}원</h5>
+            <h5>배송비  {formatCurrency(shippingFee)}원</h5>
+            <h4>총 결제금액 {formatCurrency(totalPrice)}원</h4>
             <button>구매하기</button>
         </PaymentInfo>
     </FormContainer>

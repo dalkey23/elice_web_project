@@ -25,7 +25,7 @@ const ListItems = styled.div`
     height : 250px;
     margin : 10px;
 
-    
+
 `
 
 const StringItems = styled.div`
@@ -40,7 +40,7 @@ const StringItems = styled.div`
 `
 
 const Item = styled.div`
-    
+
     & img {
         width : 70%;
     }
@@ -52,7 +52,7 @@ function CategoryComponents() {
 
     const [items, setItems] = useState([])
     const { categoryId } = useParams();
-    
+
     useEffect(()=>{
         axios
         .get(`http://localhost:8080/products/all/${categoryId}`)
@@ -62,7 +62,7 @@ function CategoryComponents() {
         .catch((error) => {
           alert(error)
         })
-    },[items])
+    },[])
 
 
     // useState, useEffect 이용해서 게시글 불러와야 함
