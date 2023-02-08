@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from "react";
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 const Container = styled.div`
@@ -45,19 +45,49 @@ const ItemDiv = styled.div`
 
 const AdminOrders = () => {
 
+    const navigate = useNavigate();
     const [orders, setOrders] = useState([]);
+    const [orderStatus, setOrderStatus] = useState('');
 
     useEffect(() => {
         axios
           .get(`http://localhost:8080/admin/orders`)
           .then((response) => {
             setOrders(response.data);
-            console.log(orders)
           })
           .catch((error) => {
             alert(error);
           });
       }, []);
+
+    const changeHandler = (e)=>{
+ 
+        setOrderStatus(e.target.value);
+        console.log('e.target.value', e.target.value)
+        console.log('orderStatus', orderStatus)
+        axios
+        .post(`http://localhost:8080/admin/orders/${e.target.id}`, { orderStatus })
+        .then((res) => {
+          console.log(res)
+          alert("배송 상태가 수정되었습니다.")
+          navigate("/adminOrders")
+        })
+        .catch((err) => {
+          alert(err)
+        })
+    }
+
+    const deleteOrder = (e) => {
+        console.log(e.target.id)
+        axios
+        .delete(`http://localhost:8080/admin/orders/${e.target.id}`)
+        .then((res) => {
+            window.location.href = "/adminOrders";  
+        })
+        .catch((err) => {
+          alert(err)
+        })
+    }
 
     return <Container>
             <TitleDiv>주문 관리</TitleDiv>
@@ -72,8 +102,14 @@ const AdminOrders = () => {
                     return <ItemDiv key={order.orderId}>
                             <div>{order.createdAt}</div>
                             <div>{order.total}</div>
-                            <div>{order.orderStatus}</div>
-                            <button>주문 취소</button>
+                            <div>
+                                <select id={order.orderId} onChange={changeHandler} defaultValue={order.orderStatus}>
+                                    <option value="상품준비중">상품준비중</option>
+                                    <option value="상품배송중">상품배송중</option>
+                                    <option value="배송완료">배송완료</option>
+                                </select>
+                            </div>
+                            <button id={order.orderId} onClick={ deleteOrder }>주문 취소</button>
                     </ItemDiv>
                 })}
             </ListDiv>

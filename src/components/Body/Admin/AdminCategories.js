@@ -67,6 +67,19 @@ const AdminCategories = () => {
           });
       }, []);
 
+    const deleteHandler = (e)=>{
+        console.log(e.target.id);
+        axios
+        .delete(`http://localhost:8080/categories/delete/${e.target.id}`)
+        .then((response) => {
+            console.log("카테고리 삭제")
+            window.location.href = "/adminCategories";  
+        })
+        .catch((error) => {
+          alert(error);
+        });
+
+    }
 
     return (
         <Container>
@@ -75,11 +88,11 @@ const AdminCategories = () => {
             <Link to="/addCategory">카테고리 추가</Link>
             <ListDiv>
                 {categories.map((category)=>{
-                    return <ItemDiv key={category.id}>
+                    return <ItemDiv key={category.categoryId}>
                         <NameDiv>{category.name}</NameDiv>
                         <DecsDiv>{category.description}</DecsDiv>
                         <button>수정</button>
-                        <button>삭제</button>
+                        <button id={category.categoryId} onClick={ deleteHandler }>삭제</button>
                     </ItemDiv>
                 })}
             </ListDiv>

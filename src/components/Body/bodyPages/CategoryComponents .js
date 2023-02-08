@@ -62,7 +62,7 @@ function CategoryComponents() {
         .catch((error) => {
           alert(error)
         })
-    },[]) //categoryId 제거
+    },[categoryId]) //categoryId 변경될 때 마다
 
 
     // useState, useEffect 이용해서 게시글 불러와야 함

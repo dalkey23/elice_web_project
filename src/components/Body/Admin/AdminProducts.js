@@ -1,7 +1,12 @@
 import React from "react";
 
-const AdminProducts = () => {
 
+
+
+const AdminProducts = () => {
+    
+    
+   
 }
 
 export default AdminProducts;
