@@ -37,19 +37,31 @@ export const getOrder = async (req, res) => {
   try {
     const id = user._id; // 유저 objectId
     //Order에 user가 id 인 사람
-    const orderPerson = await Order.findOne({ user: id });
+    const orderPerson = await Order.find({ user: id });
+
+    const product = orderPerson.map((item) => {
+      return item.products;
+    });
+    const orderId = orderPerson.map((item) => {
+      return item.orderId;
+    });
+    console.log(product);
+    console.log(orderId);
+
     //OrderPerson의 주문 상품들 보내주기
-    res.status(200).json(orderPerson.products);
+
+    res.status(200).json({ product, orderId });
   } catch (error) {
-    res.status(400).Error(error);
+    res.status(400).send("error");
   }
 };
 
 export const deleteOrder = async (req, res) => {
   const { orderId } = req.params;
+
   try {
     await Order.deleteOne({ orderId });
-    res.status(200);
+    res.status(200).send("삭제성공");
   } catch (error) {
     res.status(400).send("삭제실패");
   }

@@ -16,7 +16,6 @@ const OrderSchema = new Schema(
       type: String,
     },
 
-    //product 어떻게 할지 한번 생각해보기
     products: [
       {
         productName: {
