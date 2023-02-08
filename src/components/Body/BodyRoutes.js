@@ -147,6 +147,7 @@ const BodyRoutes = () => {
         </Container>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/Favorites" element={<Favorites />} />
           <Route path="/OrderList" element={<OrderList />} />
           <Route path="/UserUpdate" element={<UserUpdate />} />
           <Route path="/UserDelete" element={<UserDelete />} />

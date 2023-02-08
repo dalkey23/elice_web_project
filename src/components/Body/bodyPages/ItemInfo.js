@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
-
-
+import { WISHLIST_KEY } from '../../../constants/key'
+import { CARTLIST_KEY } from '../../../constants/key'
+//key.js에서 WISHLIST_KEY설정
 const Container = styled.form`
     align-items : center;
     padding : 20px;
@@ -94,15 +95,28 @@ const Details = () => {
 
     const clickCartHandler = () => {
         alert("장바구니 담기 완료!")
-        // key부분에 각 상품마다 달라지는 값을 `${변수}`로 담아서 지정 하면
-        // key가 각자 달라서 쌓일듯
-        localStorage.setItem(`elice_cartlist_${JSON.stringify(data.id)}`,JSON.stringify([data, count]));
+        const savedCartList = localStorage.getItem(CARTLIST_KEY)
+        //'elice_wishlist' 값 가져오고
+        const cartList = savedCartList ? JSON.parse(savedCartList) : []
+        //wishList 는 elice_wishlist 있으면 JSON.parse 아니면 빈배열로 data.push
+        cartList.push(data)
+        localStorage.setItem(CARTLIST_KEY, JSON.stringify(cartList));
+        //push 후 'elice_wishlist'로 다시 setItem
     }
+
+       
 
     const clickWishHandler = () => {
         alert("찜하기 완료!")
-        localStorage.setItem(`elice_wishlist_${JSON.stringify(data.id)}`,JSON.stringify([data, count]));
+        
+        const savedWishList = localStorage.getItem(WISHLIST_KEY)
+
+        const wishList = savedWishList ? JSON.parse(savedWishList) : []
+
+        wishList.push(data)
+        localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishList));
     }
+
 
     const SubmitHandler = (e) => {
         e.preventDefault();
