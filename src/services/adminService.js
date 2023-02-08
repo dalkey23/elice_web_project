@@ -11,7 +11,7 @@ export const handleOrder = async (req, res) => {
     res.status(200).json(orders);
     return orders;
   } catch (error) {
-    throw new Error(error);
+    res.status(400).error(error);
   }
 };
 //주문 상태관리

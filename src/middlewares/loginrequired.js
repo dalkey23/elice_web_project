@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 
 function loginRequired(req, res, next) {
   // request 헤더로부터 토큰을 받음.
+
   const userToken = req.headers.authorization;
 
   // 이 토큰은 jwt 토큰 문자열이거나, 혹은 "null" 문자열임.
