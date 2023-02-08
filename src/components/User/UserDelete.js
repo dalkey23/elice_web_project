@@ -13,17 +13,10 @@ const UserDelete = () => {
     e.preventDefault();
     const formData = { password };
     const onSubmit = () => {
-      axios
-        .get("http://localhost:8080/users/mypage", { headers: { Authorization: token } })
-        .then(() => {
-          axios.post("http://localhost:8080/users/delete/:userId", { ...formData })
-          localStorage.removeItem('accessToken')
-          alert("회원 탈퇴 되었습니다.");
-          window.location.href = "/";
-        })
-        .catch((err) => {
-          alert("비밀번호를 확인해주세요.");
-        });
+      axios.post("http://localhost:8080/users/delete/:userId", { ...formData }, { headers: { Authorization: token } });
+      localStorage.removeItem("accessToken");
+      alert("회원 탈퇴 되었습니다.");
+      window.location.href = "/";
     };
     onSubmit();
   };
@@ -51,7 +44,9 @@ const UserDelete = () => {
               backgroundColor: "red",
               color: "white",
             }}
-          >회원 탈퇴</Button>
+          >
+            회원 탈퇴
+          </Button>
         </div>
       </Delete>
     </div>
@@ -61,6 +56,6 @@ const UserDelete = () => {
 const Delete = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
 
 export default UserDelete;
