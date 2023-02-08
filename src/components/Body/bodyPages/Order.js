@@ -66,10 +66,11 @@ const OrderComplete = () => {
     const [name, setName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState('');
     const [address, setAddress] = useState('');
+    const token = localStorage.getItem("accessToken");
 
     useEffect(() => {
         axios
-        .get("http://localhost:8080/users/mypage")
+        .get("http://localhost:8080/users/mypage", { headers: { Authorization: token } })
         .then((response) => {
             setData(response.data);
         })
@@ -87,7 +88,7 @@ const OrderComplete = () => {
         }
 
         axios
-        .post("", { ...formData })
+        .post("http://localhost:8080/order", { ...formData }, { headers: { Authorization: token } })
         .then((res) => {
             console.log(res.data)
             alert("주문완료!")
