@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
-
+import Favorites from "../Favorite/Favorites";
 import logo from "../img/logo.png";
 import Home from "./bodyPages/Home";
 import CategoryComponents from "./bodyPages/CategoryComponents ";
@@ -97,9 +97,9 @@ const BodyRoutes = () => {
             <li>{AdminToken || !AdminToken === "null" ? <NavLink to="/AdminMain">관리자페이지</NavLink> : <></>}</li>
           </NavUl>
           <IconUl>
-            {/* 삼항 연산자에 삼항 연산자를 넣어서 코드의 가독성이 조금 떨어 질 것 같아서 고민 */}
+            {/* admin일때 사람아이콘 출력 x , 유저일때 usermain, 비회원일때 loginForm >> 삼항 연산자에 삼항 연산자를 넣어서 코드의 가독성이 조금 떨어 질 것 같아서 고민 */}
             {AdminToken || !AdminToken === "null" ? (
-              <></>
+              <></> 
             ) : (
               <li>
                 {Token || !Token === "null" ? (
@@ -133,9 +133,14 @@ const BodyRoutes = () => {
                   관리자 로그아웃
                 </button>
               ) : (
-                <NavLink to="/payments/cart">
-                  <span className="material-symbols-outlined">shopping_bag</span>
+                <>
+                <NavLink to="/Favorites">
+                <span class="material-symbols-outlined">favorite</span>
                 </NavLink>
+                <NavLink to="/payments/cart">
+                <span className="material-symbols-outlined">shopping_bag</span>
+                </NavLink>
+              </>
               )}
             </li>
           </IconUl>

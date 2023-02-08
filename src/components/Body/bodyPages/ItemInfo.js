@@ -92,11 +92,16 @@ const Details = () => {
       })
     }, [])
 
-    const clickHandler = () => {
-        alert("완료")
+    const clickCartHandler = () => {
+        alert("장바구니 담기 완료!")
         // key부분에 각 상품마다 달라지는 값을 `${변수}`로 담아서 지정 하면
         // key가 각자 달라서 쌓일듯
-        localStorage.setItem(`elice_whishlist_${JSON.stringify(data.id)}`,JSON.stringify([data, count]));
+        localStorage.setItem(`elice_cartlist_${JSON.stringify(data.id)}`,JSON.stringify([data, count]));
+    }
+
+    const clickWishHandler = () => {
+        alert("찜하기 완료!")
+        localStorage.setItem(`elice_wishlist_${JSON.stringify(data.id)}`,JSON.stringify([data, count]));
     }
 
     const SubmitHandler = (e) => {
@@ -113,7 +118,8 @@ const Details = () => {
             <SkuDiv><input type="number" name="sku" onChange={ChanegeHandler} defaultValue={count}/>&nbsp;개</SkuDiv>
             
             <ButtonWrapper>
-                <button type="button" onClick={clickHandler}>장바구니 추가하기</button>
+                <button type="button" onClick={clickCartHandler}>장바구니 추가하기</button>
+                 <button type="button" onClick={clickWishHandler}>찜하기</button>
                 <button onClick = {() => {
                     { Token || !Token === "null" ? navigate('/payments/order') : 
                     alert('로그인 해주세요')

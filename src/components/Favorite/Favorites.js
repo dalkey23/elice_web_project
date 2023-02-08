@@ -9,21 +9,21 @@ const GetDataLocalStorage = () => {
 
   useEffect(() => {
     
-    const items = JSON.parse(localStorage.getItem(data));
-    console.log(items);
-    if (items) {
-      setItems(items);
+    let newItems = [];
+
+    for(let i=0;i<localStorage.length;i++){
+      const key = localStorage.key(i);
+      if(key.startsWith("elice_cartlist_")){
+          console.log(JSON.parse(localStorage.getItem(key)))
+          // for(let j = 0; j< localStorage.getItem(key).length;j++) {
+          //     console.log(`${j}번 ${localStorage.getItem(key)}`)
+          //     // newItems.push(JSON.parse(localStorage.getItem(key)));
+          //     // console.log(localStorage.getItem(key)[0])
+          //     // setItems(newItems)
+          // }
+
+      }
     }
-
-    axios
-      .get("http://localhost:8080/users/21")
-      .then((response) => {
-        setData(response.data)
-      })
-      .catch((error) => {
-        alert(error)
-      })
-
 
 
 
