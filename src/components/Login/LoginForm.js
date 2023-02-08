@@ -11,10 +11,8 @@ import Modal from "react-bootstrap/Modal";
 import InputGroup from "react-bootstrap/InputGroup";
 
 const LoginForm = () => {
-  const [isRedirect, setIsRedirect] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   // 유효성 검사 로직 보류
   const [validated, setValidated] = useState(false);
