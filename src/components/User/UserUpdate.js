@@ -29,11 +29,17 @@ const UserUpdate = () => {
       // formUpdData로 묶은 값을 구조분해해서 전달
       // post로 회원 정보 변경
 
-      axios.post("http://localhost:8080/users/edit/:userId", { ...formUpdData }, { headers: { Authorization: token } });
-      alert("회원 정보가 수정되었습니다.");
-      navigate("/UserInfo");
+      axios
+        .post("http://localhost:8080/users/edit/:userId", { ...formUpdData }, { headers: { Authorization: token } })
+        .then((res) => {
+          console.log(res)
+          alert("회원 정보가 수정되었습니다.")
+          navigate("/UserInfo")
+        })
+        .catch((err) => {
+          alert(err)
+        })
     };
-
     onUpdSubmit();
   };
   useEffect(() => {

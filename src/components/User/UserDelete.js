@@ -13,10 +13,17 @@ const UserDelete = () => {
     e.preventDefault();
     const formData = { password };
     const onSubmit = () => {
-      axios.post("http://localhost:8080/users/delete/:userId", { ...formData }, { headers: { Authorization: token } });
-      localStorage.removeItem("accessToken");
-      alert("회원 탈퇴 되었습니다.");
-      window.location.href = "/";
+      axios
+        .post("http://localhost:8080/users/delete/:userId", { ...formData }, { headers: { Authorization: token } })
+        .then((res) => {
+          console.log(res)
+          localStorage.removeItem("accessToken")
+          alert("회원 탈퇴 되었습니다.")
+          window.location.href = "/"
+        })
+        .catch((err) => {
+          alert(err)
+        })
     };
     onSubmit();
   };
