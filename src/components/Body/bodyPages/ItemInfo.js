@@ -12,22 +12,46 @@ const Container = styled.form`
 const ProductImg = styled.div`
     display : flex;
     flex-grow: 1;
-    background : white;
     align-items: center;
     flex-direction: row;
     justify-content: center;
 `
 const DetailImg = styled.div`
     width : 100px;
+
 `
 const Wrapper = styled.div`
     padding : 10px;
     width : 50%;
 `
-const Items = styled.input`
-    width : 70%;
+
+const ManufacturerInput = styled.input`
+    display : block;
+    width : 30%;
     margin : 10px;
     border : none;
+
+`
+
+const ProductInput = styled.input`
+    display : block;
+    width : 30%;
+    margin : 10px;
+    border : none;
+    font-size : 30px;
+
+
+`
+
+const PriceInput = styled.input`
+    display : block;
+    width : 30%;
+    margin : 10px;
+    border : none;
+    font-size : 30px;
+    font-weight : bold;
+
+
 `
 const SkuDiv = styled.div`
     margin : 10px;
@@ -83,10 +107,9 @@ const Details = () => {
     return <Container onSubmit={SubmitHandler}>
         <ProductImg><img src={data.imgUrl} style = {{width : "430px"}}alt="상품이미지"/>
         <Wrapper>
-            <Items type="text" name="manufacturer" value={data.manufacturer}/>
-            <Items type="text" name="productName" value={data.productName} />
-            <Items type="text" name="price" value={data.price} />
-            {/* <Items type="text" name="detailDesc" value={data.detailDesc} />  */}
+            <ManufacturerInput type="text" name="manufacturer" value={data.manufacturer}/>
+            <ProductInput type="text" name="productName" value={data.productName} />
+            <PriceInput type="text" name="price" value={`${data.price}원`} />
             <SkuDiv><input type="number" name="sku" onChange={ChanegeHandler} defaultValue={count}/>&nbsp;개</SkuDiv>
             
             <ButtonWrapper>
