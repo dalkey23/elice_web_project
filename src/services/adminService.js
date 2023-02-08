@@ -6,22 +6,36 @@ export const getAdmin = async (req, res) => {
 };
 //주문관리 (총 주문건 조회)
 export const handleOrder = async (req, res) => {
-  const orders = await Order.find({});
-  res.json(orders);
-  return orders;
+  try {
+    const orders = await Order.find({});
+    res.status(200).json(orders);
+    return orders;
+  } catch (error) {
+    throw new Error(error);
+  }
 };
+//주문 상태관리
+export const handleChange = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { orderStatus } = req.body;
 
-//카테고리 추가
-export const addCategory = async (req, res) => {
-  res.send("카테고리 추가");
+    const user = await Order.findOne({ orderId });
+    await user.updateOne({ orderStatus });
+
+    res.status(200).json("1");
+  } catch (error) {
+    throw new Error(error);
+  }
 };
+//주문취소
 
-//카테고리 수정
-export const editCategory = async (req, res) => {
-  res.send("카테고리 수정");
-};
-
-//카테고리 삭제
-export const deleteCategory = async (req, res) => {
-  res.send("카테고리 삭제");
+export const handleDelete = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    await Order.deleteOne({ orderId });
+    res.status(200).json("삭제완료");
+  } catch (error) {
+    throw new Error(error);
+  }
 };

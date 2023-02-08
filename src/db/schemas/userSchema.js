@@ -2,10 +2,10 @@ import { Schema, mongoose } from "mongoose";
 const AutoIncrement = require("mongoose-sequence")(mongoose);
 const UserSchema = new Schema(
   {
-    name: { type: String, unique: true },
+    name: { type: String },
     password: { type: String },
     email: { type: String, unique: true },
-    phoneNumber: { type: String, unique: true },
+    phoneNumber: { type: String },
     address: { type: String },
     order: {
       type: [Schema.Types.ObjectId],
