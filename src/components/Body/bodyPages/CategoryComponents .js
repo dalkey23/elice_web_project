@@ -48,11 +48,12 @@ const Item = styled.div`
 
 
 
-function Parenting() {
+function CategoryComponents() {
 
     const [items, setItems] = useState([])
     const { categoryId } = useParams();
     
+    useEffect(()=>{
         axios
         .get(`http://localhost:8080/products/all/${categoryId}`)
         .then((response) => {
@@ -61,6 +62,8 @@ function Parenting() {
         .catch((error) => {
           alert(error)
         })
+    },[items])
+
 
     // useState, useEffect 이용해서 게시글 불러와야 함
     // limit : 페이지당 게시물 수, page : 현재페이지 번호
@@ -74,7 +77,7 @@ function Parenting() {
     <ListContainer>
         {/* slice : offset부터 offset+limit 인덱스까지의 값을 복사하여 반환  */}
         {items.slice(offset, offset+limit).map((listItem) => {
-            return <Link to={`/itemInfo/${listItem.id}`}>
+            return <Link to={`/itemInfo/${listItem.id}`} key={listItem.id}>
                         <ListItems>
                             <Item><img src={listItem.imgUrl} alt="상품이미지"/></Item>
                             <StringItems>
@@ -99,4 +102,4 @@ function Parenting() {
 
 
 
-export default Parenting;
+export default CategoryComponents;
