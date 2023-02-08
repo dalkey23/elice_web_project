@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const AutoIncrement = require("mongoose-sequence")(mongoose);
 
-
 const CategorySchema = new mongoose.Schema(
   {
     name: { type: String },
@@ -10,5 +9,6 @@ const CategorySchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-ProductSchema.plugin(AutoIncrement, { inc_field: "id" });
+CategorySchema.plugin(AutoIncrement, { inc_field: "categoryId" });
 export { CategorySchema };
+
