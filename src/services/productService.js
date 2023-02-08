@@ -27,7 +27,7 @@ export const findOneProduct = async (req, res, next) => {
 //상품등록(포스트맨 작동함)
 export const addProduct = async (req, res, next) => {
   const { productName, categoryId, manufacturer, shortDesc, detailDesc,
-    imgUrl, totalstocks, price, searchKeywords } = req.body;
+    imgUrl, totalstocks, price, searchKeywords, discount } = req.body;
 
   try {
     //   if (!productName || !categoryId || !price) {
@@ -37,7 +37,7 @@ export const addProduct = async (req, res, next) => {
     // db 상품데이터 생성
     await Product.create({
       productName, categoryId, manufacturer, shortDesc, detailDesc,
-      imgUrl, totalstocks, price, searchKeywords
+      imgUrl, totalstocks, price, searchKeywords, discount 
     });
 
     res.send("상품생성을 완료하였습니다.");
@@ -50,7 +50,7 @@ export const addProduct = async (req, res, next) => {
 //상품수정 (포스트맨 작동함)
 export const editProduct = async (req, res, next) => {
   const { productName, categoryId, manufacturer, shortDesc,
-    detailDesc, imgUrl, totalstocks, price, searchKeywords } = req.body;
+    detailDesc, imgUrl, totalstocks, price, searchKeywords, discount } = req.body;
   const { id } = req.params;
   try {
     let searchForEdit = await Product.findOne({ id });
@@ -63,7 +63,7 @@ export const editProduct = async (req, res, next) => {
     //   throw new Error('필수값은 반드시 입력해 주셔야 합니다.');
     await searchForEdit.updateOne({
       productName, categoryId, manufacturer, shortDesc,
-      detailDesc, imgUrl, totalstocks, price, searchKeywords,
+      detailDesc, imgUrl, totalstocks, price, searchKeywords, discount
     });
     // const updated = Product.findOne({ id });
 

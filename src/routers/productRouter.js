@@ -6,7 +6,7 @@ const productRouter = express.Router();
 
 productRouter.get("/all/:categoryId", inCategoryAll);
 productRouter.get("/:id", findOneProduct);
-productRouter.post("/add", adminOnly, addProduct);
+productRouter.post("/add",  adminOnly,addProduct);
 productRouter.post("/edit/:id", adminOnly, editProduct);
 productRouter.delete("/delete/:id", adminOnly, deleteProduct);
 

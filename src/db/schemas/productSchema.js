@@ -12,6 +12,7 @@ const ProductSchema = new mongoose.Schema(
     totalstocks: { type: Number },
     price: { type: Number },
     searchKeywords: { type: String },
+    discount: { type: Number, default : 100  }
   },
   { timestamps: true }
 );
