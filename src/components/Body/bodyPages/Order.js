@@ -63,6 +63,9 @@ const OrderComplete = () => {
 
     const navigate = useNavigate();
     const [data, setData] = useState("");
+    const [name, setName] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [address, setAddress] = useState('');
 
     useEffect(() => {
         axios
@@ -77,9 +80,25 @@ const OrderComplete = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        alert("주문완료!")
-        navigate('/payments/orderComplete')
+
+
+        const formData = {
+            name, phoneNumber, address
+        }
+
+        axios
+        .post("", { ...formData })
+        .then((res) => {
+            console.log(res.data)
+            alert("주문완료!")
+            navigate('/payments/orderComplete')
+        })
+        .catch((error) => {
+            alert(error);
+        });
     }
+
+
 
     return <>
     <Container onSubmit={submitHandler}>
@@ -102,7 +121,7 @@ const OrderComplete = () => {
                 <select>
                     <option>배송시 요청사항을 선택해 주세요.</option>
                     <option>직접 수령하겠습니다.</option>
-                    <option>배손 전 연락바랍니다.</option>
+                    <option>배송 전 연락바랍니다.</option>
                     <option>부재 시 경비실에 맡겨주세요.</option>
                     <option>부재 시 문 앞에 놓아주세요.</option>
                     <option>부재 시 택배함에 넣어주세요.</option>
@@ -117,7 +136,11 @@ const OrderComplete = () => {
             <h5>상품총액</h5>
             <h5>배송비</h5>
             <h4>총 결제금액</h4>
-            <button>결제하기</button>
+            <button onClick = {() => {
+                setName(`${JSON.stringify(data.name)}`)
+                setPhoneNumber(`${JSON.stringify(data.phoneNumber)}`)
+                setAddress(`${JSON.stringify(data.name)}`)
+            }}>결제하기</button>
         </PaymentInfo>
     </Container>
     </>
