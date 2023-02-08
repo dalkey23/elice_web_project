@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
+
+import { WISHLIST_KEY } from '../../../constants/key'
+
 const FormContainer = styled.form`
     display : flex;
     padding : 10px 80px;
@@ -29,7 +32,7 @@ const CartInfo = styled.div`
         font-weight : bold;
         weight : 30%;
 
-        
+
     }
 `
 const CartItem = styled.div`
@@ -62,7 +65,7 @@ const PaymentInfo = styled.div`
     border-top: 1px grey solid;
     padding-top: 10px;
   }
-  
+
   & button {
     width : 100%;
     height : 35px;
@@ -77,23 +80,13 @@ const Cart = ()=>{
     const [items, setItems] = useState([]);
     const [count, setCount] = useState(1);
 
-  
     useEffect(() => {
-      let newItems = [];
 
-      for(let i=0;i<localStorage.length;i++){
-        const key = localStorage.key(i);
-        if(key.startsWith("elice_whishlist_")){
-            console.log(JSON.parse(localStorage.getItem(key)))
-            // for(let j = 0; j< localStorage.getItem(key).length;j++) {
-            //     console.log(`${j}번 ${localStorage.getItem(key)}`)
-            //     // newItems.push(JSON.parse(localStorage.getItem(key)));
-            //     // console.log(localStorage.getItem(key)[0])
-            //     // setItems(newItems)
-            // }
+        const savedWishList = localStorage.getItem(WISHLIST_KEY)
 
-        }
-      }
+        const wishList = savedWishList ? JSON.parse(savedWishList) : []
+
+        setItems(wishList)
     }, []);
 
 
@@ -104,9 +97,9 @@ const Cart = ()=>{
 
     const SubmitHandler = (e)=>{
         e.preventDefault();
-    
 
-        
+
+
         navigate('/payments/order')
     }
 
@@ -125,7 +118,7 @@ const Cart = ()=>{
         </CartInfo>
         <PaymentInfo>
             <h3>결제정보</h3>
-            <h5>상품수   5 개</h5> 
+            <h5>상품수   5 개</h5>
             <h5>상품금액  27,000원</h5>
             <h5>배송비  3,000원</h5>
             <h4>총 결제금액 30,000원</h4>

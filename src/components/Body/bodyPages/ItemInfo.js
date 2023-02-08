@@ -3,11 +3,13 @@ import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 
+import { WISHLIST_KEY } from '../../../constants/key'
+
 
 const Container = styled.form`
     align-items : center;
     padding : 20px;
-    
+
     `
 const ProductImg = styled.div`
     display : flex;
@@ -69,7 +71,7 @@ const ButtonWrapper = styled.div`
 
 
 const Details = () => {
-    
+
     const [data, setData] = useState('');
     const [count, setCount] = useState(1);
     const { id } = useParams();
@@ -79,7 +81,7 @@ const Details = () => {
     const ChanegeHandler = (e)=>{
         setCount(e.target.value)
     }
-   
+
 
     useEffect(() => {
       axios
@@ -94,14 +96,24 @@ const Details = () => {
 
     const clickCartHandler = () => {
         alert("장바구니 담기 완료!")
-        // key부분에 각 상품마다 달라지는 값을 `${변수}`로 담아서 지정 하면
-        // key가 각자 달라서 쌓일듯
-        localStorage.setItem(`elice_cartlist_${JSON.stringify(data.id)}`,JSON.stringify([data, count]));
+
+        const savedWishList = localStorage.getItem(WISHLIST_KEY)
+
+        const wishList = savedWishList ? JSON.parse(savedWishList) : []
+
+        wishList.push(data)
+        localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishList));
     }
 
     const clickWishHandler = () => {
         alert("찜하기 완료!")
-        localStorage.setItem(`elice_wishlist_${JSON.stringify(data.id)}`,JSON.stringify([data, count]));
+
+        const savedWishList = localStorage.getItem(WISHLIST_KEY)
+
+        const wishList = savedWishList ? JSON.parse(savedWishList) : []
+
+        wishList.push(data)
+        localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishList));
     }
 
     const SubmitHandler = (e) => {
@@ -116,12 +128,12 @@ const Details = () => {
             <ProductInput type="text" name="productName" value={data.productName} />
             <PriceInput type="text" name="price" value={`${data.price}원`} />
             <SkuDiv><input type="number" name="sku" onChange={ChanegeHandler} defaultValue={count}/>&nbsp;개</SkuDiv>
-            
+
             <ButtonWrapper>
                 <button type="button" onClick={clickCartHandler}>장바구니 추가하기</button>
                  <button type="button" onClick={clickWishHandler}>찜하기</button>
                 <button onClick = {() => {
-                    { Token || !Token === "null" ? navigate('/payments/order') : 
+                    { Token || !Token === "null" ? navigate('/payments/order') :
                     alert('로그인 해주세요')
                     navigate('/LoginForm') }
                 }}>바로 구매하기</button>
