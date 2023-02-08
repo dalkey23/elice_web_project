@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-do
 import styled from "styled-components";
 import axios from "axios";
 
-import logo from "../Header/logo.png";
+import logo from "../img/logo.png";
 import Home from "./bodyPages/Home";
 import CategoryComponents from "./bodyPages/CategoryComponents ";
 import RegisterForm from "../Register/RegisterForm";

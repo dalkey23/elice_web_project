@@ -61,6 +61,18 @@ const PaymentInfo = styled.div`
 const OrderComplete = () => {
 
     const navigate = useNavigate();
+    const [data, setData] = useState("");
+
+    useEffect(() => {
+        axios
+        .get("http://localhost:8080/users/mypage")
+        .then((response) => {
+            setData(response.data);
+        })
+        .catch((error) => {
+            alert(error);
+        });
+    }, []);
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -74,15 +86,15 @@ const OrderComplete = () => {
             <h3>배송지 정보</h3>
             <label>
                 <h6>이름</h6>
-                <input type="text" />
+                <input type="text" value = {JSON.stringify(data.name)} />
             </label>
             <label>
                 <h6>연락처</h6>
-                <input type="tel" />
+                <input type="tel" value = {JSON.stringify(data.phoneNumber)}/>
             </label>
             <label>
                 <h6>주소</h6>
-                <input type="text" />
+                <input type="text" value = {JSON.stringify(data.address)}/>
             </label>
             <label>
                 <h6>요청사항</h6>

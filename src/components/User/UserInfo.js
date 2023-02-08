@@ -18,7 +18,7 @@ const UserInfo = () => {
       });
   }, []);
 
-  if (!data) {return <></>}
+  // if (!data) {return <></>}
 
   return (
     <div
