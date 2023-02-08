@@ -29,11 +29,7 @@ const UserDelete = () => {
   };
 
   return (
-    <div
-      style={{
-        margin: "20%",
-      }}
-    >
+    <div style={{ margin: "20%" }}>
       <Delete>
         <FloatingLabel controlId="floatingPassword" label="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)}>
           <Form.Control type="password" />
@@ -55,9 +51,7 @@ const UserDelete = () => {
               backgroundColor: "red",
               color: "white",
             }}
-          >
-            회원 탈퇴
-          </Button>
+          >회원 탈퇴</Button>
         </div>
       </Delete>
     </div>
@@ -67,6 +61,6 @@ const UserDelete = () => {
 const Delete = styled.div`
   display: flex;
   justify-content: center;
-`;
+`
 
 export default UserDelete;
