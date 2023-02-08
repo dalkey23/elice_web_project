@@ -9,7 +9,6 @@ import CategoryComponents from "./bodyPages/CategoryComponents ";
 import RegisterForm from "../Register/RegisterForm";
 import LoginForm from "../Login/LoginForm";
 import ItemInfo from "./bodyPages/ItemInfo";
-import Favorite from "../Favorite/Favorites";
 import Payments from "./bodyPages/Payments";
 import Cart from "./bodyPages/Cart";
 import Order from "./bodyPages/Order";
@@ -148,7 +147,6 @@ const BodyRoutes = () => {
           <Route path="/UserDelete" element={<UserDelete />} />
           <Route path="/UserInfo" element={<UserInfo />} />
           <Route path="/UserMain" element={<UserMain />} />
-          <Route path="/Favorites" element={<Favorite />} />
           <Route path="/LoginForm" element={<LoginForm />} />
           <Route path="/RegisterForm" element={<RegisterForm />} />
           <Route path="/categories/:categoryId" element={<CategoryComponents />} />
