@@ -29,17 +29,15 @@ const LoginForm = () => {
         .then((res) => {
           if (res.data.role === "admin") {
             localStorage.setItem("adminToken", res.data.token);
-            axios.defaults.headers.common["Authorization"] = res.data.token;
             alert("관리자 로그인 되었습니다");
             // 로컬스토리지에 토큰이 들어온 상태를 인식시키기 위하여 새로고침으로 href로 이동
             window.location.href = "/";
           } else {
             localStorage.setItem("accessToken", res.data.token);
-            axios.defaults.headers.common["Authorization"] = res.data.token;
-            alert("로그인 되었습니다");
-            // 로컬스토리지에 토큰이 들어온 상태를 인식시키기 위하여 새로고침으로 href로 이동
+            alert("로그인 완료");
             window.location.href = "/";
           }
+          // 로컬스토리지에 토큰이 들어온 상태를 인식시키기 위하여 새로고침으로 href로 이동
         })
         .catch((err) => {
           alert(err);

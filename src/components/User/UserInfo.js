@@ -4,12 +4,12 @@ import Card from "react-bootstrap/Card";
 import axios from "axios";
 
 const UserInfo = () => {
-  
   const [data, setData] = useState("");
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/users/mypage")
+      .get("http://localhost:8080/users/mypage", { headers: { Authorization: token } })
       .then((response) => {
         setData(response.data);
       })
