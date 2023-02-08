@@ -20,7 +20,7 @@ const UserMain = () => {
                     onClick = {() => {
                         navigate('/OrderList')
                     }}>주문 내역</OrderListBtn>
-                    <LogoutBtn 
+                    <LogoutBtn
                     onClick = {() => {
                         localStorage.removeItem('accessToken')
                         localStorage.removeItem('role')
