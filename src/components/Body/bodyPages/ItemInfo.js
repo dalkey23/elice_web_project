@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
 
 
-
 const Container = styled.form`
     align-items : center;
     padding : 20px;
@@ -13,8 +12,10 @@ const Container = styled.form`
 const ProductImg = styled.div`
     display : flex;
     flex-grow: 1;
-    background : powderblue;
-    text-align: center;
+    background : white;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
 `
 const DetailImg = styled.div`
     width : 100px;
@@ -85,8 +86,9 @@ const Details = () => {
             <Items type="text" name="manufacturer" value={data.manufacturer}/>
             <Items type="text" name="productName" value={data.productName} />
             <Items type="text" name="price" value={data.price} />
-            <Items type="text" name="detailDesc" value={data.detailDesc} /> 
+            {/* <Items type="text" name="detailDesc" value={data.detailDesc} />  */}
             <SkuDiv><input type="number" name="sku" onChange={ChanegeHandler} defaultValue={count}/>&nbsp;개</SkuDiv>
+            
             <ButtonWrapper>
                 <button type="button" onClick={clickHandler}>장바구니 추가하기</button>
                 <button>바로 구매하기</button>
