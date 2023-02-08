@@ -100,8 +100,7 @@ const OrderComplete = () => {
 
 
 
-    return <>
-    <Container onSubmit={submitHandler}>
+    return  <Container onSubmit={submitHandler}>
         <OrderInfo>
             <h3>배송지 정보</h3>
             <label>
@@ -143,7 +142,6 @@ const OrderComplete = () => {
             }}>결제하기</button>
         </PaymentInfo>
     </Container>
-    </>
 }
 
 export default OrderComplete;

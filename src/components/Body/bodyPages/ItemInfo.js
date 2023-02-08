@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
@@ -73,6 +73,8 @@ const Details = () => {
     const [data, setData] = useState('');
     const [count, setCount] = useState(1);
     const { id } = useParams();
+    const Token = localStorage.getItem("accessToken");
+    const navigate = useNavigate();
 
     const ChanegeHandler = (e)=>{
         setCount(e.target.value)
@@ -90,8 +92,6 @@ const Details = () => {
       })
     }, [])
 
-    const navigate = useNavigate();
-    
     const clickHandler = () => {
         alert("완료")
         // key부분에 각 상품마다 달라지는 값을 `${변수}`로 담아서 지정 하면
@@ -114,7 +114,11 @@ const Details = () => {
             
             <ButtonWrapper>
                 <button type="button" onClick={clickHandler}>장바구니 추가하기</button>
-                <button>바로 구매하기</button>
+                <button onClick = {() => {
+                    { Token || !Token === "null" ? navigate('/payments/order') : 
+                    alert('로그인 해주세요')
+                    navigate('/LoginForm') }
+                }}>바로 구매하기</button>
             </ButtonWrapper>
         </Wrapper>
         </ProductImg>
