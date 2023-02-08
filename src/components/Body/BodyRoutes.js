@@ -116,10 +116,10 @@ const BodyRoutes = () => {
             )}
 
             <li>
-              {AdminToken === "admin" ? (
+              {AdminToken || !AdminToken === "null" ? (
                 <button
                   onClick={() => {
-                    localStorage.removeItem("role");
+                    localStorage.removeItem("adminToken");
                     alert("관리자 로그아웃 되었습니다.");
                     window.location.href = "/";
                   }}
