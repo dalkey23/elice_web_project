@@ -6,11 +6,7 @@ import axios from 'axios';
 
 import logo from '../Header/logo.png'
 import Home from './bodyPages/Home';
-import Parenting from './bodyPages/Parenting';
-import Living from './bodyPages/Living';
-import Sports from './bodyPages/Sports';
-import Fassion from './bodyPages/Fassion';
-import Furniture from './bodyPages/Furniture';
+import CategoryComponents from './bodyPages/CategoryComponents ';
 import RegisterForm from '../Register/RegisterForm';
 import LoginForm from '../Login/LoginForm';
 import ItemInfo from './bodyPages/ItemInfo';
@@ -136,7 +132,7 @@ const BodyRoutes = () => {
                 <Route path="/Favorites" element={<Favorite />} />
                 <Route path="/LoginForm" element={<LoginForm />} />
                 <Route path="/RegisterForm" element={<RegisterForm />} />
-                <Route path="/categories/:categoryId" element = { <Parenting /> } />
+                <Route path="/categories/:categoryId" element = { <CategoryComponents /> } />
                 <Route path="/itemInfo/:id" element={<ItemInfo />} />
                 <Route path="/payments/*" element={<Payments />} >
                     <Route path="cart" element={<Cart />} />
