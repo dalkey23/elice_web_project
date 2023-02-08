@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -8,18 +7,19 @@ import styled from "styled-components";
 
 const UserDelete = () => {
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const token = localStorage.getItem("accessToken");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = { password };
     const onSubmit = () => {
       axios
-        .post("http://localhost:8080/users/delete/:userId", { ...formData })
+        .get("http://localhost:8080/users/mypage", { headers: { Authorization: token } })
         .then(() => {
+          axios.post("http://localhost:8080/users/delete/:userId", { ...formData })
           localStorage.removeItem('accessToken')
           alert("회원 탈퇴 되었습니다.");
-          navigate("/");
+          window.location.href = "/";
         })
         .catch((err) => {
           alert("비밀번호를 확인해주세요.");

@@ -14,6 +14,7 @@ const UserUpdate = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [address, setAddress] = useState('');
     const [data, setData] = useState('')
+    const token = localStorage.getItem("accessToken");
     const navigate = useNavigate();
 
     const handleUpdSubmit = (e) => {
@@ -31,8 +32,10 @@ const UserUpdate = () => {
     axios
       // formUpdData로 묶은 값을 구조분해해서 전달
       // post로 회원 정보 변경
-      .post("http://localhost:8080/users/edit/:userId", { ...formUpdData })
+      .get("http://localhost:8080/users/mypage", { headers: { Authorization: token } })
       .then(() => {
+        axios.post("http://localhost:8080/users/edit/:userId", { ...formUpdData })
+        alert('회원 정보가 수정되었습니다.')
         navigate("/UserInfo")
       })
       .catch((error) => {
@@ -44,7 +47,7 @@ const UserUpdate = () => {
   }
     useEffect(() => {
       axios
-      .get("http://localhost:8080/users/mypage")
+      .get("http://localhost:8080/users/mypage", { headers: { Authorization: token } })
       .then((response) => {
         setData(response.data)
       })
