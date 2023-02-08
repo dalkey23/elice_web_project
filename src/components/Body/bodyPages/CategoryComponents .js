@@ -53,8 +53,6 @@ function Parenting() {
     const [items, setItems] = useState([])
     const { categoryId } = useParams();
     
-
-   
         axios
         .get(`http://localhost:8080/products/all/${categoryId}`)
         .then((response) => {
@@ -64,12 +62,6 @@ function Parenting() {
           alert(error)
         })
 
-      
-    
-      
-   
-     
-
     // useState, useEffect 이용해서 게시글 불러와야 함
     // limit : 페이지당 게시물 수, page : 현재페이지 번호
     // const [ limit, setLimit ] = useState(8); -> 페이지당 게시글 수 사용자지정
@@ -77,7 +69,6 @@ function Parenting() {
     const [ page, setPage ] = useState(1);
     //offset : 페이지의 첫 게시글 index
     const offset = (page - 1)*limit;
-
 
     return <>
     <ListContainer>
