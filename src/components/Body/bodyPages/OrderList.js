@@ -11,31 +11,39 @@ const OrderList = () => {
     axios
       .get("http://localhost:8080/users/orders", { headers: { Authorization: token } })
       .then((response) => {
-        setOrders(Object.entries(response.data));
-        
+        setOrders(response.data);
       })
       .catch((error) => {
-        console.log(error)
-        alert('에러가 발생했습니다. 다시 시도해주세요.')
+        alert(error)
       });
-  }, [token]);
+  }, []);
 
-  console.log(typeof(orders))
-
-
+  
   return (
     <OrderListDivUltra>
       <OrderListDiv>
         주문내역
       </OrderListDiv>
       <ContentDiv>
-          {orders.map((order)=>{
-            return <ul>
-              <li>{order.date}</li>
-              <li>{order.orderStatus}</li>
-              <li><button>주문 취소</button></li>
-            </ul>
-          })}
+      {orders.map((order) => {
+          return (
+            <ItemDiv key={order.orderId}>
+              <div>{order.createdAt}</div>
+              <div>{order.total}</div>
+              {/* <div>
+                <select id={order.orderId} onChange={changeHandler} defaultValue={order.orderStatus}>
+                  <option value="상품준비중">상품준비중</option>
+                  <option value="상품배송중">상품배송중</option>
+                  <option value="배송완료">배송완료</option>
+                </select>
+              </div>
+
+              <button id={order.orderId} onClick={ deleteOrder }>
+                주문 취소
+              </button> */}
+            </ItemDiv>
+          );
+        })}
       </ContentDiv>
     </OrderListDivUltra>
   )
@@ -55,7 +63,18 @@ const OrderListDiv = styled.div`
 `
 
 const ContentDiv = styled.div`
-background-color : white;
+  background-color : white;
 `
+const ItemDiv = styled.div`
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  & button {
+    border: none;
+    background-color: gray;
+    color: white;
+    margin: 10px;
+  }
+`;
 
 export default OrderList;
