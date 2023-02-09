@@ -23,6 +23,7 @@ import AdminCategories from "./Admin/AdminCategories";
 import AddCategory from "./Admin/AddCategory";
 import EditCategory from "./Admin/EditCategory";
 import AdminProducts from "./Admin/AdminProducts"
+import AddProduct from "./Admin/AddProduct";
 import UserDelete from "../User/UserDelete";
 
 
@@ -172,6 +173,7 @@ const BodyRoutes = () => {
           <Route path="/editCategory/:categoryId" element={<EditCategory />} />
           <Route path="/addCategory" element={<AddCategory />} />
           <Route path="/adminProducts/:categoryId" element={<AdminProducts />} />
+          <Route path="/AddProduct" element={<AddProduct />} />
         </Routes>
       </Router>
     </div>

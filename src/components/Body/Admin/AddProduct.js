@@ -11,7 +11,7 @@ const Container = styled.div`
     }
 
 `
-const AddCategory = () => {
+const AddProduct = () => {
     
     const navigate = useNavigate();
     const [name, setName] = useState('');
@@ -39,16 +39,16 @@ const AddCategory = () => {
     return (
         <Container>
             <label>
-                <h6>카테고리명</h6>
+                <h6>상품명</h6>
                 <input type="text" name="name" onChange={ (e) => setName(e.target.value)}/>
             </label>
             <label>
-                <h6>카테고리설명</h6>
+                <h6>가격</h6>
                 <input type="text" name="description" onChange={ (e) => setDescription(e.target.value)}/>
             </label>
-            <button onClick={ clickHandler }>카테고리 추가하기</button>
+            <button onClick={ clickHandler }>상품추가하기</button>
         </Container>
     )
 }
 
-export default AddCategory;
+export default AddProduct;

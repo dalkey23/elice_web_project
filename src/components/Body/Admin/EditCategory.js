@@ -22,7 +22,6 @@ const EditCategory = () => {
 
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
-    const [imgUrl, setImgUrl] = useState('')
 
 
     const token = localStorage.getItem("adminToken");
@@ -34,7 +33,6 @@ const EditCategory = () => {
             setCategory(response.data.searchOne)
             setName(category.name)
             setDescription(category.description)
-            setImgUrl(category.imgUrl)
         })
         .catch((error) => {
           alert(error)
@@ -46,8 +44,7 @@ const EditCategory = () => {
 
         const formData = {
             name,
-            description,
-            imgUrl
+            description
           }
         
         axios
@@ -74,10 +71,6 @@ const EditCategory = () => {
             <label>
                 <h6>카테고리 설명</h6>
                 <input type="text" name="description" defaultValue={category.description} onChange={(e) => setDescription(e.target.value)}/>
-            </label>
-            <label>
-                <h6>카테고리 이미지 URL</h6>
-                <input type="text" name="imgUrl" defaultValue={category.imgUrl} onChange={(e) => setImgUrl(e.target.value)}/>
             </label>
             <button onClick={ clickHandler }>카테고리 수정하기</button>
         </Container>

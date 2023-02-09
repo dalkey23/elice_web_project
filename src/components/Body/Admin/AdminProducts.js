@@ -1,43 +1,109 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
+
 
 const Container = styled.div`
-    padding : 10px 80px; 
-    border : 1px black solid;
+    padding : 10px 80px;
+    display : flex;
+    flex-direction : column;
+    & a {
+        text-decoration : none;
+        color : black;
+    }
+`
+
+const TitleDiv = styled.div`
+    border-bottom : 1px solid gray;
+    padding-bottom : 10px;
+    font-size : 40px;
+    font-weight : bold;
+
+`
+
+const ListDiv = styled.div`
+    align-self : center;
+
+`
+
+const ItemDiv = styled.div`
+    display : flex;
+    margin : 10px;
+    padding : 10px;
+    & button {
+        border : none;
+        background-color : gray;
+        color : white;
+        margin : 10px;
+    }
+
+`
+
+const NameDiv = styled.div`
+    padding : 10px;
+    font-weight : bold;
+    font-size : 20px;
+
+`
+
+const DecsDiv = styled.div`
+    padding : 10px;
 
 `
 const AdminProducts = () => {
-    
+
+    const navigate = useNavigate();
+    const token = localStorage.getItem("adminToken");
     const [items, setItems] = useState([])
-    const { categoryId } = useParams();
-    
-    useEffect(()=>{
+    const { id } = useParams();
+
+
+    useEffect(() => {
         axios
-        .get(`http://localhost:8080/products/all/${categoryId}`)
+            .get(`http://localhost:8080/products/${id}`)
+            .then((response) => {
+                setItems(response.data.searchOne)
+            })
+            .catch((error) => {
+                alert(error)
+            })
+    }, [])
+
+
+    const deleteHandler = (e)=>{
+        console.log(e.target.id);
+        axios
+        .delete(`http://localhost:8080/categories/delete/${e.target.id}`, { headers: { Authorization: token } })
         .then((response) => {
-            setItems(response.data.searchAll)
-            console.log('items', items)
+            alert("카테고리 삭제 완료")
+            window.location.href = "/adminCategories";  
         })
         .catch((error) => {
-          alert(error)
-        })
-    },[])
+          alert(error);
+        });
 
+    }
+
+    const editHandler = (e)=> {
+        navigate(`/editCategory/${e.target.id}`)
+    }
 
 
     return (
         <Container>
-            <div>
-                {items.map((item)=>{
-                   return  <ul>
-                        <li>{item.productName}</li>
-                        <li>{item.manufacturer}</li>
-                        <li>{item.id}</li>
-                    </ul>
+            <TitleDiv>상품 관리</TitleDiv>
+            <Link to="/addProduct">상품 추가</Link>
+            <ListDiv>
+                {items.map((item) => {
+                    return <ItemDiv key={item.id}>
+                            <NameDiv>{item.name}</NameDiv>
+                                <DecsDiv>{item.description}</DecsDiv>
+                                <button id={item.categoryId} onClick={editHandler}>수정</button>
+                                <button id={item.categoryId} onClick={deleteHandler}>삭제</button>
+                    </ItemDiv>
                 })}
-            </div>
+            </ListDiv>
         </Container>
     )
 }

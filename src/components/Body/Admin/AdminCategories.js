@@ -1,8 +1,7 @@
 import React, { useState,useEffect } from "react";
-import { Link } from 'react-router-dom'
 import styled from "styled-components";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Container = styled.div`
     padding : 10px 80px;
