@@ -51,16 +51,16 @@ const ImgDiv = styled.div`
 //   setCount(e.target.value)
 // }
 
-const deleteHandler = () => {
-  alert("삭제하기 완료!")
+// const deleteHandler = () => {
+//   alert("삭제하기 완료!")
   
-  const savedWishList = localStorage.removeItem(WISHLIST_KEY)
+//   const savedWishList = localStorage.removeItem(WISHLIST_KEY)
 
-  const wishList = savedWishList ? JSON.parse(savedWishList) : []
+//   const wishList = savedWishList ? JSON.parse(savedWishList) : []
 
-  wishList.push(data)
-  localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishList));
-}
+//   wishList.push(data)
+//   localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishList));
+// }
 
 const Favorite = () => {
   const [items, setItems] = useState([]);
@@ -100,7 +100,7 @@ const Favorite = () => {
                         e.preventDefault();
                         navigate(`/Iteminfo/${item.id}`)
                     }}>구매하기</button>
-                 <button onClick = {deleteHandler}>삭제하기</button>
+                 {/* <button onClick = {deleteHandler}>삭제하기</button> */}
                 </CartItem>
             })}
     </CartInfo>
