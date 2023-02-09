@@ -42,7 +42,7 @@ export const postLogin = async (req, res) => {
 
   // //비밀번호 확인
   // //1번째는 프론트에서 가져온 비밀번호, 2번째는 db비밀번호
-  const comparePassword = bcrypt.compare(password, user.password);
+  const comparePassword = bcrypt.compareSync(password, user.password);
 
   if (!comparePassword) {
     throw new Error("비밀번호가 일치하지 않습니다.");
