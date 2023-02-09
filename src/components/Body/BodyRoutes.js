@@ -115,7 +115,7 @@ const BodyRoutes = () => {
                     <span className="material-symbols-outlined">person</span>
                   </NavLink>
                   <NavLink to="/Favorites">
-                  <span class="material-symbols-outlined" style = {{
+                  <span className="material-symbols-outlined" style = {{
                     margin : '10px'
                   }}>favorite</span>
                   </NavLink>
@@ -129,7 +129,7 @@ const BodyRoutes = () => {
                     <span className="material-symbols-outlined">person</span>
                   </NavLink>
                   <NavLink to="/Favorites">
-                  <span class="material-symbols-outlined" style = {{
+                  <span className="material-symbols-outlined" style = {{
                     margin : '10px'
                   }}>favorite</span>
                   </NavLink>
