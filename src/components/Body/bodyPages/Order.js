@@ -66,12 +66,13 @@ const Order = () => {
 
     const navigate = useNavigate();
     const [data, setData] = useState("");
-    const [name, setName] = useState("");
     const [items, setItems] = useState([]);
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [address, setAddress] = useState('');
-    const Token = localStorage.getItem("accessToken");
     const [countObject, setCountObject] = useState({});
+    const Token = localStorage.getItem("accessToken");
+    const name = JSON.stringify(data.name);
+    const phoneNumber = JSON.stringify(data.phoneNumber);
+    const address = JSON.stringify(data.address);
+
 
     useEffect(() => {
 
@@ -87,7 +88,10 @@ const Order = () => {
             acc[current.id] = 1
 
             return acc
-        })}, {})
+        }, {})
+
+        setCountObject(newCountObject)
+    }, []);
     
     useEffect(() => {
         axios
