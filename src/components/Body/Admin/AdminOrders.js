@@ -63,8 +63,10 @@ const AdminOrders = () => {
     const changeHandler = (e)=>{
  
         setOrderStatus(e.target.value);
+        
         console.log('e.target.value', e.target.value)
         console.log('orderStatus', orderStatus)
+
         axios
         .post(`http://localhost:8080/admin/orders/${e.target.id}`, { orderStatus })
         .then((res) => {
