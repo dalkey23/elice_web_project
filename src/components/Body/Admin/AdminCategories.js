@@ -57,6 +57,9 @@ const AdminCategories = () => {
     const [categories, setCategories] = useState([]);
     const navigate = useNavigate();
 
+    const token = localStorage.getItem("adminToken");
+
+
 
     useEffect(() => {
         axios
@@ -72,9 +75,9 @@ const AdminCategories = () => {
     const deleteHandler = (e)=>{
         console.log(e.target.id);
         axios
-        .delete(`http://localhost:8080/categories/delete/${e.target.id}`)
+        .delete(`http://localhost:8080/categories/delete/${e.target.id}`, { headers: { Authorization: token } })
         .then((response) => {
-            console.log("카테고리 삭제")
+            alert("카테고리 삭제 완료")
             window.location.href = "/adminCategories";  
         })
         .catch((error) => {
