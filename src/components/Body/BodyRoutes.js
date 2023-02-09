@@ -20,8 +20,11 @@ import UserUpdate from "../User/UserUpdate";
 import AdminMain from "./Admin/AdminMain";
 import AdminOrders from "./Admin/AdminOrders";
 import AdminCategories from "./Admin/AdminCategories";
-import AdminProducts from "./Admin/AdminProducts";
+import AddCategory from "./Admin/AddCategory";
+import EditCategory from "./Admin/EditCategory";
+import AdminProducts from "./Admin/AdminProducts"
 import UserDelete from "../User/UserDelete";
+
 
 const Container = styled.div`
   display: flex;
@@ -87,7 +90,7 @@ const BodyRoutes = () => {
           <NavUl>
             {categories.map((category) => {
               return (
-                <li>
+                <li key={category.categoryId}>
                   <NavLink to={`/categories/${category.categoryId}`}>{category.name}</NavLink>
                 </li>
               );
@@ -135,7 +138,7 @@ const BodyRoutes = () => {
               ) : (
                 <>
                 <NavLink to="/Favorites">
-                <span class="material-symbols-outlined">favorite</span>
+                <span className="material-symbols-outlined">favorite</span>
                 </NavLink>
                 <NavLink to="/payments/cart">
                 <span className="material-symbols-outlined">shopping_bag</span>
@@ -166,7 +169,9 @@ const BodyRoutes = () => {
           <Route path="/AdminMain" element={<AdminMain />} />
           <Route path="/adminOrders" element={<AdminOrders />} />
           <Route path="/adminCategories" element={<AdminCategories />} />
-          <Route path="/adminProducts" element={<AdminProducts />} />
+          <Route path="/editCategory/:categoryId" element={<EditCategory />} />
+          <Route path="/addCategory" element={<AddCategory />} />
+          <Route path="/adminProducts/:categoryId" element={<AdminProducts />} />
         </Routes>
       </Router>
     </div>

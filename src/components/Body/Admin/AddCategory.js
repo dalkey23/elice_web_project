@@ -1,7 +1,7 @@
-import React, {useState, useEffect } from "react";
+import React, {useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
     padding : 10px 80px; 
@@ -17,7 +17,7 @@ const AddCategory = () => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [imgUrl, setImgUrl] = useState('');
-    const token = localStorage.getItem("accessToken");
+    const token = localStorage.getItem("adminToken");
 
     const clickHandler = ()=>{
 
@@ -26,7 +26,7 @@ const AddCategory = () => {
             description,
             imgUrl
           }
-        console.log(formData)
+        
         axios
         .post("http://localhost:8080/categories/add", { ...formData }, { headers: { Authorization: token } })
         .then(() => {

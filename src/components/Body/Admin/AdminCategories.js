@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 import { Link } from 'react-router-dom'
 import styled from "styled-components";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
     padding : 10px 80px;
@@ -54,13 +55,14 @@ const DecsDiv = styled.div`
 const AdminCategories = () => {
 
     const [categories, setCategories] = useState([]);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         axios
           .get(`http://localhost:8080/categories`)
           .then((response) => {
             setCategories(response.data.searchAll);
-            console.log(categories)
           })
           .catch((error) => {
             alert(error);
@@ -81,6 +83,10 @@ const AdminCategories = () => {
 
     }
 
+    const editHandler = (e)=> {
+        navigate(`/editCategory/${e.target.id}`)
+    }
+
     return (
         <Container>
 
@@ -89,9 +95,11 @@ const AdminCategories = () => {
             <ListDiv>
                 {categories.map((category)=>{
                     return <ItemDiv key={category.categoryId}>
-                        <NameDiv>{category.name}</NameDiv>
+                        <Link to={`/adminProducts/${category.categoryId}`}>
+                            <NameDiv>{category.name}</NameDiv>
+                        </Link>
                         <DecsDiv>{category.description}</DecsDiv>
-                        <button>수정</button>
+                        <button id={category.categoryId} onClick={ editHandler }>수정</button>
                         <button id={category.categoryId} onClick={ deleteHandler }>삭제</button>
                     </ItemDiv>
                 })}
