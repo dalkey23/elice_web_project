@@ -42,15 +42,10 @@ export const getOrder = async (req, res) => {
     const product = orderPerson.map((item) => {
       return item.products;
     });
-    const orderId = orderPerson.map((item) => {
-      return item.orderId;
-    });
-    console.log(product);
-    console.log(orderId);
 
     //OrderPerson의 주문 상품들 보내주기
 
-    res.status(200).json({ product, orderId });
+    res.status(200).json(orderPerson);
   } catch (error) {
     res.status(400).send("error");
   }
