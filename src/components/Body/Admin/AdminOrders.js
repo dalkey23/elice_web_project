@@ -56,12 +56,8 @@ const AdminOrders = () => {
       });
   }, []);
 
-  const changeHandler = (e) => {
-    setOrderStatus(e.target.value);
-
-    console.log("e.target.value", e.target.value);
-    console.log("orderStatus", orderStatus);
-
+  const changeHandler = (e) => 
+  {
     axios
       .post(`http://localhost:8080/admin/orders/${e.target.id}`, { orderStatus })
       .then((res) => {
@@ -102,13 +98,16 @@ const AdminOrders = () => {
               <div>{order.createdAt}</div>
               <div>{order.total}</div>
               <div>
-                <select id={order.orderId} onChange={changeHandler} defaultValue={order.orderStatus}>
+                <select id={order.orderId} onChange={(e) => {setOrderStatus(e.target.value)}} defaultValue={order.orderStatus}>
                   <option value="상품준비중">상품준비중</option>
                   <option value="상품배송중">상품배송중</option>
                   <option value="배송완료">배송완료</option>
                 </select>
               </div>
-              <button id={order.orderId} onClick={deleteOrder}>
+              <button id={order.orderId} onClick={ changeHandler }>
+                주문 수정
+              </button>
+              <button id={order.orderId} onClick={ deleteOrder }>
                 주문 취소
               </button>
             </ItemDiv>
