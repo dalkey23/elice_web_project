@@ -1,7 +1,9 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { WISHLIST_KEY } from '../../constants/key'
 
 const CartInfo = styled.div`
     width : 60%;
@@ -49,32 +51,56 @@ const ImgDiv = styled.div`
 //   setCount(e.target.value)
 // }
 
+const deleteHandler = () => {
+  alert("삭제하기 완료!")
+  
+  const savedWishList = localStorage.removeItem(WISHLIST_KEY)
+
+  const wishList = savedWishList ? JSON.parse(savedWishList) : []
+
+  wishList.push(data)
+  localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishList));
+}
+
 const Favorite = () => {
   const [items, setItems] = useState([]);
+  const [countObject, setCountObject] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     
-    let newItems = [];
-    for(let i=0;i<localStorage.length;i++){
-      const key = localStorage.key(i);
-      if(key.startsWith("elice_wishlist_")){
-          newItems.push(JSON.parse(localStorage.getItem(key)));      
-      }
-    }
-    setItems(newItems)
-    console.log({items})
+    const savedWishList = localStorage.getItem(WISHLIST_KEY)
+
+    const wishList = savedWishList ? JSON.parse(savedWishList) : []
+
+    setItems(wishList)
+
+
+    // count가 각 1개씩 들어가도록 초기세팅
+    const newCountObject = wishList.reduce((acc, current) => {
+        acc[current.id] = 1
+
+        return acc
+    }, {})
+
+    setCountObject(newCountObject)
+
+    // setLoaded(true)
   }, []);
   
   const ItemsTrue = () => {
     return (
+      
     <CartInfo>
             {items.map((item)=>{
                 return <CartItem>
                     <ImgDiv><img src={item.imgUrl} alt="썸네일" /></ImgDiv>
                     <div>{item.productName}</div>
-                    <div>{item.price}원</div>{" X "}
-                    {/* <input type="number" name="sku" onChange={ChanegeHandler}/>
-                    <div>{item.price*count}원</div> */}
+                    <button onClick = {(e) => {
+                        e.preventDefault();
+                        navigate(`/Iteminfo/${item.id}`)
+                    }}>구매하기</button>
+                 <button onClick = {deleteHandler}>삭제하기</button>
                 </CartItem>
             })}
     </CartInfo>

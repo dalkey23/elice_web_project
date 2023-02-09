@@ -78,7 +78,8 @@ const Details = () => {
     const navigate = useNavigate();
 
     const ChanegeHandler = (e)=>{
-        setCount(e.target.value)
+        setCount(e.target.value) 
+        
     }
    
 
