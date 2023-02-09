@@ -18,8 +18,6 @@ const UserInfo = () => {
       });
   }, []);
 
-  // if (!data) {return <></>}
-
   return (
     <div
       style={{
