@@ -1,7 +1,8 @@
-import { Schema, mongoose } from "mongoose";
+const mongoose = require("mongoose");
+
 
 const autoIncrement = require("mongoose-sequence")(mongoose);
-const OrderSchema = new Schema(
+const OrderSchema = new mongoose.Schema(
   {
     user: {
       type: Schema.Types.ObjectId,
@@ -43,4 +44,4 @@ const OrderSchema = new Schema(
   }
 );
 OrderSchema.plugin(autoIncrement, { inc_field: "orderId" });
-export default OrderSchema;
+export {OrderSchema};
