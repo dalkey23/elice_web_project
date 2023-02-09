@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
     padding : 30px 80px;
@@ -26,10 +27,12 @@ const Container = styled.div`
 `
 
 const OrderComplete = () => {
+    const navigate = useNavigate();
+
     return <Container>
         <h3>주문이 완료되었습니다!</h3>
-        <button>주문 내역 보기</button>
-        <button>쇼핑 계속하기</button>
+        <button onClick={()=>{ navigate('/OrderList')} }>주문 내역 보기</button>
+        <button onClick={()=>{ navigate('/')}}>쇼핑 계속하기</button>
         
     </Container>
    

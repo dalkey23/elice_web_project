@@ -140,19 +140,6 @@ const OrderComplete = () => {
                 <h6>주소</h6>
                 <input type="text" value = {JSON.stringify(data.address)}/>
             </label>
-            <label>
-                <h6>요청사항</h6>
-                <select>
-                    <option>배송시 요청사항을 선택해 주세요.</option>
-                    <option>직접 수령하겠습니다.</option>
-                    <option>배송 전 연락바랍니다.</option>
-                    <option>부재 시 경비실에 맡겨주세요.</option>
-                    <option>부재 시 문 앞에 놓아주세요.</option>
-                    <option>부재 시 택배함에 넣어주세요.</option>
-                    <option>직접 입력</option>
-                </select>
-                <input type="hidden" />
-            </label>
         </OrderInfo>
         <PaymentInfo>
             <h3>결제정보</h3>
