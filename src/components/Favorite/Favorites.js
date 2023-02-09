@@ -28,7 +28,7 @@ const CartInfo = styled.div`
         font-weight : bold;
         weight : 30%;
 
-        
+
     }
 `
 
@@ -51,26 +51,13 @@ const ImgDiv = styled.div`
 //   setCount(e.target.value)
 // }
 
-const deleteHandler = () => {
-  alert("삭제하기 완료!")
-  
-  const savedWishList = localStorage.getItem(WISHLIST_KEY)
-    // 불러오고
-  console.log(savedWishList)
-  // const filterWishList = savedWishList.filter((savedWishList) => )
-    // savedWishList.filter((a) => a.id !== id;)
-    // 위 로직으로 클릭한 값의 id만 삭제하고 나머지 배열로 추출할 수 있을 거 같은데..
-    
-//   localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishList));
- }
-
 const Favorite = () => {
   const [items, setItems] = useState([]);
   const [countObject, setCountObject] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
-    
+
     const savedWishList = localStorage.getItem(WISHLIST_KEY)
 
     const wishList = savedWishList ? JSON.parse(savedWishList) : []
@@ -89,10 +76,26 @@ const Favorite = () => {
 
     // setLoaded(true)
   }, []);
-  
+
+
+const deleteHandler = (id) => {
+  const savedWishList = localStorage.getItem(WISHLIST_KEY)
+  const wishList = savedWishList ? JSON.parse(savedWishList) : []
+  // 불러오고
+  console.log(wishList)
+  const filterWishList =  wishList.filter((a) => a.id !== id)
+  // 위 로직으로 클릭한 값의 id만 삭제하고 나머지 배열로 추출할 수 있을 거 같은데..
+
+  console.log('filterWishList : ', filterWishList)
+
+  setItems(filterWishList)
+  localStorage.setItem(WISHLIST_KEY, JSON.stringify(filterWishList));
+  alert("삭제하기 완료!")
+ }
+
   const ItemsTrue = () => {
     return (
-      
+
     <CartInfo>
             {items.map((item)=>{
                 return <CartItem key = {item.id}>
@@ -102,7 +105,7 @@ const Favorite = () => {
                         e.preventDefault();
                         navigate(`/Iteminfo/${item.id}`)
                     }}>구매하기</button>
-                 <button onClick = {deleteHandler}>삭제하기</button>
+                 <button onClick = {() => deleteHandler(item.id)}>삭제하기</button>
                 </CartItem>
             })}
     </CartInfo>
@@ -125,7 +128,7 @@ const Favorite = () => {
         </Container>
         );
     }
-      
+
   return (
     <div>
     {items.length ? <ItemsTrue/> : <ItemsFalse/>}
