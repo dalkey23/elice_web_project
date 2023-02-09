@@ -14,7 +14,8 @@ const UserInfo = () => {
         setData(response.data);
       })
       .catch((error) => {
-        alert(error);
+        console.log(error)
+        alert('에러가 발생했습니다. 다시 시도해주세요.')
       });
   }, []);
 
@@ -52,6 +53,7 @@ const UserInfo = () => {
           <Card className="mb-5">
             <Card.Body>주소 : {JSON.stringify(data.address)}</Card.Body>
           </Card>
+          
           {/* 회원 정보 수정 탈퇴 버튼 */}
           <div
             style={{

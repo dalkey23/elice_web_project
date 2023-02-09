@@ -12,8 +12,6 @@ const RegisterForm = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
   const navigate = useNavigate();
-  // 유효성 검사 로직 보류
-  const [validated, setValidated] = useState(false);
 
   // post로 데이터 등록
   const handleSubmit = (e) => {
@@ -39,7 +37,7 @@ const RegisterForm = () => {
           navigate("/LoginForm")
         })
         .catch((err) => {
-          alert(err)
+          alert('에러가 발생했습니다. 다시 시도해주세요.')
         })) : (alert('비밀번호가 틀립니다. 다시 확인해 주세요.'))
     }
     onSubmit();
@@ -47,7 +45,7 @@ const RegisterForm = () => {
 
   return (
     <Register>
-    <Form noValidate validated={validated} style = {{ width : 600 }}>
+    <Form style = {{ width : 600 }}>
       
           {/* 아이디 */}
           <Row className="mb-3" >

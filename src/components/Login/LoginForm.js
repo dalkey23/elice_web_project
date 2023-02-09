@@ -1,21 +1,14 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import axios from "axios";
 
-// 아직 사용 안하는 import 그룹
-import Modal from "react-bootstrap/Modal";
-import InputGroup from "react-bootstrap/InputGroup";
-
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // 유효성 검사 로직 보류
-  const [validated, setValidated] = useState(false);
 
   // email, password를 보내는 post 요청
   const handleSubmit = (e) => {
@@ -40,21 +33,12 @@ const LoginForm = () => {
           // 로컬스토리지에 토큰이 들어온 상태를 인식시키기 위하여 새로고침으로 href로 이동
         })
         .catch((err) => {
-          alert(err);
+          alert('에러가 발생했습니다. 다시 시도해 주세요.');
         });
     };
 
     onSubmit();
   };
-
-  // const handleSubmitCorrect = (event) => {
-  //   const form = event.currentTarget;
-  //   if (form.checkValidity() === false) {
-  //     event.preventDefault();
-  //     event.stopPropagation();
-  //   }
-  //   setValidated(true);
-  // };
 
   return (
     <div

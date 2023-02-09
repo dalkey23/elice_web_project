@@ -8,7 +8,6 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
 const UserUpdate = () => {
-  const [validated, setValidated] = useState(false);
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
@@ -37,7 +36,8 @@ const UserUpdate = () => {
           navigate("/UserInfo")
         })
         .catch((err) => {
-          alert(err)
+          console.log(err)
+          alert('에러가 발생했습니다. 다시 시도해주세요.')
         })
     };
     onUpdSubmit();
@@ -49,24 +49,14 @@ const UserUpdate = () => {
         setData(response.data);
       })
       .catch((error) => {
-        alert(error);
+        console.log(error)
+        alert('에러가 발생했습니다. 다시 시도해주세요.')
       });
   }, []);
 
-  // 유효성 검사하는 로직인데 onSubmit에 2개의 함수를 넣어야 해서 보류
-  // const handleSubmitCorrect = (event) => {
-  //   const form = event.currentTarget;
-  //   if (form.checkValidity() === false) {
-  //     event.preventDefault();
-  //     event.stopPropagation();
-  //   }
-  //   setValidated(true);
-
-  // 값이 적절하지 않은 경우 빨간 테두리 (Form.Control.Feedback)
-
   return (
     <Update>
-      <Form noValidate validated={validated} style={{ width: 600 }}>
+      <Form style={{ width: 600 }}>
         {/* 아이디 */}
         <Row className="mb-3">
           <Form.Group as={Col} md="12" controlId="validationCustom02">
