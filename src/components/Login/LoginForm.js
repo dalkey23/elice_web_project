@@ -63,7 +63,7 @@ const LoginForm = () => {
         justifyContent: "center",
       }}
     >
-      <Login>
+      <Login onSubmit={handleSubmit}>
         <FloatingLabel controlId="floatingInput" label="이메일" className="mb-3" onChange={(e) => setEmail(e.target.value)}>
           <Form.Control type="email" />
         </FloatingLabel>
@@ -112,7 +112,7 @@ const LoginForm = () => {
   );
 };
 
-const Login = styled.div`
+const Login = styled.form`
   padding: 300px;
 `;
 
