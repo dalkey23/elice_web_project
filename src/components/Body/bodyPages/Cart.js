@@ -77,7 +77,7 @@ const PaymentInfo = styled.div`
 `
 const Cart = ()=>{
     const navigate = useNavigate();
-
+    const Token = localStorage.getItem("accessToken");
     const [items, setItems] = useState([]);
     const [isLoaded, setLoaded] = useState(false);
     const [countObject, setCountObject] = useState({});
@@ -128,10 +128,10 @@ const Cart = ()=>{
     
     const SubmitHandler = (e)=>{
         e.preventDefault();
-    
-
         
-        navigate('/payments/order')
+        { Token || !Token === "null" ? navigate('/payments/order') : 
+                    alert('로그인 해주세요')
+                    navigate('/LoginForm') }
     }
     if (!isLoaded) return <></>
 

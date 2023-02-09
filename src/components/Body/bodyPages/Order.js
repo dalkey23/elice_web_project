@@ -1,7 +1,9 @@
-import React, { useState , useEffect } from "react";
+import React, { useState , useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { NO_SHIPPING_FEE_PRICE } from '../../../constants/key'
+import { formatCurrency } from '../../../lib/utils'
 
 const Container = styled.form`
     display : flex;
@@ -64,13 +66,15 @@ const OrderComplete = () => {
     const navigate = useNavigate();
     const [data, setData] = useState("");
     const [name, setName] = useState("");
+    const [items, setItems] = useState([]);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [address, setAddress] = useState('');
-    const token = localStorage.getItem("accessToken");
-
+    const Token = localStorage.getItem("accessToken");
+    const [countObject, setCountObject] = useState({});
+    
     useEffect(() => {
         axios
-        .get("http://localhost:8080/users/mypage", { headers: { Authorization: token } })
+        .get("http://localhost:8080/users/mypage", { headers: { Authorization:  Token } })
         .then((response) => {
             setData(response.data);
         })
@@ -78,6 +82,26 @@ const OrderComplete = () => {
             alert(error);
         });
     }, []);
+    const totalCount = useMemo(() => {
+        return  Object.values(countObject).reduce((acc, current) => {
+            acc = acc + parseInt(current)
+            return acc
+        }, 0)
+    }, [countObject])
+
+    const totalItemPrice = useMemo(() => {
+        return items.reduce((acc, current) => {
+            acc = acc + (parseInt(current.price) * parseInt(countObject[current.id]))
+
+            return acc
+        }, 0)
+    }, [countObject, items])
+
+    const shippingFee = useMemo(() => {
+        return totalItemPrice >= NO_SHIPPING_FEE_PRICE ? 0 : 3000
+    }, [totalItemPrice])
+
+    const totalPrice = useMemo(() => totalItemPrice + shippingFee, [totalItemPrice, shippingFee])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -88,7 +112,7 @@ const OrderComplete = () => {
         }
 
         axios
-        .post("http://localhost:8080/order", { ...formData }, { headers: { Authorization: token } })
+        .post("http://localhost:8080/order", { ...formData }, { headers: { Authorization: Token } })
         .then((res) => {
             console.log(res.data)
             alert("주문완료!")
@@ -133,9 +157,9 @@ const OrderComplete = () => {
         <PaymentInfo>
             <h3>결제정보</h3>
             <h5>주문상품</h5>
-            <h5>상품총액</h5>
-            <h5>배송비</h5>
-            <h4>총 결제금액</h4>
+            <h5>상품총액 {formatCurrency(totalItemPrice)}원</h5>
+            <h5>배송비{formatCurrency(shippingFee)}원</h5>
+            <h4>총 결제금액{formatCurrency(totalPrice)}원</h4>
             <button onClick = {() => {
                 setName(`${JSON.stringify(data.name)}`)
                 setPhoneNumber(`${JSON.stringify(data.phoneNumber)}`)

@@ -51,16 +51,18 @@ const ImgDiv = styled.div`
 //   setCount(e.target.value)
 // }
 
-// const deleteHandler = () => {
-//   alert("삭제하기 완료!")
+const deleteHandler = () => {
+  alert("삭제하기 완료!")
   
-//   const savedWishList = localStorage.removeItem(WISHLIST_KEY)
-
-//   const wishList = savedWishList ? JSON.parse(savedWishList) : []
-
-//   wishList.push(data)
+  const savedWishList = localStorage.getItem(WISHLIST_KEY)
+    // 불러오고
+  console.log(savedWishList)
+  // const filterWishList = savedWishList.filter((savedWishList) => )
+    // savedWishList.filter((a) => a.id !== id;)
+    // 위 로직으로 클릭한 값의 id만 삭제하고 나머지 배열로 추출할 수 있을 거 같은데..
+    
 //   localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishList));
-// }
+ }
 
 const Favorite = () => {
   const [items, setItems] = useState([]);
@@ -93,14 +95,14 @@ const Favorite = () => {
       
     <CartInfo>
             {items.map((item)=>{
-                return <CartItem>
+                return <CartItem key = {item.id}>
                     <ImgDiv><img src={item.imgUrl} alt="썸네일" /></ImgDiv>
                     <div>{item.productName}</div>
                     <button onClick = {(e) => {
                         e.preventDefault();
                         navigate(`/Iteminfo/${item.id}`)
                     }}>구매하기</button>
-                 {/* <button onClick = {deleteHandler}>삭제하기</button> */}
+                 <button onClick = {deleteHandler}>삭제하기</button>
                 </CartItem>
             })}
     </CartInfo>
