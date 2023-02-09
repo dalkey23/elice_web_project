@@ -9,7 +9,7 @@ export const postJoin = async (req, res) => {
   //이메일 중복확인
   const user = await User.findOne({ email });
   if (user) {
-    throw new Error("이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.");
+    res.status(400).send("이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.");
   }
 
   // 패스워드 해쉬화
@@ -26,7 +26,7 @@ export const postJoin = async (req, res) => {
     });
     return res.send("join");
   } catch (error) {
-    throw new Error(error);
+    res.status(400).send(error);
   }
 };
 
@@ -67,7 +67,7 @@ export const seeMyPage = async (req, res) => {
   try {
     res.status(200).json(currentUser);
   } catch (error) {
-    throw new Error(error);
+    res.status(400).send("실패");
   }
 };
 
@@ -102,13 +102,11 @@ export const deleteUser = async (req, res) => {
   const userId = req.currentUserId;
   const user = await User.findOne({ userId });
 
-  console.log(user);
-
   const { password } = req.body;
-  console.log(password);
+
   // //1번째는 프론트에서 가져온 비밀번호, 2번째는 db비밀번호
   const comparePassword = bcrypt.compareSync(password, user.password);
-  console.log(comparePassword);
+
   if (!comparePassword) {
     res.status(404).json({ message: "비밀번호가 일치하지 않습니다" });
     return;

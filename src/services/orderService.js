@@ -20,7 +20,7 @@ export const postOrder = async (req, res) => {
       user,
     });
   } catch (error) {
-    throw new Error(error);
+    res.status(400).error(error);
   }
 
   res.send("디비에 배송지 정보 저장완료");

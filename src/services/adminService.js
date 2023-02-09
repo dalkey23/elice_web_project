@@ -25,7 +25,7 @@ export const handleChange = async (req, res) => {
 
     res.status(200).json("1");
   } catch (error) {
-    throw new Error(error);
+    res.status(400).error(error);
   }
 };
 //주문취소
@@ -36,6 +36,6 @@ export const handleDelete = async (req, res) => {
     await Order.deleteOne({ orderId });
     res.status(200).json("삭제완료");
   } catch (error) {
-    throw new Error(error);
+    res.status(400).error(error);
   }
 };
