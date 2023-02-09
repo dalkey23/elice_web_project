@@ -135,7 +135,7 @@ const Details = () => {
                 <button type="button" onClick={clickCartHandler}>장바구니 추가하기</button>
                  <button type="button" onClick={clickWishHandler}>찜하기</button>
                 <button onClick = {() => {
-                    Token || !Token === "null" ? navigate('/payments/order') : navigate('/LoginForm')
+                    Token || !Token === "null" ? navigate('/DirectPayments/DirectOrder') : navigate('/LoginForm')
                 }}>바로 구매하기</button>
             </ButtonWrapper>
         </Wrapper>

@@ -26,6 +26,8 @@ import AddProduct from "./Admin/AddProduct"
 import EditCategory from "./Admin/EditCategory"
 import EditProduct from "./Admin/EditProduct"
 import UserDelete from "../User/UserDelete";
+import DirectOrder from "./bodyPages/DirectOrder";
+import DirectPayments from "./bodyPages/DirectPayment";
 
 const Container = styled.div`
   display: flex;
@@ -173,10 +175,13 @@ const BodyRoutes = () => {
           <Route path="/RegisterForm" element={<RegisterForm />} />
           <Route path="/categories/:categoryId" element={<CategoryComponents />} />
           <Route path="/itemInfo/:id" element={<ItemInfo />} />
+          <Route path="orderComplete" element={<OrderComplete />} />
           <Route path="/payments/*" element={<Payments />}>
             <Route path="cart" element={<Cart />} />
             <Route path="order" element={<Order />} />
-            <Route path="orderComplete" element={<OrderComplete />} />
+          </Route>
+          <Route path="/DirectPayments/*" element={<DirectPayments />}>
+            <Route path="DirectOrder" element={<DirectOrder />} />
           </Route>
           {/* 관리자페이지 */}
           <Route path="/AdminMain" element={<AdminMain />} />

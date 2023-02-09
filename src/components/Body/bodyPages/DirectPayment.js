@@ -1,8 +1,7 @@
 import React from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 import styled from "styled-components";
-import Cart from "./Cart";
-import Order from "./Order";
+import DirectOrder from "./DirectOrder";
 import OrderComplete from "./OrderComplete";
 
 
@@ -35,7 +34,7 @@ const BodyDiv = styled.div`
     
 `
 
-const Payments = () => {
+const DirectPayments = () => {
     const currentPage = {
         fontWeight : "bold",
         fontSize : "40px",
@@ -44,19 +43,17 @@ const Payments = () => {
     return <Container>
         <TitleDiv>
             <ul>
-                <li><NavLink to="/payments/cart" style={({ isActive }) => isActive ? currentPage : undefined} >장바구니</NavLink></li>{" > "}
-                <li><NavLink to="/payments/order" style={({ isActive }) => isActive ? currentPage : undefined}>주문결제</NavLink></li>{" > "}
+                <li><NavLink to="/DirectPayments/DirectOrder" style={({ isActive }) => isActive ? currentPage : undefined}>주문결제</NavLink></li>{" > "}
                 <li>주문완료</li>
             </ul>
         </TitleDiv>
         <BodyDiv>
             <Routes>
-                <Route path="cart" exact element={<Cart />} />
-                <Route path="order" element={<Order />} />
+                <Route path="DirectOrder" element={<DirectOrder />} />
                 <Route path="orderComplete" element={<OrderComplete />} />
             </Routes>
         </BodyDiv>
     </Container>
 }
 
-export default Payments;
+export default DirectPayments;

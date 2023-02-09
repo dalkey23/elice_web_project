@@ -61,7 +61,7 @@ const PaymentInfo = styled.div`
 `
 
 
-const OrderComplete = () => {
+const DirectOrder = () => {
 
     const navigate = useNavigate();
     const [data, setData] = useState("");
@@ -156,4 +156,4 @@ const OrderComplete = () => {
     </Container>
 }
 
-export default OrderComplete;
+export default DirectOrder;
