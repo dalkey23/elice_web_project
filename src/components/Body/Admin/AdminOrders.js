@@ -40,6 +40,7 @@ const ItemDiv = styled.div`
 `;
 
 const AdminOrders = () => {
+  console.log('RE-RENDERING')
   const token = localStorage.getItem("adminToken");
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
@@ -56,11 +57,14 @@ const AdminOrders = () => {
       });
   }, []);
 
-  const changeHandler = (e) => 
+  const changeHandler = (e) =>
   {
+    setOrderStatus(e.target.value)
+    console.log('axios 호출하기 전')
     axios
-      .post(`http://localhost:8080/admin/orders/${e.target.id}`, { orderStatus })
+      .post(`http://localhost:8080/admin/orders/${e.target.id}`, { orderStatus: e.target.value })
       .then((res) => {
+        console.log('axios 호출 성공')
         console.log(res);
         alert("배송 상태가 수정되었습니다.");
         navigate("/adminOrders");
@@ -98,7 +102,7 @@ const AdminOrders = () => {
               <div>{order.createdAt}</div>
               <div>{order.total}</div>
               <div>
-                <select id={order.orderId} onChange={(e) => {setOrderStatus(e.target.value)}} defaultValue={order.orderStatus}>
+                <select id={order.orderId} onChange={(e) => {changeHandler(e)}} defaultValue={order.orderStatus}>
                   <option value="상품준비중">상품준비중</option>
                   <option value="상품배송중">상품배송중</option>
                   <option value="배송완료">배송완료</option>
