@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-
 import { CARTLIST_KEY, NO_SHIPPING_FEE_PRICE } from '../../../constants/key'
 import { formatCurrency } from '../../../lib/utils'
 
@@ -75,6 +74,14 @@ const PaymentInfo = styled.div`
     color : white;
   }
 `
+const DeleteAllBtn = styled.button`
+    padding : 10px;
+    border-radius : 5px;
+    border-color : white;
+    background-color : grey;
+    color : white;
+`
+
 const Cart = ()=>{
     const navigate = useNavigate();
     const Token = localStorage.getItem("accessToken");
@@ -104,6 +111,20 @@ const Cart = ()=>{
         setLoaded(true)
     }, []);
 
+    const deleteHandler = (id) => {
+        const savedCartList = localStorage.getItem(CARTLIST_KEY)
+        const cartList = savedCartList ? JSON.parse(savedCartList) : []
+        // 불러오고
+        console.log(cartList)
+        const filterCartList =  cartList.filter((a) => a.id !== id)
+      
+        console.log('filterCartList : ', filterCartList)
+      
+        setItems(filterCartList)
+        localStorage.setItem(CARTLIST_KEY, JSON.stringify(filterCartList));
+        alert("삭제하기 완료!")
+       }
+      
     const totalCount = useMemo(() => {
         return  Object.values(countObject).reduce((acc, current) => {
             acc = acc + parseInt(current)
@@ -150,8 +171,17 @@ const Cart = ()=>{
                         setCountObject(newCountObject)
                     }} defaultValue={countObject[item.id]}/>{" = "}
                     <div>{item.price*countObject[item.id]}원</div>
+                    <button onClick = {() => deleteHandler(item.id)}>삭제하기</button>
                 </CartItem>
             })}
+            <DeleteAllBtn
+                  onClick = {() => {
+                      localStorage.removeItem(CARTLIST_KEY)
+                      alert('장바구니 목록이 모두 삭제되었습니다.')
+                      // 로컬스토리지에 토큰이 삭제된 상태를 인식시키기 위하여 새로고침으로 href로 이동
+                      window.location.href = '/'
+                  }}
+                  >전체삭제</DeleteAllBtn>
         </CartInfo>
         <PaymentInfo>
             <h3>결제정보</h3>

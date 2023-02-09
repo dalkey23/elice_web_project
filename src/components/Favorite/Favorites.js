@@ -46,7 +46,13 @@ const ImgDiv = styled.div`
         width : 100px;
     }
 `
-
+const DeleteAllBtn = styled.button`
+    padding : 10px;
+    border-radius : 5px;
+    border-color : white;
+    background-color : grey;
+    color : white;
+`
 // const ChanegeHandler = (e)=>{
 //   setCount(e.target.value)
 // }
@@ -107,6 +113,14 @@ const Favorite = () => {
                  <button onClick = {() => deleteHandler(item.id)}>삭제하기</button>
                 </CartItem>
             })}
+            <DeleteAllBtn
+                  onClick = {() => {
+                      localStorage.removeItem(WISHLIST_KEY)
+                      alert('찜목록이 모두 삭제되었습니다.')
+                      // 로컬스토리지에 토큰이 삭제된 상태를 인식시키기 위하여 새로고침으로 href로 이동
+                      window.location.href = '/'
+                  }}
+                  >전체삭제</DeleteAllBtn>
     </CartInfo>
     );
   }
@@ -125,7 +139,7 @@ const Favorite = () => {
               <div>찜한 상품이 없습니다.</div>
             </Col>
           </Row>
-        </Container>
+        </Container>                
         );
     }
       
