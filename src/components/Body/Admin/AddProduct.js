@@ -71,6 +71,7 @@ const AddProduct = () => {
         })
 
     }
+    
     return (
         <Container>
             <label>
@@ -81,7 +82,8 @@ const AddProduct = () => {
                 <h6>카테고리명</h6>
                 <select name="categoryId" id="">
                     {categories.map((category)=>{
-                        return <option key={category.categoryId} onChange={ (e) => setCategoryId(e.target.value)} >{category.name}</option>
+                        return <option key={category.categoryId} onChange={ (e) => setCategoryId(e.target.value)} 
+                        value={categoryId}>{category.name}</option>
                     })}
                 </select>
             </label>
