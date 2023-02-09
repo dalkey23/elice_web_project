@@ -22,19 +22,11 @@ const EditCategory = () => {
 
     const token = localStorage.getItem("adminToken");
 
-    console.log('categoryId', categoryId)
-
     useEffect(()=>{
         axios
         .get(`http://localhost:8080/categories/${categoryId}`)
         .then((response) => {
-            console.log('searchOne', response.data.searchOne)
-
-
-            setCategory(JSON.stringify(response.data.searchOne))
-            
-            console.log('category', category)
-            
+        setCategory(JSON.stringify(response.data.searchOne))
         })
         .catch((error) => {
           alert(error)
