@@ -20,12 +20,8 @@ import UserUpdate from "../User/UserUpdate";
 import AdminMain from "./Admin/AdminMain";
 import AdminOrders from "./Admin/AdminOrders";
 import AdminCategories from "./Admin/AdminCategories";
-import AddCategory from "./Admin/AddCategory";
-import EditCategory from "./Admin/EditCategory";
-import AdminProducts from "./Admin/AdminProducts"
-import AddProduct from "./Admin/AddProduct";
+import AdminProducts from "./Admin/AdminProducts";
 import UserDelete from "../User/UserDelete";
-
 
 const Container = styled.div`
   display: flex;
@@ -35,6 +31,7 @@ const Container = styled.div`
     text-decoration: none;
     color: black;
   }
+
 `;
 const LogoDiv = styled.div`
   margin: 10px 50px;
@@ -56,9 +53,9 @@ const NavUl = styled.ul`
 const IconUl = styled.ul`
   align-self: center;
   margin-left: auto;
+  display : flex;
   list-style-type: none;
   & li {
-    margin-right: 20px;
     display: inline;
   }
 `;
@@ -91,14 +88,14 @@ const BodyRoutes = () => {
           <NavUl>
             {categories.map((category) => {
               return (
-                <li key={category.categoryId}>
-                  { AdminToken || !AdminToken === "null" ? <></> : <NavLink to={`/categories/${category.categoryId}`}>{category.name}</NavLink>}
+                <li>
+                  {AdminToken || !AdminToken === "null" ? <></> : <NavLink to={`/categories/${category.categoryId}`}>{category.name}</NavLink> }
                 </li>
               );
             })}
             {/* AdminToken이 admin값일때 관리자페이지 노출 */}
             {/* <></>이 아닌 다른 방법으로 노출을 조정할 수 있을지 고민 */}
-            <li>{AdminToken || !AdminToken === "null" ? <NavLink to="/AdminMain"><div>관리자페이지</div></NavLink> : <></>}</li>
+            <li>{AdminToken || !AdminToken === "null" ? <NavLink to="/AdminMain">관리자페이지</NavLink> : <></>}</li>
           </NavUl>
           <IconUl>
             {/* admin일때 사람아이콘 출력 x , 유저일때 usermain, 비회원일때 loginForm >> 삼항 연산자에 삼항 연산자를 넣어서 코드의 가독성이 조금 떨어 질 것 같아서 고민 */}
@@ -107,17 +104,36 @@ const BodyRoutes = () => {
             ) : (
               <li>
                 {Token || !Token === "null" ? (
+                  <div>
                   <NavLink to="/UserMain">
                     <span className="material-symbols-outlined">person</span>
                   </NavLink>
+                  <NavLink to="/Favorites">
+                  <span class="material-symbols-outlined" style = {{
+                    margin : '10px'
+                  }}>favorite</span>
+                  </NavLink>
+                  <NavLink to="/payments/cart">
+                  <span className="material-symbols-outlined">shopping_bag</span>
+                  </NavLink>
+                  </div>
                 ) : (
+                  <div>
                   <NavLink to="/LoginForm">
                     <span className="material-symbols-outlined">person</span>
                   </NavLink>
+                  <NavLink to="/Favorites">
+                  <span class="material-symbols-outlined" style = {{
+                    margin : '10px'
+                  }}>favorite</span>
+                  </NavLink>
+                  <NavLink to="/payments/cart">
+                  <span className="material-symbols-outlined">shopping_bag</span>
+                  </NavLink>
+                  </div>
                 )}
               </li>
             )}
-
             <li>
               {AdminToken || !AdminToken === "null" ? (
                 <button
@@ -136,22 +152,13 @@ const BodyRoutes = () => {
                 >
                   관리자 로그아웃
                 </button>
-              ) : (
-                <>
-                <NavLink to="/Favorites">
-                <span className="material-symbols-outlined">favorite</span>
-                </NavLink>
-                <NavLink to="/payments/cart">
-                <span className="material-symbols-outlined">shopping_bag</span>
-                </NavLink>
-              </>
+              ) : ( <></>
               )}
             </li>
           </IconUl>
         </Container>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Favorites" element={<Favorites />} />
           <Route path="/OrderList" element={<OrderList />} />
           <Route path="/UserUpdate" element={<UserUpdate />} />
           <Route path="/UserDelete" element={<UserDelete />} />
@@ -170,10 +177,7 @@ const BodyRoutes = () => {
           <Route path="/AdminMain" element={<AdminMain />} />
           <Route path="/adminOrders" element={<AdminOrders />} />
           <Route path="/adminCategories" element={<AdminCategories />} />
-          <Route path="/editCategory/:categoryId" element={<EditCategory />} />
-          <Route path="/addCategory" element={<AddCategory />} />
-          <Route path="/adminProducts/:categoryId" element={<AdminProducts />} />
-          <Route path="/AddProduct" element={<AddProduct />} />
+          <Route path="/adminProducts" element={<AdminProducts />} />
         </Routes>
       </Router>
     </div>
