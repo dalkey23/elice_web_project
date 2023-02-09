@@ -130,7 +130,6 @@ const Cart = ()=>{
         e.preventDefault();
         
         { Token || !Token === "null" ? navigate('/payments/order') : 
-                    alert('로그인 해주세요')
                     navigate('/LoginForm') }
     }
     if (!isLoaded) return <></>
