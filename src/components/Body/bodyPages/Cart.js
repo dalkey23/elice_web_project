@@ -150,7 +150,14 @@ const Cart = ()=>{
     const SubmitHandler = (e)=>{
         e.preventDefault();
         
-        { Token || !Token === "null" ? navigate('/payments/order') : 
+        // navigate에 state담아서 전달
+        { Token || !Token === "null" ? navigate('/payments/order' ,{
+            state : {
+                // 값들이 formatCurrency로 변환되었으므로 풀어서 값을 전달
+                ItemTotalCount : totalCount,
+                ItemPrice : totalItemPrice,
+                ItemShippingFee : shippingFee
+            }}) : 
                     navigate('/LoginForm') }
     }
     if (!isLoaded) return <></>
