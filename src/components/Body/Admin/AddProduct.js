@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
-    padding : 10px 80px; 
+    padding : 10px 80px;
     & label {
         display : block;
 
@@ -15,7 +15,7 @@ const Container = styled.div`
 
 
 const AddProduct = () => {
-    
+
     const navigate = useNavigate();
     const [productName, setProductName] = useState('');
     const [categoryId, setCategoryId] = useState('');
@@ -28,7 +28,7 @@ const AddProduct = () => {
     const [searchKeywords, setSearchKeywords] = useState('');
     const [discount, setDiscount] = useState('');
     const [categories, setCategories] = useState([]);
-    
+
     const token = localStorage.getItem("adminToken");
 
 
@@ -48,18 +48,18 @@ const AddProduct = () => {
     const clickHandler = ()=>{
 
         const formData = {
-            productName, 
-            categoryId, 
-            manufacturer, 
+            productName,
+            categoryId,
+            manufacturer,
             shortDesc,
-            detailDesc, 
-            imgUrl, 
-            totalstocks, 
-            price, 
-            searchKeywords, 
+            detailDesc,
+            imgUrl,
+            totalstocks,
+            price,
+            searchKeywords,
             discount
           }
-        
+
         axios
         .post("http://localhost:8080/products/add", { ...formData }, { headers: { Authorization: token } })
         .then(() => {
@@ -71,7 +71,7 @@ const AddProduct = () => {
         })
 
     }
-    
+
     return (
         <Container>
             <label>
@@ -82,7 +82,7 @@ const AddProduct = () => {
                 <h6>카테고리명</h6>
                 <select name="categoryId" id="">
                     {categories.map((category)=>{
-                        return <option key={category.categoryId} onChange={ (e) => setCategoryId(e.target.value)} 
+                        return <option key={category.categoryId} onChange={ (e) => setCategoryId(e.target.value)}
                         value={categoryId}>{category.name}</option>
                     })}
                 </select>

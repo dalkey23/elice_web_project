@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
 import Favorites from "../Favorite/Favorites";
 import logo from "../img/logo.png";
 import Home from "./bodyPages/Home";
@@ -24,6 +23,8 @@ import AdminProducts from "./Admin/AdminProducts";
 import AddCategory from "./Admin/AddCategory"
 import AddProduct from "./Admin/AddProduct"
 import UserDelete from "../User/UserDelete";
+
+import {useFetchCategories} from '../../hooks/category.hook'
 
 const Container = styled.div`
   display: flex;
@@ -62,21 +63,11 @@ const IconUl = styled.ul`
   }
 `;
 
+
 const BodyRoutes = () => {
   const Token = localStorage.getItem("accessToken");
   const AdminToken = localStorage.getItem("adminToken");
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8080/categories`)
-      .then((response) => {
-        setCategories(response.data.searchAll);
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  }, []);
+  const { categories } = useFetchCategories()
 
   return (
     <div>
@@ -102,7 +93,7 @@ const BodyRoutes = () => {
           <IconUl>
             {/* admin일때 사람아이콘 출력 x , 유저일때 usermain, 비회원일때 loginForm >> 삼항 연산자에 삼항 연산자를 넣어서 코드의 가독성이 조금 떨어 질 것 같아서 고민 */}
             {AdminToken || !AdminToken === "null" ? (
-              <></> 
+              <></>
             ) : (
               <li>
                 {Token || !Token === "null" ? (
