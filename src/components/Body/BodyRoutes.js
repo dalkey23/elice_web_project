@@ -92,13 +92,13 @@ const BodyRoutes = () => {
             {categories.map((category) => {
               return (
                 <li key={category.categoryId}>
-                  <NavLink to={`/categories/${category.categoryId}`}>{category.name}</NavLink>
+                  { AdminToken || !AdminToken === "null" ? <></> : <NavLink to={`/categories/${category.categoryId}`}>{category.name}</NavLink>}
                 </li>
               );
             })}
             {/* AdminToken이 admin값일때 관리자페이지 노출 */}
             {/* <></>이 아닌 다른 방법으로 노출을 조정할 수 있을지 고민 */}
-            <li>{AdminToken || !AdminToken === "null" ? <NavLink to="/AdminMain">관리자페이지</NavLink> : <></>}</li>
+            <li>{AdminToken || !AdminToken === "null" ? <NavLink to="/AdminMain"><div>관리자페이지</div></NavLink> : <></>}</li>
           </NavUl>
           <IconUl>
             {/* admin일때 사람아이콘 출력 x , 유저일때 usermain, 비회원일때 loginForm >> 삼항 연산자에 삼항 연산자를 넣어서 코드의 가독성이 조금 떨어 질 것 같아서 고민 */}
