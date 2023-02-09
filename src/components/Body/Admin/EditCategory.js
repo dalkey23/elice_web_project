@@ -20,36 +20,45 @@ const EditCategory = () => {
     const [category, setCategory] = useState('')
     const {categoryId} = useParams();
 
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+    const [imgUrl, setImgUrl] = useState('')
+
+
     const token = localStorage.getItem("adminToken");
 
     useEffect(()=>{
         axios
         .get(`http://localhost:8080/categories/${categoryId}`)
         .then((response) => {
-        setCategory(JSON.stringify(response.data.searchOne))
+            setCategory(response.data.searchOne)
+            setName(category.name)
+            setDescription(category.description)
+            setImgUrl(category.imgUrl)
         })
         .catch((error) => {
           alert(error)
         })
     },[])
 
+
     const clickHandler = ()=>{
 
-        // const formData = {
-        //     name,
-        //     description,
-        //     imgUrl
-        //   }
+        const formData = {
+            name,
+            description,
+            imgUrl
+          }
         
-        // axios
-        // .post("http://localhost:8080/categories/add", { ...formData }, { headers: { Authorization: token } })
-        // .then(() => {
-        //   alert('카테고리 수정 완료')
-        //   navigate("/adminCategories")
-        // })
-        // .catch((err) => {
-        //   alert(err)
-        // })
+        axios
+        .post(`http://localhost:8080/categories/edit/${categoryId}`, { ...formData }, { headers: { Authorization: token } })
+        .then(() => {
+          alert('카테고리 수정 완료')
+          navigate("/adminCategories")
+        })
+        .catch((err) => {
+          alert(err)
+        })
 
     }
 
@@ -60,15 +69,15 @@ const EditCategory = () => {
         <Container>
             <label>
                 <h6>카테고리명</h6>
-                <input type="text" name="name" />
+                <input type="text" name="name" defaultValue={category.name} onChange={(e) => setName(e.target.value)}/>
             </label>
             <label>
-                <h6>카테고리설명</h6>
-                <input type="text" name="description" />
+                <h6>카테고리 설명</h6>
+                <input type="text" name="description" defaultValue={category.description} onChange={(e) => setDescription(e.target.value)}/>
             </label>
             <label>
-                <h6>카테고리이미지</h6>
-                <input type="text" name="imgUrl" />
+                <h6>카테고리 이미지 URL</h6>
+                <input type="text" name="imgUrl" defaultValue={category.imgUrl} onChange={(e) => setImgUrl(e.target.value)}/>
             </label>
             <button onClick={ clickHandler }>카테고리 수정하기</button>
         </Container>
