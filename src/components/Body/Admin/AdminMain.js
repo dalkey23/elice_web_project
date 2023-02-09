@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
-
-import inventory from '../../img/inventory_2.png'
 import categories from '../../img/view_cozy.png'
 import shopping_cart from '../../img/shopping_cart.png'
 
@@ -11,10 +9,11 @@ const ListContainer = styled.div`
     align-items : center;
     flex-wrap : wrap;
     padding : 10px 80px;
+    margin-left : 30px;
     & a {
         text-decoration : none;
         color : black;
-        width : 30%;
+        width : 45%;
         padding : 10px;
     }
 
@@ -25,9 +24,8 @@ const ListItem = styled.div`
     flex : 1;
     display : flex;
     flex-direct : column;
-    border : 1px solid red;
     width : 95%;
-    height : 250px;
+    height : 200px;
     margin : 10px;
     
     &:hover {
@@ -38,12 +36,15 @@ const ListItem = styled.div`
 `
 
 const MenuIcon = styled.div`
-
+    padding : 50px;
+    & img {
+        width : 100%;
+    }
     }
 `
 const MenuDesc = styled.div`
-
-    padding : 20px;
+    padding-top : 40px;
+    
 
     & span {
         font-size : 30px;

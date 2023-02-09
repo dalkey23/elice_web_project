@@ -106,6 +106,7 @@ const AdminOrders = () => {
                   <option value="배송완료">배송완료</option>
                 </select>
               </div>
+
               <button id={order.orderId} onClick={ deleteOrder }>
                 주문 취소
               </button>

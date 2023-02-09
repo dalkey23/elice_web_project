@@ -5,7 +5,7 @@ import { CARTLIST_KEY, NO_SHIPPING_FEE_PRICE } from '../../../constants/key'
 import { formatCurrency } from '../../../lib/utils'
 
 
-const FormContainer = styled.form`
+const Container = styled.div`
     display : flex;
     padding : 10px 80px;
 `
@@ -51,7 +51,7 @@ const ImgDiv = styled.div`
     }
 `
 
-const PaymentInfo = styled.div`
+const FormPaymentInfo = styled.form`
   box-shadow: 0 5px 10px grey;
   padding : 10px;
   width : 40%;
@@ -156,7 +156,7 @@ const Cart = ()=>{
     if (!isLoaded) return <></>
 
     return <>
-    <FormContainer onSubmit={SubmitHandler}>
+    <Container>
         <CartInfo>
             {items.map((item)=>{
                 return <CartItem>
@@ -179,19 +179,19 @@ const Cart = ()=>{
                       localStorage.removeItem(CARTLIST_KEY)
                       alert('장바구니 목록이 모두 삭제되었습니다.')
                       // 로컬스토리지에 토큰이 삭제된 상태를 인식시키기 위하여 새로고침으로 href로 이동
-                      window.location.href = '/'
+                      window.location.href = '/payments/cart'
                   }}
                   >전체삭제</DeleteAllBtn>
         </CartInfo>
-        <PaymentInfo>
+        <FormPaymentInfo onSubmit={SubmitHandler}>
             <h3>결제정보</h3>
             <h5>상품수   {totalCount} 개</h5>
             <h5>상품금액  {formatCurrency(totalItemPrice)}원</h5>
             <h5>배송비  {formatCurrency(shippingFee)}원</h5>
             <h4>총 결제금액 {formatCurrency(totalPrice)}원</h4>
             <button>구매하기</button>
-        </PaymentInfo>
-    </FormContainer>
+        </FormPaymentInfo>
+    </Container>
     </>
 }
 

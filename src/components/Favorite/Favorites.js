@@ -118,7 +118,7 @@ const Favorite = () => {
                       localStorage.removeItem(WISHLIST_KEY)
                       alert('찜목록이 모두 삭제되었습니다.')
                       // 로컬스토리지에 토큰이 삭제된 상태를 인식시키기 위하여 새로고침으로 href로 이동
-                      window.location.href = '/'
+                      window.location.href = '/favorites'
                   }}
                   >전체삭제</DeleteAllBtn>
     </CartInfo>
