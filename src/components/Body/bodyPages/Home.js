@@ -19,7 +19,7 @@ const Home = () => {
           }}>
           <Button onClick = {(e) => {
                         e.preventDefault();
-                        navigate('/categories/5')
+                        navigate('/categories/21')
                     }} variant="success"
           style = {{
             height : '100px',
