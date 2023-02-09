@@ -8,6 +8,7 @@ const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [pwcheck, setPwcheck] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
   const navigate = useNavigate();
@@ -28,8 +29,10 @@ const RegisterForm = () => {
     }
     const onSubmit = () => {
 
+      // 비밀번호가 같다면 회원가입 가능 다르면 alert
+      password === pwcheck ?
       // formData로 묶은 값을 구조분해해서 전달
-      axios
+      (axios
         .post("http://localhost:8080/join", { ...formData })
         .then(() => {
           alert('회원가입이 완료되었습니다.')
@@ -37,20 +40,10 @@ const RegisterForm = () => {
         })
         .catch((err) => {
           alert(err)
-        })
+        })) : (alert('비밀번호가 틀립니다. 다시 확인해 주세요.'))
     }
     onSubmit();
   }
-
-  // 유효성 검사하는 로직인데 onSubmit에 2개의 함수를 넣어야 해서 보류
-  // const handleSubmitCorrect = (event) => {
-  //   const form = event.currentTarget;
-  //   if (form.checkValidity() === false) {
-  //     event.preventDefault();
-  //     event.stopPropagation();
-  //   }
-  //   setValidated(true);
-  // 값이 적절하지 않은 경우 빨간 테두리 (Form.Control.Feedback)
 
   return (
     <Register>
@@ -86,9 +79,9 @@ const RegisterForm = () => {
             />
             <Form.Control.Feedback></Form.Control.Feedback>
           </Form.Group>
+          </Row>
 
           {/* 비밀번호 */}
-          </Row>
           <Row className="mb-3">
           <Form.Group as={Col} controlId="validationCustom02">
             <Form.Label>비밀번호</Form.Label>
@@ -104,18 +97,19 @@ const RegisterForm = () => {
             <Form.Control.Feedback></Form.Control.Feedback>
           </Form.Group>
 
-            {/* <Form.Group as={Col} controlId="validationCustom02">
+          {/* 비밀번호 확인 */}
+            <Form.Group as={Col} controlId="validationCustom02">
               <Form.Label>비밀번호 확인</Form.Label>
               <Form.Control
                 required
                 type="password"
                 placeholder="*****"
                 defaultValue=""
+                onChange={ (e) => setPwcheck(e.target.value)}
                 // onChange로 앞에 적은 password와 같은지 확인해야 함
               />
               <Form.Control.Feedback>비밀번호가 일치합니다.</Form.Control.Feedback>
-            </Form.Group> */}
-
+            </Form.Group>
             </Row>
 
           {/* 전화번호 */}
