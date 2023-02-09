@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { NO_SHIPPING_FEE_PRICE } from '../../../constants/key'
 import { formatCurrency } from '../../../lib/utils'
+import { CARTLIST_KEY } from "../../../constants/key";
 
 const Container = styled.form`
     display : flex;
@@ -61,7 +62,7 @@ const PaymentInfo = styled.div`
 `
 
 
-const OrderComplete = () => {
+const Order = () => {
 
     const navigate = useNavigate();
     const [data, setData] = useState("");
@@ -71,6 +72,22 @@ const OrderComplete = () => {
     const [address, setAddress] = useState('');
     const Token = localStorage.getItem("accessToken");
     const [countObject, setCountObject] = useState({});
+
+    useEffect(() => {
+
+        const savedCartList = localStorage.getItem(CARTLIST_KEY)
+
+        const cartList = savedCartList ? JSON.parse(savedCartList) : []
+
+        setItems(cartList)
+
+
+        // count가 각 1개씩 들어가도록 초기세팅
+        const newCountObject = cartList.reduce((acc, current) => {
+            acc[current.id] = 1
+
+            return acc
+        })}, {})
     
     useEffect(() => {
         axios
@@ -82,6 +99,7 @@ const OrderComplete = () => {
             alert(error);
         });
     }, []);
+
     const totalCount = useMemo(() => {
         return  Object.values(countObject).reduce((acc, current) => {
             acc = acc + parseInt(current)
@@ -143,17 +161,13 @@ const OrderComplete = () => {
         </OrderInfo>
         <PaymentInfo>
             <h3>결제정보</h3>
-            <h5>주문상품</h5>
-            <h5>상품총액 {formatCurrency(totalItemPrice)}원</h5>
-            <h5>배송비{formatCurrency(shippingFee)}원</h5>
-            <h4>총 결제금액{formatCurrency(totalPrice)}원</h4>
-            <button onClick = {() => {
-                setName(`${JSON.stringify(data.name)}`)
-                setPhoneNumber(`${JSON.stringify(data.phoneNumber)}`)
-                setAddress(`${JSON.stringify(data.name)}`)
-            }}>결제하기</button>
+            <h5>상품수   {totalCount} 개</h5>
+            <h5>상품금액  {formatCurrency(totalItemPrice)}원</h5>
+            <h5>배송비  {formatCurrency(shippingFee)}원</h5>
+            <h4>총 결제금액 {formatCurrency(totalPrice)}원</h4>
+            <button>구매하기</button>
         </PaymentInfo>
     </Container>
 }
 
-export default OrderComplete;
+export default Order;

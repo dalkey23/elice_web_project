@@ -98,7 +98,7 @@ const LoginForm = () => {
   );
 };
 
-const Login = styled.div`
+const Login = styled.form`
   padding: 300px;
 `;
 
