@@ -56,14 +56,14 @@ const AdminProducts = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem("adminToken");
     const [items, setItems] = useState([])
-    const { id } = useParams();
+    const { categoryId } = useParams();
 
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8080/products/${id}`)
+            .get(`http://localhost:8080/products/all/${categoryId}`)
             .then((response) => {
-                setItems(response.data.searchOne)
+                setItems(response.data.searchAll)
             })
             .catch((error) => {
                 alert(error)
@@ -71,23 +71,23 @@ const AdminProducts = () => {
     }, [])
 
 
-    const deleteHandler = (e)=>{
-        console.log(e.target.id);
-        axios
-        .delete(`http://localhost:8080/categories/delete/${e.target.id}`, { headers: { Authorization: token } })
-        .then((response) => {
-            alert("카테고리 삭제 완료")
-            window.location.href = "/adminCategories";  
-        })
-        .catch((error) => {
-          alert(error);
-        });
+    // const deleteHandler = (e)=>{
+    //     console.log(e.target.id);
+    //     axios
+    //     .delete(`http://localhost:8080/categories/delete/${e.target.id}`, { headers: { Authorization: token } })
+    //     .then((response) => {
+    //         alert("카테고리 삭제 완료")
+    //         window.location.href = "/adminCategories";  
+    //     })
+    //     .catch((error) => {
+    //       alert(error);
+    //     });
 
-    }
+    // }
 
-    const editHandler = (e)=> {
-        navigate(`/editCategory/${e.target.id}`)
-    }
+    // const editHandler = (e)=> {
+    //     navigate(`/editCategory/${e.target.id}`)
+    // }
 
 
     return (
@@ -97,10 +97,10 @@ const AdminProducts = () => {
             <ListDiv>
                 {items.map((item) => {
                     return <ItemDiv key={item.id}>
-                            <NameDiv>{item.name}</NameDiv>
-                                <DecsDiv>{item.description}</DecsDiv>
-                                <button id={item.categoryId} onClick={editHandler}>수정</button>
-                                <button id={item.categoryId} onClick={deleteHandler}>삭제</button>
+                            <NameDiv>{item.productName}</NameDiv>
+                                <DecsDiv>{item.manufacturer}</DecsDiv>
+                                {/* <button id={item.categoryId} onClick={editHandler}>수정</button>
+                                <button id={item.categoryId} onClick={deleteHandler}>삭제</button> */}
                     </ItemDiv>
                 })}
             </ListDiv>

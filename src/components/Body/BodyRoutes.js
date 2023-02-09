@@ -160,6 +160,7 @@ const BodyRoutes = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/OrderList" element={<OrderList />} />
+          <Route path="/Favorites" element={<Favorites />} />
           <Route path="/UserUpdate" element={<UserUpdate />} />
           <Route path="/UserDelete" element={<UserDelete />} />
           <Route path="/UserInfo" element={<UserInfo />} />
@@ -177,7 +178,7 @@ const BodyRoutes = () => {
           <Route path="/AdminMain" element={<AdminMain />} />
           <Route path="/adminOrders" element={<AdminOrders />} />
           <Route path="/adminCategories" element={<AdminCategories />} />
-          <Route path="/adminProducts" element={<AdminProducts />} />
+          <Route path="/adminProducts/:categoryId" element={<AdminProducts />} />
         </Routes>
       </Router>
     </div>
