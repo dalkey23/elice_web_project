@@ -81,7 +81,6 @@ const Details = () => {
         setCount(e.target.value) 
         
     }
-   
 
     useEffect(() => {
       axios
@@ -136,9 +135,7 @@ const Details = () => {
                 <button type="button" onClick={clickCartHandler}>장바구니 추가하기</button>
                  <button type="button" onClick={clickWishHandler}>찜하기</button>
                 <button onClick = {() => {
-                    { Token || !Token === "null" ? navigate('/payments/order') : 
-                    alert('로그인 해주세요')
-                    navigate('/LoginForm') }
+                    Token || !Token === "null" ? navigate('/payments/order') : navigate('/LoginForm')
                 }}>바로 구매하기</button>
             </ButtonWrapper>
         </Wrapper>
