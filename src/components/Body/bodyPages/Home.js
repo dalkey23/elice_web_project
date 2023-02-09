@@ -19,18 +19,8 @@ const Home = () => {
           }}>
           <Button onClick = {(e) => {
                         e.preventDefault();
-                        navigate('/categories/21')
-                    }} variant="success"
-          style = {{
-            height : '100px',
-            width : '100px'
-          }}><p style = {{
-            padding : '20px 0 0 0'
-          }}>가구</p></Button>{' '}
-          <Button onClick = {(e) => {
-                        e.preventDefault();
                         navigate('/categories/6')
-                    }} variant="danger"
+                    }} variant="success"
           style = {{
             height : '100px',
             width : '100px'
@@ -40,7 +30,7 @@ const Home = () => {
           <Button onClick = {(e) => {
                         e.preventDefault();
                         navigate('/categories/7')
-                    }} variant="warning"
+                    }} variant="danger"
           style = {{
             height : '100px',
             width : '100px'
@@ -50,7 +40,7 @@ const Home = () => {
           <Button onClick = {(e) => {
                         e.preventDefault();
                         navigate('/categories/8')
-                    }} variant="dark"
+                    }} variant="warning"
           style = {{
             height : '100px',
             width : '100px'
@@ -60,13 +50,23 @@ const Home = () => {
           <Button onClick = {(e) => {
                         e.preventDefault();
                         navigate('/categories/9')
-                    }} variant="info"
+                    }} variant="dark"
           style = {{
             height : '100px',
             width : '100px'
           }}><p style = {{
             padding : '20px 0 0 0'
           }}>육아</p></Button>{' '}
+          <Button onClick = {(e) => {
+                        e.preventDefault();
+                        navigate('/categories/21')
+                    }} variant="info"
+          style = {{
+            height : '100px',
+            width : '100px'
+          }}><p style = {{
+            padding : '20px 0 0 0'
+          }}>가구</p></Button>{' '}
           </div>
       </Container>
     </div>
