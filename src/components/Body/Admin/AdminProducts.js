@@ -71,23 +71,23 @@ const AdminProducts = () => {
     }, [])
 
 
-    // const deleteHandler = (e)=>{
-    //     console.log(e.target.id);
-    //     axios
-    //     .delete(`http://localhost:8080/categories/delete/${e.target.id}`, { headers: { Authorization: token } })
-    //     .then((response) => {
-    //         alert("카테고리 삭제 완료")
-    //         window.location.href = "/adminCategories";  
-    //     })
-    //     .catch((error) => {
-    //       alert(error);
-    //     });
+    const deleteHandler = (e)=>{
+        console.log(e.target.id);
+        axios
+        .delete(`http://localhost:8080/products/delete/${e.target.id}`, { headers: { Authorization: token } })
+        .then((response) => {
+            alert("상품 삭제 완료")
+            window.location.href = `/adminProducts/${categoryId}`;  
+        })
+        .catch((error) => {
+          alert(error);
+        });
 
-    // }
+    }
 
-    // const editHandler = (e)=> {
-    //     navigate(`/editCategory/${e.target.id}`)
-    // }
+    const editHandler = (e)=> {
+        navigate(`/editCategory/${e.target.id}`)
+    }
 
 
     return (
@@ -99,8 +99,9 @@ const AdminProducts = () => {
                     return <ItemDiv key={item.id}>
                             <NameDiv>{item.productName}</NameDiv>
                                 <DecsDiv>{item.manufacturer}</DecsDiv>
-                                {/* <button id={item.categoryId} onClick={editHandler}>수정</button>
-                                <button id={item.categoryId} onClick={deleteHandler}>삭제</button> */}
+                                <DecsDiv>{item.id}</DecsDiv>
+                                <button id={item.id} onClick={editHandler}>수정</button>
+                                <button id={item.id} onClick={deleteHandler}>삭제</button>
                     </ItemDiv>
                 })}
             </ListDiv>
