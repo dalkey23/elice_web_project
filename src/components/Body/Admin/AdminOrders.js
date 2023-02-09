@@ -43,7 +43,7 @@ const AdminOrders = () => {
   const token = localStorage.getItem("adminToken");
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
-  const [orderStatus, setOrderStatus] = useState("");
+
 
   useEffect(() => {
     axios
@@ -58,8 +58,10 @@ const AdminOrders = () => {
 
   const changeHandler = (e) => 
   {
+   
+
     axios
-      .post(`http://localhost:8080/admin/orders/${e.target.id}`, { orderStatus })
+      .post(`http://localhost:8080/admin/orders/${e.target.id}`, {  orderStatus: e.target.value })
       .then((res) => {
         console.log(res);
         alert("배송 상태가 수정되었습니다.");
@@ -98,15 +100,12 @@ const AdminOrders = () => {
               <div>{order.createdAt}</div>
               <div>{order.total}</div>
               <div>
-                <select id={order.orderId} onChange={(e) => {setOrderStatus(e.target.value)}} defaultValue={order.orderStatus}>
+                <select id={order.orderId} onChange={changeHandler} defaultValue={order.orderStatus}>
                   <option value="상품준비중">상품준비중</option>
                   <option value="상품배송중">상품배송중</option>
                   <option value="배송완료">배송완료</option>
                 </select>
               </div>
-              <button id={order.orderId} onClick={ changeHandler }>
-                주문 수정
-              </button>
               <button id={order.orderId} onClick={ deleteOrder }>
                 주문 취소
               </button>

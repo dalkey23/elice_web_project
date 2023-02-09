@@ -23,6 +23,8 @@ import AdminCategories from "./Admin/AdminCategories";
 import AdminProducts from "./Admin/AdminProducts";
 import AddCategory from "./Admin/AddCategory"
 import AddProduct from "./Admin/AddProduct"
+import EditCategory from "./Admin/EditCategory"
+import EditProduct from "./Admin/EditProduct"
 import UserDelete from "../User/UserDelete";
 
 const Container = styled.div`
@@ -90,7 +92,7 @@ const BodyRoutes = () => {
           <NavUl>
             {categories.map((category) => {
               return (
-                <li key={category.id}>
+                <li key={category.categoryId}>
                   {AdminToken || !AdminToken === "null" ? <></> : <NavLink to={`/categories/${category.categoryId}`}>{category.name}</NavLink> }
                 </li>
               );
@@ -181,9 +183,10 @@ const BodyRoutes = () => {
           <Route path="/adminOrders" element={<AdminOrders />} />
           <Route path="/adminCategories" element={<AdminCategories />} />
           <Route path="/addCategory" element={<AddCategory />} />
+          <Route path="/editCategory/:categoryId" element={<EditCategory />} />
           <Route path="/adminProducts/:categoryId" element={<AdminProducts />} />
           <Route path="/addProduct" element={<AddProduct />} />
-
+          <Route path="/editProduct/:id" element={<EditProduct />} />
         </Routes>
       </Router>
     </div>

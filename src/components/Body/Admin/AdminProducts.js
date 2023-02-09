@@ -86,7 +86,8 @@ const AdminProducts = () => {
     }
 
     const editHandler = (e)=> {
-        navigate(`/editCategory/${e.target.id}`)
+        navigate(`/editProduct/${e.target.id}`)
+    
     }
 
 
