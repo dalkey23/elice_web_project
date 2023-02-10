@@ -3,13 +3,36 @@ import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Container = styled.div `
-    padding : 10px 80px; 
+const Container = styled.div`
+    padding : 10px 80px;
+
+    & h6 {
+        font-weight : bold;
+        font-size : 20px;
+    }
+
+    & input {
+        width : 300px;
+    }
+
     & label {
         display : block;
+        margin : 10px;
+    }
+
+    & button {
+        border : none;
+        background-color : gray;
+        color : white;
+        padding : 10px;
+        margin : 10px;
 
     }
 
+`
+
+const AddDiv = styled.div`
+    text-align : center;
 `
 
 
@@ -63,7 +86,7 @@ const AddProduct = () => {
         }
 
         axios
-            .post("http://kdt-ai6-team12.elicecoding.com/api/products/add", {...formData }, { headers: { Authorization: token } })
+            .post("http://kdt-ai6-team12.elicecoding.com/api/products/add", { ...formData }, { headers: { Authorization: token } })
             .then(() => {
                 alert('상품 추가 완료')
                 navigate("/adminCategories")
@@ -74,112 +97,49 @@ const AddProduct = () => {
 
     }
 
-    return ( <
-        Container >
-        <
-        label >
-        <
-        h6 > 상품명 < /h6> <
-        input type = "text"
-        name = "productName"
-        onChange = {
-            (e) => setProductName(e.target.value) }
-        /> <
-        /label> <
-        label >
-        <
-        h6 > 카테고리명 < /h6> {
-            /* <select name="categoryId" id="">
-                                {categories.map((category)=>{
-                                    return <option key={category.categoryId} onChange={ (e) => setCategoryId(e.target.value)} 
-                                    value={category.name} >{category.name}</option>
-                                })}
-                            </select> */
-        } <
-        input type = "text"
-        name = "categoryId"
-        onChange = {
-            (e) => setCategoryId(e.target.value) }
-        /> <
-        /label> <
-        label >
-        <
-        h6 > 제조사 < /h6> <
-        input type = "text"
-        name = "manufacturer"
-        onChange = {
-            (e) => setManufacturer(e.target.value) }
-        /> <
-        /label> <
-        label >
-        <
-        h6 > 상품 설명 이미지 URL < /h6> <
-        input type = "text"
-        name = "shortDesc"
-        onChange = {
-            (e) => setShortDesc(e.target.value) }
-        /> <
-        /label> <
-        label >
-        <
-        h6 > 배송 정보 이미지 URL < /h6> <
-        input type = "text"
-        name = "detailDesc"
-        onChange = {
-            (e) => setDetailDesc(e.target.value) }
-        /> <
-        /label> <
-        label >
-        <
-        h6 > 썸네일 이미지 URL < /h6> <
-        input type = "text"
-        name = "imgUrl"
-        onChange = {
-            (e) => setImgUrl(e.target.value) }
-        /> <
-        /label> <
-        label >
-        <
-        h6 > 재고 < /h6> <
-        input type = "number"
-        name = "totalstocks"
-        onChange = {
-            (e) => setTotalstocks(e.target.value) }
-        /> <
-        /label> <
-        label >
-        <
-        h6 > 가격 < /h6> <
-        input type = "number"
-        name = "price"
-        onChange = {
-            (e) => setPrice(e.target.value) }
-        /> <
-        /label> <
-        label >
-        <
-        h6 > 검색 키워드 < /h6> <
-        input type = "text"
-        name = "searchKeywords"
-        onChange = {
-            (e) => setSearchKeywords(e.target.value) }
-        /> <
-        /label> <
-        label >
-        <
-        h6 > 할인율 < /h6> <
-        input type = "text"
-        name = "discount"
-        onChange = {
-            (e) => setDiscount(e.target.value) }
-        /> <
-        /label>
-
-
-
-        <
-        button onClick = { clickHandler } > 상품추가하기 < /button> <
-        /Container>
+    return (<Container >
+        <AddDiv>
+            <label >
+                <h6 > 상품명 </h6>
+                <input type="text" name="productName" onChange={(e) => setProductName(e.target.value)} />
+            </label>
+            <label >
+                <h6 > 카테고리명 </h6>
+                <input type="text" name="categoryId" onChange={(e) => setCategoryId(e.target.value)} />
+            </label>
+            <label >
+                <h6> 제조사 </h6>
+                <input type="text" name="manufacturer" onChange={(e) => setManufacturer(e.target.value)} />
+            </label>
+            <label >
+                <h6 > 상품 설명 이미지 URL </h6>
+                <input type="text" name="shortDesc" onChange={(e) => setShortDesc(e.target.value)} />
+            </label>
+            <label >
+                <h6 > 배송 정보 이미지 URL </h6>
+                <input type="text" name="detailDesc" onChange={(e) => setDetailDesc(e.target.value)} />
+            </label>
+            <label >
+                <h6 > 썸네일 이미지 URL </h6>
+                <input type="text" name="imgUrl" onChange={(e) => setImgUrl(e.target.value)}
+                /> </label> <label >
+                <h6 > 재고 </h6> <input type="number" name="totalstocks" onChange={(e) => setTotalstocks(e.target.value)} />
+            </label>
+            <label >
+                <h6 > 가격 </h6>
+                <input type="number" name="price" onChange={(e) => setPrice(e.target.value)} />
+            </label>
+            <label >
+                <h6 > 검색 키워드 </h6>
+                < input type="text" name="searchKeywords" onChange={(e) => setSearchKeywords(e.target.value)} />
+            </label>
+            <label >
+                <h6 > 할인율 </h6>
+                <input type="text" name="discount" onChange={(e) => setDiscount(e.target.value)} />
+            </label>
+            <button onClick={clickHandler} > 상품추가하기 </button>
+        </AddDiv>
+    </Container>
     )
 }
 
