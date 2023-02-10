@@ -3,11 +3,10 @@ import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Container = styled.div `
+const Container = styled.div`
     padding : 10px 80px; 
     & label {
         display : block;
-
     }
 
 `
@@ -26,7 +25,7 @@ const AddCategory = () => {
         }
 
         axios
-            .post("http://kdt-ai6-team12.elicecoding.com/api/categories/add", {...formData }, { headers: { Authorization: token } })
+            .post("http://kdt-ai6-team12.elicecoding.com/api/categories/add", { ...formData }, { headers: { Authorization: token } })
             .then(() => {
                 alert('카테고리 추가 완료')
                 navigate("/adminCategories")
@@ -36,29 +35,18 @@ const AddCategory = () => {
             })
 
     }
-    return ( <
-        Container >
-        <
-        label >
-        <
-        h6 > 카테고리명 < /h6> <
-        input type = "text"
-        name = "name"
-        onChange = {
-            (e) => setName(e.target.value) }
-        /> <
-        /label> <
-        label >
-        <
-        h6 > 카테고리설명 < /h6> <
-        input type = "text"
-        name = "description"
-        onChange = {
-            (e) => setDescription(e.target.value) }
-        /> <
-        /label> <
-        button onClick = { clickHandler } > 카테고리 추가하기 < /button> <
-        /Container>
+    return (
+        <Container >
+            <label >
+                <h6 > 카테고리명 </h6>
+                <input type="text" name="name" onChange={(e) => setName(e.target.value)} />
+            </label>
+            <label >
+                <h6 > 카테고리설명 </h6>
+                <input type="text" name="description" onChange={(e) => setDescription(e.target.value)} />
+            </label>
+            <button onClick={clickHandler} > 카테고리 추가하기 </button>
+        </Container>
     )
 }
 
