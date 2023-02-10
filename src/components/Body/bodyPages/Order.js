@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { formatCurrency } from '../../../lib/utils'
+import { CARTLIST_KEY } from '../../../constants/key'
 
 const Container = styled.form `
     display : flex;
@@ -33,6 +34,13 @@ const OrderInfo = styled.div `
 
         
     }
+`
+const DeleteAllBtn = styled.button`
+    padding : 10px;
+    border-radius : 5px;
+    border-color : white;
+    background-color : grey;
+    color : white;
 `
 
 const PaymentInfo = styled.div `
@@ -116,44 +124,35 @@ const Order = () => {
 
 
     return <Container onSubmit = { submitHandler } >
-        <
-        OrderInfo >
-        <
-        h3 > 배송지 정보 < /h3> <
-        label > { /* placeholder로 정보를 보이게 한 후 같은 값의 value를 post로 전송 */ } <
-        h6 > 이름 < /h6> <
-        input type = "text"
-    placeholder = { JSON.stringify(data.name) }
-    /> <
-    /label> <
-    label >
-        <
-        h6 > 연락처 < /h6> <
-        input type = "tel"
-    placeholder = { JSON.stringify(data.phoneNumber) }
-    /> <
-    /label> <
-    label >
-        <
-        h6 > 주소 < /h6> <
-        input type = "text"
-    placeholder = { JSON.stringify(data.address) }
-    /> <
-    /label> <
-    /OrderInfo> <
-    PaymentInfo > { /* 풀어서 전달된 값을 저장한 후 formatCurrency */ } <
-        h3 > 결제정보 < /h3> <
-        h5 > 상품수 { TotalCount }
-    개 < /h5> <
-        h5 > 상품금액 { formatCurrency(ItemPrice) }
-    원 < /h5> <
-        h5 > 배송비 { formatCurrency(ShippingFee) }
-    원 < /h5> <
-        h4 > 총 결제금액 { formatCurrency(TotalItemPrice) }
-    원 < /h4> <
-        button > 구매하기 < /button> <
-        /PaymentInfo> <
-        /Container>
+    <OrderInfo >
+        <h3> 배송지 정보 </h3>
+        <label > { /* placeholder로 정보를 보이게 한 후 같은 값의 value를 post로 전송 */ } 
+            <h6> 이름 </h6> 
+            <input type = "text" placeholder = { JSON.stringify(data.name) }/> 
+        </label> 
+        <label>
+            <h6> 연락처 </h6> 
+            <input type = "tel"
+            placeholder = { JSON.stringify(data.phoneNumber) }/> 
+        </label> 
+        <label>
+        <h6 > 주소 </h6> 
+        <input type = "text" placeholder = { JSON.stringify(data.address) }/> 
+        </label> 
+    </OrderInfo> 
+    <PaymentInfo > { /* 풀어서 전달된 값을 저장한 후 formatCurrency */ } 
+    <h3> 결제정보 </h3> 
+    <h5 > 상품수 { TotalCount }개 </h5> 
+    <h5 > 상품금액 { formatCurrency(ItemPrice) }원 </h5> 
+    <h5 > 배송비 { formatCurrency(ShippingFee) }원 </h5> 
+    <h4 > 총 결제금액 { formatCurrency(TotalItemPrice) }원</h4> 
+    <DeleteAllBtn
+                  onClick = {() => {
+                      localStorage.removeItem(CARTLIST_KEY)
+                  }}
+                  >구매하기</DeleteAllBtn>
+    </PaymentInfo>
+    </Container>
 }
 
 export default Order;

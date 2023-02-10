@@ -128,51 +128,34 @@ const DirectOrder = () => {
 
 
     return <Container onSubmit = { submitHandler } >
-        <
-        OrderInfo >
-        <
-        h3 > 배송지 정보 < /h3> <
-        label >
-        <
-        h6 > 이름 < /h6> <
-        input type = "text"
-    value = { JSON.stringify(data.name) }
-    /> <
-    /label> <
-    label >
-        <
-        h6 > 연락처 < /h6> <
-        input type = "tel"
-    value = { JSON.stringify(data.phoneNumber) }
-    /> <
-    /label> <
-    label >
-        <
-        h6 > 주소 < /h6> <
-        input type = "text"
-    value = { JSON.stringify(data.address) }
-    /> <
-    /label> <
-    /OrderInfo> <
-    PaymentInfo >
-        <
-        h3 > 결제정보 < /h3> <
-        h5 > 주문상품 < /h5> <
-        h5 > 상품총액 { formatCurrency(totalItemPrice) }
-    원 < /h5> <
-        h5 > 배송비 { formatCurrency(shippingFee) }
-    원 < /h5> <
-        h4 > 총 결제금액 { formatCurrency(totalPrice) }
-    원 < /h4> <
-        button onClick = {
-            () => {
-                setName(`${JSON.stringify(data.name)}`)
-                setPhoneNumber(`${JSON.stringify(data.phoneNumber)}`)
-                setAddress(`${JSON.stringify(data.name)}`)
-            }
-        } > 결제하기 < /button> <
-        /PaymentInfo> <
-        /Container>
+        <OrderInfo >
+            <h3> 배송지 정보 </h3> 
+        <label >
+            <h6 > 이름 </h6> 
+            <input type = "text" value = { JSON.stringify(data.name) }/> 
+        </label> 
+        <label>
+            <h6> 연락처 </h6> 
+            <input type = "tel" value = { JSON.stringify(data.phoneNumber) }/> 
+        </label> 
+        <label>
+            <h6> 주소 </h6> 
+            <input type = "text" value = { JSON.stringify(data.address) }/> 
+        </label> 
+        </OrderInfo> 
+        <PaymentInfo>
+            <h3> 결제정보 </h3> 
+            <h5> 주문상품 </h5> <h5> 상품총액 { formatCurrency(totalItemPrice) }원 </h5> 
+        <h5 > 배송비 { formatCurrency(shippingFee) }원 </h5> 
+        <h4> 총 결제금액 { formatCurrency(totalPrice) }원 </h4> 
+        <button onClick = {
+                () => {
+                    setName(`${JSON.stringify(data.name)}`)
+                    setPhoneNumber(`${JSON.stringify(data.phoneNumber)}`)
+                    setAddress(`${JSON.stringify(data.name)}`)
+                }}> 결제하기 </button> 
+        </PaymentInfo> 
+    </Container>
 }
 
 export default DirectOrder;
