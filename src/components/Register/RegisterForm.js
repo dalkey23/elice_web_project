@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import axios from 'axios';
+import styled from 'styled-components';
 
 const RegisterForm = () => {
     const [email, setEmail] = useState('');
@@ -43,136 +43,91 @@ const RegisterForm = () => {
         onSubmit();
     }
 
-    return ( <
-        Register >
-        <
-        Form style = {
+    return ( <Register>
+        <Form style = {
             { width: 600 } } >
 
-        { /* 아이디 */ } <
-        Row className = "mb-3" >
-        <
-        Form.Group as = { Col }
+        { /* 아이디 */ } <Row className = "mb-3" >
+        <Form.Group as = { Col }
         md = "12"
         controlId = "validationCustom02" >
-        <
-        Form.Label > 아이디 < /Form.Label> <
-        Form.Control required type = "text"
+        <Form.Label > 아이디 </Form.Label> <Form.Control required type = "text"
         placeholder = "Elice@elice.com"
         defaultValue = ""
         value = { email }
         onChange = {
             (e) => setEmail(e.target.value) }
-        /> <
-        Form.Control.Feedback > < /Form.Control.Feedback> <
-        /Form.Group>  <
-        /Row>
+        /> <Form.Control.Feedback > </Form.Control.Feedback> </Form.Group>  </Row>
 
-        { /* 이름 */ } <
-        Row className = "mb-3" >
-        <
-        Form.Group as = { Col }
+        { /* 이름 */ } <Row className = "mb-3" >
+        <Form.Group as = { Col }
         controlId = "validationCustom02" >
-        <
-        Form.Label > 이름 < /Form.Label> <
-        Form.Control required type = "text"
+        <Form.Label > 이름 </Form.Label> <Form.Control required type = "text"
         placeholder = "홍길동"
         defaultValue = ""
         value = { name }
         onChange = {
             (e) => setName(e.target.value) }
-        /> <
-        Form.Control.Feedback > < /Form.Control.Feedback> <
-        /Form.Group> <
-        /Row>
+        /> <Form.Control.Feedback > </Form.Control.Feedback> </Form.Group> </Row>
 
-        { /* 비밀번호 */ } <
-        Row className = "mb-3" >
-        <
-        Form.Group as = { Col }
+        { /* 비밀번호 */ } <Row className = "mb-3" >
+        <Form.Group as = { Col }
         controlId = "validationCustom02" >
-        <
-        Form.Label > 비밀번호 < /Form.Label> <
-        Form.Control required type = "password"
+        <Form.Label > 비밀번호 </Form.Label> <Form.Control required type = "password"
         // type을 password로 해주어야 안보이게 타이핑 가능
         placeholder = "*****"
         defaultValue = ""
         value = { password }
         onChange = {
             (e) => setPassword(e.target.value) }
-        /> <
-        Form.Control.Feedback > < /Form.Control.Feedback> <
-        /Form.Group>
+        /> <Form.Control.Feedback > </Form.Control.Feedback> </Form.Group>
 
-        { /* 비밀번호 확인 */ } <
-        Form.Group as = { Col }
+        { /* 비밀번호 확인 */ } 
+        <Form.Group as = { Col }
         controlId = "validationCustom02" >
-        <
-        Form.Label > 비밀번호 확인 < /Form.Label> <
-        Form.Control required type = "password"
+        <Form.Label > 비밀번호 확인 </Form.Label> <Form.Control required type = "password"
         placeholder = "*****"
         defaultValue = ""
         onChange = {
             (e) => setPwcheck(e.target.value) }
         // onChange로 앞에 적은 password와 같은지 확인해야 함
-        /> <
-        Form.Control.Feedback > 비밀번호가 일치합니다. < /Form.Control.Feedback> <
-        /Form.Group> <
-        /Row>
+        /> <Form.Control.Feedback > 비밀번호가 일치합니다. </Form.Control.Feedback> </Form.Group> </Row>
 
-        { /* 전화번호 */ } <
-        Row className = "mb-3" >
-        <
-        Form.Group as = { Col }
+        { /* 전화번호 */ } <Row className = "mb-3" >
+        <Form.Group as = { Col }
         controlId = "validationCustom02" >
-        <
-        Form.Label > 전화번호 < /Form.Label> <
-        Form.Control required type = "text"
+        <Form.Label > 전화번호 </Form.Label> <Form.Control required type = "text"
         placeholder = "010-1234-5678"
         defaultValue = ""
         value = { phoneNumber }
         onChange = {
             (e) => setPhoneNumber(e.target.value) }
-        /> <
-        Form.Control.Feedback > Looks good! < /Form.Control.Feedback> <
-        /Form.Group> <
-        /Row>
+        /> <Form.Control.Feedback > Looks good! </Form.Control.Feedback> </Form.Group> </Row>
 
-        { /* 주소 */ } <
-        Row className = "mb-3" >
-        <
-        Form.Group as = { Col }
+        { /* 주소 */ } <Row className = "mb-3" >
+        <Form.Group as = { Col }
         controlId = "validationCustom02" >
-        <
-        Form.Label > 주소 < /Form.Label> <
-        Form.Control required type = "text"
+        <Form.Label > 주소 </Form.Label> <Form.Control required type = "text"
         placeholder = "서울특별시 광진구 화양동 123-456 1동 2호"
         defaultValue = ""
         value = { address }
         onChange = {
             (e) => setAddress(e.target.value) }
-        /> <
-        Form.Control.Feedback > Looks good! < /Form.Control.Feedback> <
-        /Form.Group> <
-        /Row> <
-        div style = {
+        /> <Form.Control.Feedback > Looks good! </Form.Control.Feedback> </Form.Group> </Row> 
+        <div style = {
             {
                 display: 'flex',
                 justifyContent: 'flex-end'
             }
         } >
-        <
-        Button type = "submit"
+        <Button type = "submit"
         style = {
             {
                 backgroundColor: 'grey',
                 border: 'grey',
             }
         }
-        onClick = { handleSubmit } > 회원가입 < /Button> <
-        /div> <
-        /Form> <
-        /Register>
+        onClick = { handleSubmit } > 회원가입 </Button> </div> </Form> </Register>
     );
 };
 
