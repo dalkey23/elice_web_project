@@ -35,13 +35,6 @@ const OrderInfo = styled.div `
         
     }
 `
-const DeleteAllBtn = styled.button`
-    padding : 10px;
-    border-radius : 5px;
-    border-color : white;
-    background-color : grey;
-    color : white;
-`
 
 const PaymentInfo = styled.div `
   box-shadow: 0 5px 10px grey;
@@ -146,11 +139,9 @@ const Order = () => {
     <h5 > 상품금액 { formatCurrency(ItemPrice) }원 </h5> 
     <h5 > 배송비 { formatCurrency(ShippingFee) }원 </h5> 
     <h4 > 총 결제금액 { formatCurrency(TotalItemPrice) }원</h4> 
-    <DeleteAllBtn
-                  onClick = {() => {
+    <button onClick = {() => {
                       localStorage.removeItem(CARTLIST_KEY)
-                  }}
-                  >구매하기</DeleteAllBtn>
+                  }}>구매하기</button>
     </PaymentInfo>
     </Container>
 }
