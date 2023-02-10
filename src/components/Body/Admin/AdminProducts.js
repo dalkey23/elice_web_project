@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate, Link, useParams } from "react-router-dom";
 
 
-const Container = styled.div`
+const Container = styled.div `
     padding : 10px 80px;
     display : flex;
     flex-direction : column;
@@ -14,7 +14,7 @@ const Container = styled.div`
     }
 `
 
-const TitleDiv = styled.div`
+const TitleDiv = styled.div `
     border-bottom : 1px solid gray;
     padding-bottom : 10px;
     font-size : 40px;
@@ -22,12 +22,12 @@ const TitleDiv = styled.div`
 
 `
 
-const ListDiv = styled.div`
+const ListDiv = styled.div `
     align-self : center;
 
 `
 
-const ItemDiv = styled.div`
+const ItemDiv = styled.div `
     display : flex;
     margin : 10px;
     padding : 10px;
@@ -40,14 +40,14 @@ const ItemDiv = styled.div`
 
 `
 
-const NameDiv = styled.div`
+const NameDiv = styled.div `
     padding : 10px;
     font-weight : bold;
     font-size : 20px;
 
 `
 
-const DecsDiv = styled.div`
+const DecsDiv = styled.div `
     padding : 10px;
 
 `
@@ -61,7 +61,7 @@ const AdminProducts = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8080/products/all/${categoryId}`)
+            .get(`http://kdt-ai6-team12.elicecoding.com/api/products/all/${categoryId}`)
             .then((response) => {
                 setItems(response.data.searchAll)
             })
@@ -71,42 +71,47 @@ const AdminProducts = () => {
     }, [])
 
 
-    const deleteHandler = (e)=>{
+    const deleteHandler = (e) => {
         console.log(e.target.id);
         axios
-        .delete(`http://localhost:8080/products/delete/${e.target.id}`, { headers: { Authorization: token } })
-        .then((response) => {
-            alert("상품 삭제 완료")
-            window.location.href = `/adminProducts/${categoryId}`;  
-        })
-        .catch((error) => {
-          alert(error);
-        });
+            .delete(`http://kdt-ai6-team12.elicecoding.com/api/products/delete/${e.target.id}`, { headers: { Authorization: token } })
+            .then((response) => {
+                alert("상품 삭제 완료")
+                window.location.href = `/adminProducts/${categoryId}`;
+            })
+            .catch((error) => {
+                alert(error);
+            });
 
     }
 
-    const editHandler = (e)=> {
+    const editHandler = (e) => {
         navigate(`/editProduct/${e.target.id}`)
-    
+
     }
 
 
-    return (
-        <Container>
-            <TitleDiv>상품 관리</TitleDiv>
-            <Link to="/addProduct">상품 추가</Link>
-            <ListDiv>
-                {items.map((item) => {
-                    return <ItemDiv key={item.id}>
-                            <NameDiv>{item.productName}</NameDiv>
-                                <DecsDiv>{item.manufacturer}</DecsDiv>
-                                <DecsDiv>{item.id}</DecsDiv>
-                                <button id={item.id} onClick={editHandler}>수정</button>
-                                <button id={item.id} onClick={deleteHandler}>삭제</button>
-                    </ItemDiv>
-                })}
-            </ListDiv>
-        </Container>
+    return ( <
+        Container >
+        <
+        TitleDiv > 상품 관리 < /TitleDiv> <
+        Link to = "/addProduct" > 상품 추가 < /Link> <
+        ListDiv > {
+            items.map((item) => {
+                return <ItemDiv key = { item.id } >
+                    <
+                    NameDiv > { item.productName } < /NameDiv> <
+                    DecsDiv > { item.manufacturer } < /DecsDiv> <
+                    DecsDiv > { item.id } < /DecsDiv> <
+                    button id = { item.id }
+                onClick = { editHandler } > 수정 < /button> <
+                    button id = { item.id }
+                onClick = { deleteHandler } > 삭제 < /button> <
+                    /ItemDiv>
+            })
+        } <
+        /ListDiv> <
+        /Container>
     )
 }
 

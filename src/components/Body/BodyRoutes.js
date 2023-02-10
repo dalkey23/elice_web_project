@@ -29,7 +29,7 @@ import UserDelete from "../User/UserDelete";
 import DirectOrder from "./bodyPages/DirectOrder";
 import DirectPayments from "./bodyPages/DirectPayment";
 
-const Container = styled.div`
+const Container = styled.div `
   display: flex;
   margin: 10px 80px;
 
@@ -39,7 +39,7 @@ const Container = styled.div`
   }
 
 `;
-const LogoDiv = styled.div`
+const LogoDiv = styled.div `
   margin: 10px 50px;
   & img {
     width: 70px;
@@ -47,7 +47,7 @@ const LogoDiv = styled.div`
   }
 `;
 
-const NavUl = styled.ul`
+const NavUl = styled.ul `
   align-self: center;
   list-style-type: none;
   & li {
@@ -56,7 +56,7 @@ const NavUl = styled.ul`
   }
 `;
 
-const IconUl = styled.ul`
+const IconUl = styled.ul `
   align-self: center;
   margin-left: auto;
   display : flex;
@@ -67,35 +67,41 @@ const IconUl = styled.ul`
 `;
 
 const BodyRoutes = () => {
-  const Token = localStorage.getItem("accessToken");
-  const AdminToken = localStorage.getItem("adminToken");
-  const [categories, setCategories] = useState([]);
+        const Token = localStorage.getItem("accessToken");
+        const AdminToken = localStorage.getItem("adminToken");
+        const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8080/categories`)
-      .then((response) => {
-        setCategories(response.data.searchAll);
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  }, []);
+        useEffect(() => {
+            axios
+                .get(`http://kdt-ai6-team12.elicecoding.com/api/categories`)
+                .then((response) => {
+                    setCategories(response.data.searchAll);
+                })
+                .catch((error) => {
+                    alert(error);
+                });
+        }, []);
 
-  return (
-    <div>
-      <Router>
-        <Container>
-          <LogoDiv>
-            <NavLink to="/">
-              <img src={logo} alt="Logo" />
-            </NavLink>
-          </LogoDiv>
-          <NavUl>
-            {categories.map((category) => {
-              return (
-                <li key={category.categoryId}>
-                  {AdminToken || !AdminToken === "null" ? <></> : <NavLink to={`/categories/${category.categoryId}`}>{category.name}</NavLink> }
+        return ( <
+                div >
+                <
+                Router >
+                <
+                Container >
+                <
+                LogoDiv >
+                <
+                NavLink to = "/" >
+                <
+                img src = { logo }
+                alt = "Logo" / >
+                <
+                /NavLink> <
+                /LogoDiv> <
+                NavUl > {
+                    categories.map((category) => {
+                            return ( <
+                                    li key = { category.categoryId } > { AdminToken || !AdminToken === "null" ? < > < /> : <NavLink to={`/categories / $ { category.categoryId } `}>{category.name}</NavLink> }
                 </li>
               );
             })}
