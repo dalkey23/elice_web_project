@@ -149,7 +149,6 @@ const Order = () => {
     <DeleteAllBtn
                   onClick = {() => {
                       localStorage.removeItem(CARTLIST_KEY)
-                      window.location.href = '/'
                   }}
                   >구매하기</DeleteAllBtn>
     </PaymentInfo>
