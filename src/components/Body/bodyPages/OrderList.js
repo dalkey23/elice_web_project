@@ -19,19 +19,13 @@ const OrderList = () => {
     }, []);
 
 
-    return ( <
-        OrderListDivUltra >
-        <
-        OrderListDiv >
-        주문내역 <
-        /OrderListDiv> <
-        ContentDiv > {
+    return ( 
+      <OrderListDivUltra >
+        <OrderListDiv >
+        주문내역 </OrderListDiv> <ContentDiv> {
             orders.map((order) => {
-                return ( <
-                    ItemDiv key = { order.orderId } >
-                    <
-                    div > { order.createdAt } < /div> <
-                    div > { order.total } < /div> {
+                return ( <ItemDiv key = { order.orderId } >
+                    <div > { order.createdAt } </div> <div> { order.total } </div> {
                         /* <div>
                                         <select id={order.orderId} onChange={changeHandler} defaultValue={order.orderStatus}>
                                           <option value="상품준비중">상품준비중</option>
@@ -43,13 +37,10 @@ const OrderList = () => {
                                       <button id={order.orderId} onClick={ deleteOrder }>
                                         주문 취소
                                       </button> */
-                    } <
-                    /ItemDiv>
+                    } </ItemDiv>
                 );
             })
-        } <
-        /ContentDiv> <
-        /OrderListDivUltra>
+        } </ContentDiv> </OrderListDivUltra>
     )
 }
 
