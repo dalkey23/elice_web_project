@@ -39,12 +39,15 @@ const CartItem = styled.div`
     border : 1px solid gray;
     & div {
         display : inline;
-        margin : 15px;
+        margin :5px;
+    }
+    & input {
+        width: 30px;
+        margin : 5px;
     }
 `
 
 const ImgDiv = styled.div`
-    border : 1px solid red;
 
     & img {
         width : 100px;
@@ -75,6 +78,7 @@ const FormPaymentInfo = styled.form`
   }
 `
 const DeleteAllBtn = styled.button`
+    margin : 20px 0 0 0 ;
     padding : 10px;
     border-radius : 5px;
     border-color : white;
@@ -123,7 +127,7 @@ const Cart = ()=>{
         setItems(filterCartList)
         localStorage.setItem(CARTLIST_KEY, JSON.stringify(filterCartList));
         alert("삭제하기 완료!")
-       }
+       } //선택삭제!!
       
     const totalCount = useMemo(() => {
         return  Object.values(countObject).reduce((acc, current) => {
@@ -178,7 +182,7 @@ const Cart = ()=>{
                         setCountObject(newCountObject)
                     }} defaultValue={countObject[item.id]}/>{" = "}
                     <div>{item.price*countObject[item.id]}원</div>
-                    <button onClick = {() => deleteHandler(item.id)}>삭제하기</button>
+                    <DeleteAllBtn onClick = {() => deleteHandler(item.id)}>삭제하기</DeleteAllBtn>
                 </CartItem>
             })}
             <DeleteAllBtn
