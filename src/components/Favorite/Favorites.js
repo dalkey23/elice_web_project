@@ -7,9 +7,11 @@ import { WISHLIST_KEY } from '../../constants/key'
 
 const CartInfo = styled.div`
     width : 60%;
-    margin : 10px;
-    padding : 10px;
+    margin : 10px 10px 50px 300px;
+    padding : 20px;
     box-shadow: 0 5px 10px grey;
+    display : grid;
+    justify-content: center;
     & h3 {
         border-bottom: 1px grey solid;
         padding-bottom: 10px;
@@ -40,11 +42,25 @@ const CartItem = styled.div`
     }
 `
 const ImgDiv = styled.div`
-    border : 1px solid red;
 
     & img {
         width : 100px;
     }
+`
+const BuyBtn = styled.button`
+    padding : 10px;
+    margin : 0 5px; 0 0;
+    border-radius : 5px;
+    border-color : white;
+    background-color : grey;
+    color : white;
+`
+const DeleteBtn = styled.button`
+    padding : 10px;
+    border-radius : 5px;
+    border-color : white;
+    background-color : grey;
+    color : white;
 `
 const DeleteAllBtn = styled.button`
     padding : 10px;
@@ -106,11 +122,12 @@ const Favorite = () => {
                 return <CartItem key = {item.id}>
                     <ImgDiv><img src={item.imgUrl} alt="썸네일" /></ImgDiv>
                     <div>{item.productName}</div>
-                    <button onClick = {(e) => {
+                    <BuyBtn
+                        onClick = {(e) => {
                         e.preventDefault();
                         navigate(`/Iteminfo/${item.id}`)
-                    }}>구매하기</button>
-                 <button onClick = {() => deleteHandler(item.id)}>삭제하기</button>
+                    }}>구매하기</BuyBtn>
+                 <DeleteBtn onClick = {() => deleteHandler(item.id)}>삭제하기</DeleteBtn>               
                 </CartItem>
             })}
             <DeleteAllBtn
@@ -127,14 +144,14 @@ const Favorite = () => {
 
     const ItemsFalse = () => {
       return  (
-      <Container style={{ display: 'flex', justifyContent: 'center', margin: '200px' }}>
+      <Container style={{ display: 'flex', justifyContent: 'center', margin: '100px' }}>
           <Row style={{
             backgroundColor: 'grey',
             height: '300px',
             width: '60%',
             margin: '50px'
           }}>
-            <Col style={{ display: 'flex', justifyContent: 'center', margin: '100px 0 0 0px' }}>
+            <Col style={{ display: 'flex', justifyContent: 'center', margin: '130px 0 0 0px' }}>
               <span class="material-symbols-outlined" style={{ display: 'flex', justifyContent: 'center' }}>diagnosis</span>
               <div>찜한 상품이 없습니다.</div>
             </Col>
