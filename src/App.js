@@ -4,10 +4,10 @@ import BodyRoutes from './components/Body/BodyRoutes'
 
 function App() {
   return (
-    <>
+    <div>
     <BodyRoutes />
     <Footer />
-    </>
+    </div>
   )
 }
 

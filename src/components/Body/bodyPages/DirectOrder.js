@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { NO_SHIPPING_FEE_PRICE } from '../../../constants/key'
 import { formatCurrency } from '../../../lib/utils'
-import { CARTLIST_KEY } from '../../../constants/key'
 
 const Container = styled.form `
     display : flex;
@@ -61,35 +61,47 @@ const PaymentInfo = styled.div `
 `
 
 
-const Order = () => {
+const DirectOrder = () => {
 
     const navigate = useNavigate();
     const [data, setData] = useState("");
-    const [name, setName] = useState('');
+    const [name, setName] = useState("");
+    const [items, setItems] = useState([]);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [address, setAddress] = useState('');
     const Token = localStorage.getItem("accessToken");
-    // useLocation으로 전달 받은 key호출
-    const location = useLocation();
-    const TotalCount = location.state.ItemTotalCount
-    const ItemPrice = location.state.ItemPrice
-    const ShippingFee = location.state.ItemShippingFee
-        // 값의 계산식을 위하여 parseInt로 계산
-    const TotalItemPrice = parseInt(ItemPrice) + parseInt(ShippingFee)
+    const [countObject, setCountObject] = useState({});
 
     useEffect(() => {
         axios
             .get("http://kdt-ai6-team12.elicecoding.com/api/users/mypage", { headers: { Authorization: Token } })
             .then((response) => {
                 setData(response.data);
-                setName(data.name)
-                setPhoneNumber(data.phoneNumber)
-                setAddress(data.address)
             })
             .catch((error) => {
                 alert(error);
             });
     }, []);
+    const totalCount = useMemo(() => {
+        return Object.values(countObject).reduce((acc, current) => {
+            acc = acc + parseInt(current)
+            return acc
+        }, 0)
+    }, [countObject])
+
+    const totalItemPrice = useMemo(() => {
+        return items.reduce((acc, current) => {
+            acc = acc + (parseInt(current.price) * parseInt(countObject[current.id]))
+
+            return acc
+        }, 0)
+    }, [countObject, items])
+
+    const shippingFee = useMemo(() => {
+        return totalItemPrice >= NO_SHIPPING_FEE_PRICE ? 0 : 3000
+    }, [totalItemPrice])
+
+    const totalPrice = useMemo(() => totalItemPrice + shippingFee, [totalItemPrice, shippingFee])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -109,41 +121,41 @@ const Order = () => {
                 navigate('/orderComplete')
             })
             .catch((error) => {
-                console.log(error)
-                alert('에러가 발생했습니다. 다시 시도해 주세요.');
+                alert(error);
             });
     }
 
 
 
     return <Container onSubmit = { submitHandler } >
-    <OrderInfo >
-        <h3> 배송지 정보 </h3>
-        <label > { /* placeholder로 정보를 보이게 한 후 같은 값의 value를 post로 전송 */ } 
-            <h6> 이름 </h6> 
-            <input type = "text" placeholder = { JSON.stringify(data.name) }/> 
+        <OrderInfo >
+            <h3> 배송지 정보 </h3> 
+        <label >
+            <h6 > 이름 </h6> 
+            <input type = "text" value = { JSON.stringify(data.name) }/> 
         </label> 
         <label>
             <h6> 연락처 </h6> 
-            <input type = "tel"
-            placeholder = { JSON.stringify(data.phoneNumber) }/> 
+            <input type = "tel" value = { JSON.stringify(data.phoneNumber) }/> 
         </label> 
         <label>
-        <h6 > 주소 </h6> 
-        <input type = "text" placeholder = { JSON.stringify(data.address) }/> 
+            <h6> 주소 </h6> 
+            <input type = "text" value = { JSON.stringify(data.address) }/> 
         </label> 
-    </OrderInfo> 
-    <PaymentInfo > { /* 풀어서 전달된 값을 저장한 후 formatCurrency */ } 
-    <h3> 결제정보 </h3> 
-    <h5 > 상품수 { TotalCount }개 </h5> 
-    <h5 > 상품금액 { formatCurrency(ItemPrice) }원 </h5> 
-    <h5 > 배송비 { formatCurrency(ShippingFee) }원 </h5> 
-    <h4 > 총 결제금액 { formatCurrency(TotalItemPrice) }원</h4> 
-    <button onClick = {() => {
-                      localStorage.removeItem(CARTLIST_KEY)
-                  }}>구매하기</button>
-    </PaymentInfo>
+        </OrderInfo> 
+        <PaymentInfo>
+            <h3> 결제정보 </h3> 
+            <h5> 주문상품 </h5> <h5> 상품총액 { formatCurrency(totalItemPrice) }원 </h5> 
+        <h5 > 배송비 { formatCurrency(shippingFee) }원 </h5> 
+        <h4> 총 결제금액 { formatCurrency(totalPrice) }원 </h4> 
+        <button onClick = {
+                () => {
+                    setName(`${JSON.stringify(data.name)}`)
+                    setPhoneNumber(`${JSON.stringify(data.phoneNumber)}`)
+                    setAddress(`${JSON.stringify(data.name)}`)
+                }}> 결제하기 </button> 
+        </PaymentInfo> 
     </Container>
 }
 
-export default Order;
+export default DirectOrder;
