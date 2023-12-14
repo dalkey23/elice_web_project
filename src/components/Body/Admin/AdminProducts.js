@@ -14,6 +14,19 @@ const Container = styled.div`
     }
 `
 
+const AddDiv = styled.div`
+    background-color : gray;
+    border-radius: 10px;   
+    font-size : 15px;
+    text-align : center;
+    width : 200px;
+    padding : 10px;
+    margin : 10px;
+    align-self : flex-end;
+
+    
+`
+
 const TitleDiv = styled.div`
     border-bottom : 1px solid gray;
     padding-bottom : 10px;
@@ -22,13 +35,22 @@ const TitleDiv = styled.div`
 
 `
 
-const ListDiv = styled.div`
-    align-self : center;
+const ListTable = styled.table`
+    margin : 20px; 
 
+    & thead {
+        font-weight : bold;
+        font-size : 25px;
+        text-align : center;
+    }
+
+    & td {
+        margin-right : 30px;
+        text-align : center;
+    }
 `
 
-const ItemDiv = styled.div`
-    display : flex;
+const ItemTr = styled.tr`
     margin : 10px;
     padding : 10px;
     & button {
@@ -61,7 +83,7 @@ const AdminProducts = () => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8080/products/all/${categoryId}`)
+            .get(`http://kdt-ai6-team12.elicecoding.com/api/products/all/${categoryId}`)
             .then((response) => {
                 setItems(response.data.searchAll)
             })
@@ -71,41 +93,55 @@ const AdminProducts = () => {
     }, [])
 
 
-    const deleteHandler = (e)=>{
+    const deleteHandler = (e) => {
         console.log(e.target.id);
         axios
-        .delete(`http://localhost:8080/products/delete/${e.target.id}`, { headers: { Authorization: token } })
-        .then((response) => {
-            alert("상품 삭제 완료")
-            window.location.href = `/adminProducts/${categoryId}`;  
-        })
-        .catch((error) => {
-          alert(error);
-        });
+            .delete(`http://kdt-ai6-team12.elicecoding.com/api/products/delete/${e.target.id}`, { headers: { Authorization: token } })
+            .then((response) => {
+                alert("상품 삭제 완료")
+                window.location.href = `/adminProducts/${categoryId}`;
+            })
+            .catch((error) => {
+                alert(error);
+            });
 
     }
 
-    const editHandler = (e)=> {
+    const editHandler = (e) => {
         navigate(`/editProduct/${e.target.id}`)
-    
+
     }
 
 
     return (
-        <Container>
-            <TitleDiv>상품 관리</TitleDiv>
-            <Link to="/addProduct">상품 추가</Link>
-            <ListDiv>
-                {items.map((item) => {
-                    return <ItemDiv key={item.id}>
-                            <NameDiv>{item.productName}</NameDiv>
-                                <DecsDiv>{item.manufacturer}</DecsDiv>
-                                <DecsDiv>{item.id}</DecsDiv>
-                                <button id={item.id} onClick={editHandler}>수정</button>
-                                <button id={item.id} onClick={deleteHandler}>삭제</button>
-                    </ItemDiv>
-                })}
-            </ListDiv>
+        <Container >
+            <TitleDiv > 상품 관리 </TitleDiv>
+            <AddDiv>
+                <Link to="/addProduct" > 상품 추가 </Link>
+            </AddDiv>
+            <ListTable >
+                <thead>
+                    <tr>
+                        <td>상품명</td>
+                        <td>제조사</td>
+                        <td>상품아이디</td>
+                        <td>수정</td>
+                        <td>삭제</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {items.map((item) => {
+                        return <ItemTr key={item.id} >
+                            <td><NameDiv > {item.productName} </NameDiv></td>
+                            <td><DecsDiv > {item.manufacturer} </DecsDiv></td>
+                            <td><DecsDiv > {item.id} </DecsDiv></td>
+                            <td><button id={item.id} onClick={editHandler} > 수정 </button></td>
+                            <td><button id={item.id} onClick={deleteHandler} > 삭제 </button></td>
+                        </ItemTr>
+                    })
+                    }
+                </tbody>
+            </ListTable>
         </Container>
     )
 }

@@ -9,7 +9,7 @@ const OrderList = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/users/orders", { headers: { Authorization: token } })
+      .get("http://kdt-ai6-team12.elicecoding.com/api/users/orders", { headers: { Authorization: token } })
       .then((response) => {
         setOrders(response.data);
       })
@@ -18,48 +18,41 @@ const OrderList = () => {
       });
   }, []);
 
-  
+
   return (
-    <OrderListDivUltra>
-      <OrderListDiv>
+    <OrderListDivUltra >
+      <OrderListDiv >
         주문내역
       </OrderListDiv>
       <ContentDiv>
-      {orders.map((order) => {
-          return (
-            <ItemDiv key={order.orderId}>
-              <div>{order.createdAt}</div>
-              <div>{order.total}</div>
-              {/* <div>
-                <select id={order.orderId} onChange={changeHandler} defaultValue={order.orderStatus}>
-                  <option value="상품준비중">상품준비중</option>
-                  <option value="상품배송중">상품배송중</option>
-                  <option value="배송완료">배송완료</option>
-                </select>
-              </div>
+        {orders.map((order) => {
+          return (<ItemDiv key={order.orderId} >
+            <Item> {order.createdAt.substr(0,10)} </Item> 
+            <Item>{order.products.map((prod)=>{
+              return prod.productName;
+            })}</Item>
+            <Item> {order.orderStatus} </Item>  
 
-              <button id={order.orderId} onClick={ deleteOrder }>
-                주문 취소
-              </button> */}
             </ItemDiv>
           );
-        })}
-      </ContentDiv>
+        })
+        } </ContentDiv>
     </OrderListDivUltra>
   )
 }
 
 const OrderListDivUltra = styled.div`
   display : flex;
-  justify-content : center;
+  flex-direction : column;
+  align-items: center;
   padding : 50px;
   margin : 10px;
 `
 
 const OrderListDiv = styled.div`
-  background-color : grey;
-  width : 100px;
-  height : 100px;
+  font-weight : bold;
+  font-size : 50px;
+  padding-bottom : 20px;
 `
 
 const ContentDiv = styled.div`
@@ -75,6 +68,11 @@ const ItemDiv = styled.div`
     color: white;
     margin: 10px;
   }
-`;
+`
+
+const Item = styled.div`
+
+  margin-right : 30px;
+`
 
 export default OrderList;

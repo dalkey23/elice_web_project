@@ -73,7 +73,7 @@ const BodyRoutes = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/categories`)
+      .get(`http://kdt-ai6-team12.elicecoding.com/api/categories`)
       .then((response) => {
         setCategories(response.data.searchAll);
       })
@@ -82,119 +82,116 @@ const BodyRoutes = () => {
       });
   }, []);
 
-  return (
-    <div>
-      <Router>
-        <Container>
-          <LogoDiv>
-            <NavLink to="/">
-              <img src={logo} alt="Logo" />
-            </NavLink>
-          </LogoDiv>
-          <NavUl>
-            {categories.map((category) => {
-              return (
-                <li key={category.categoryId}>
-                  {AdminToken || !AdminToken === "null" ? <></> : <NavLink to={`/categories/${category.categoryId}`}>{category.name}</NavLink> }
-                </li>
-              );
-            })}
-            {/* AdminToken이 admin값일때 관리자페이지 노출 */}
-            {/* <></>이 아닌 다른 방법으로 노출을 조정할 수 있을지 고민 */}
-            <li>{AdminToken || !AdminToken === "null" ? <NavLink to="/AdminMain">관리자페이지</NavLink> : <></>}</li>
-          </NavUl>
-          <IconUl>
-            {/* admin일때 사람아이콘 출력 x , 유저일때 usermain, 비회원일때 loginForm >> 삼항 연산자에 삼항 연산자를 넣어서 코드의 가독성이 조금 떨어 질 것 같아서 고민 */}
-            {AdminToken || !AdminToken === "null" ? (
-              <></> 
-            ) : (
-              <li>
-                {Token || !Token === "null" ? (
-                  <div>
+  return (<div>
+    <Router>
+      <Container>
+        <LogoDiv>
+          <NavLink to="/" >
+            <img src={logo}
+              alt="Logo" />
+          </NavLink>
+        </LogoDiv>
+        <NavUl> {categories.map((category) => {
+          return (<li key={category.categoryId} > {AdminToken || !AdminToken === "null" ? < > </> : <NavLink to={`/categories/${category.categoryId}`}>{category.name}</NavLink>}
+          </li>
+          );
+        })}
+          {/* AdminToken이 admin값일때 관리자페이지 노출 */}
+          {/* <></>이 아닌 다른 방법으로 노출을 조정할 수 있을지 고민 */}
+          <li>{AdminToken || !AdminToken === "null" ? <NavLink to="/AdminMain">관리자페이지</NavLink> : <></>}</li>
+        </NavUl>
+        <IconUl>
+          {/* admin일때 사람아이콘 출력 x , 유저일때 usermain, 비회원일때 loginForm >> 삼항 연산자에 삼항 연산자를 넣어서 코드의 가독성이 조금 떨어 질 것 같아서 고민 */}
+          {AdminToken || !AdminToken === "null" ? (
+            <></>
+          ) : (
+            <li>
+              {Token || !Token === "null" ? (
+                <div>
                   <NavLink to="/UserMain">
                     <span className="material-symbols-outlined">person</span>
                   </NavLink>
                   <NavLink to="/Favorites">
-                  <span className="material-symbols-outlined" style = {{
-                    margin : '10px'
-                  }}>favorite</span>
+                    <span className="material-symbols-outlined" style={{
+                      margin: '10px'
+                    }}>favorite</span>
                   </NavLink>
                   <NavLink to="/payments/cart">
-                  <span className="material-symbols-outlined">shopping_bag</span>
+                    <span className="material-symbols-outlined">shopping_bag</span>
                   </NavLink>
-                  </div>
-                ) : (
-                  <div>
+                </div>
+              ) : (
+                <div>
                   <NavLink to="/LoginForm">
                     <span className="material-symbols-outlined">person</span>
                   </NavLink>
                   <NavLink to="/Favorites">
-                  <span className="material-symbols-outlined" style = {{
-                    margin : '10px'
-                  }}>favorite</span>
+                    <span className="material-symbols-outlined" style={{
+                      margin: '10px'
+                    }}>favorite</span>
                   </NavLink>
                   <NavLink to="/payments/cart">
-                  <span className="material-symbols-outlined">shopping_bag</span>
+                    <span className="material-symbols-outlined">shopping_bag</span>
                   </NavLink>
-                  </div>
-                )}
-              </li>
-            )}
-            <li>
-              {AdminToken || !AdminToken === "null" ? (
-                <button
-                  onClick={() => {
-                    localStorage.removeItem("adminToken");
-                    alert("관리자 로그아웃 되었습니다.");
-                    window.location.href = "/";
-                  }}
-                  style={{
-                    padding: "10px",
-                    borderRadius: "5px",
-                    borderColor: "white",
-                    backgroundColor: "grey",
-                    color: "white",
-                  }}
-                >
-                  관리자 로그아웃
-                </button>
-              ) : ( <></>
+                </div>
               )}
             </li>
-          </IconUl>
-        </Container>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/OrderList" element={<OrderList />} />
-          <Route path="/Favorites" element={<Favorites />} />
-          <Route path="/UserUpdate" element={<UserUpdate />} />
-          <Route path="/UserDelete" element={<UserDelete />} />
-          <Route path="/UserInfo" element={<UserInfo />} />
-          <Route path="/UserMain" element={<UserMain />} />
-          <Route path="/LoginForm" element={<LoginForm />} />
-          <Route path="/RegisterForm" element={<RegisterForm />} />
-          <Route path="/categories/:categoryId" element={<CategoryComponents />} />
-          <Route path="/itemInfo/:id" element={<ItemInfo />} />
-          <Route path="orderComplete" element={<OrderComplete />} />
-          <Route path="/payments/*" element={<Payments />}>
-            <Route path="cart" element={<Cart />} />
-            <Route path="order" element={<Order />} />
-          </Route>
-          <Route path="/DirectPayments/*" element={<DirectPayments />}>
-            <Route path="DirectOrder" element={<DirectOrder />} />
-          </Route>
-          {/* 관리자페이지 */}
-          <Route path="/AdminMain" element={<AdminMain />} />
-          <Route path="/adminOrders" element={<AdminOrders />} />
-          <Route path="/adminCategories" element={<AdminCategories />} />
-          <Route path="/addCategory" element={<AddCategory />} />
-          <Route path="/editCategory/:categoryId" element={<EditCategory />} />
-          <Route path="/adminProducts/:categoryId" element={<AdminProducts />} />
-          <Route path="/addProduct" element={<AddProduct />} />
-          <Route path="/editProduct/:id" element={<EditProduct />} />
-        </Routes>
-      </Router>
-    </div>
+          )}
+          <li>
+            {AdminToken || !AdminToken === "null" ? (
+              <button
+                onClick={() => {
+                  localStorage.removeItem("adminToken");
+                  alert("관리자 로그아웃 되었습니다.");
+                  window.location.href = "/";
+                }}
+                style={{
+                  padding: "10px",
+                  borderRadius: "5px",
+                  borderColor: "white",
+                  backgroundColor: "grey",
+                  color: "white",
+                }}
+              >
+                관리자 로그아웃
+              </button>
+            ) : (<></>
+            )}
+          </li>
+        </IconUl>
+      </Container>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/OrderList" element={<OrderList />} />
+        <Route path="/Favorites" element={<Favorites />} />
+        <Route path="/UserUpdate" element={<UserUpdate />} />
+        <Route path="/UserDelete" element={<UserDelete />} />
+        <Route path="/UserInfo" element={<UserInfo />} />
+        <Route path="/UserMain" element={<UserMain />} />
+        <Route path="/LoginForm" element={<LoginForm />} />
+        <Route path="/RegisterForm" element={<RegisterForm />} />
+        <Route path="/categories/:categoryId" element={<CategoryComponents />} />
+        <Route path="/itemInfo/:id" element={<ItemInfo />} />
+        <Route path="orderComplete" element={<OrderComplete />} />
+        <Route path="/payments/*" element={<Payments />}>
+          <Route path="cart" element={<Cart />} />
+          <Route path="order" element={<Order />} />
+        </Route>
+        <Route path="/DirectPayments/*" element={<DirectPayments />}>
+          <Route path="DirectOrder" element={<DirectOrder />} />
+        </Route>
+        {/* 관리자페이지 */}
+        <Route path="/AdminMain" element={<AdminMain />} />
+        <Route path="/adminOrders" element={<AdminOrders />} />
+        <Route path="/adminCategories" element={<AdminCategories />} />
+        <Route path="/addCategory" element={<AddCategory />} />
+        <Route path="/editCategory/:categoryId" element={<EditCategory />} />
+        <Route path="/adminProducts/:categoryId" element={<AdminProducts />} />
+        <Route path="/addProduct" element={<AddProduct />} />
+        <Route path="/editProduct/:id" element={<EditProduct />} />
+      </Routes>
+    </Router>
+  </div>
   );
 };
 

@@ -64,7 +64,7 @@ const AdminMain = () => {
         </ListItem></Link>
         <Link to="/adminCategories"><ListItem>
             <MenuIcon><img src={categories} alt='categories' /></MenuIcon>
-            <MenuDesc><span>카테고리 및 제품 관리</span><p>제품 및 카테고리정보를 관리할 수 있습니다.</p></MenuDesc>
+            <MenuDesc><span>카테고리 및 상품 관리</span><p>상품 및 카테고리정보를 관리할 수 있습니다.</p></MenuDesc>
         </ListItem></Link>
     </ListContainer>
 }
