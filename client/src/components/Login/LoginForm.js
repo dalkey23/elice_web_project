@@ -4,7 +4,8 @@ import styled from "styled-components";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import axios from "axios";
+
+import { login } from "../../apis/auth";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -17,8 +18,7 @@ const LoginForm = () => {
         const formdata = { email, password };
 
         const onSubmit = () => {
-            axios
-                .post("http://kdt-ai6-team12.elicecoding.com/api/login", {...formdata })
+            login(formdata)
                 .then((res) => {
                     if (res.data.role === "admin") {
                         localStorage.setItem("adminToken", res.data.token);
@@ -34,87 +34,74 @@ const LoginForm = () => {
                 })
                 .catch((err) => {
                     // 아이디 비밀번호를 따로 에러 출력시 보안상 문제가 생길 수 있어 통합하여 alert
-                    console.log(err)
-                    alert('아이디, 비밀번호를 확인해주세요.');
+                    console.log(err);
+                    alert("아이디, 비밀번호를 확인해주세요.");
                 });
         };
 
         onSubmit();
     };
 
-    return ( <
-        div style = {
-            {
+    return (
+        <div
+            style={{
                 display: "flex",
                 justifyContent: "center",
-            }
-        } >
-        <
-        Login >
-        <
-        FloatingLabel controlId = "floatingInput"
-        label = "이메일"
-        className = "mb-3"
-        onChange = {
-            (e) => setEmail(e.target.value) } >
-        <
-        Form.Control type = "email" / >
-        <
-        /FloatingLabel> <
-        FloatingLabel controlId = "floatingPassword"
-        label = "비밀번호"
-        onChange = {
-            (e) => setPassword(e.target.value) } >
-        <
-        Form.Control type = "password" / >
-        <
-        /FloatingLabel> <
-        div style = {
-            {
-                display: "flex",
-                justifyContent: "flex-end",
-                padding: "20px",
-            }
-        } >
-        <
-        Button type = "submit"
-        style = {
-            {
-                borderRadius: "5px",
-                backgroundColor: "grey",
-                borderColor: "grey",
-            }
-        }
-        onClick = { handleSubmit } >
-        로그인 <
-        /Button> <
-        Button style = {
-            {
-                marginLeft: "5px",
-                borderRadius: "5px",
-                backgroundColor: "grey",
-                borderColor: "grey",
-            }
-        } >
-        <
-        Link to = "/RegisterForm"
-        style = {
-            {
-                textDecoration: "none",
-                color: "white",
-            }
-        } >
-        회원가입 <
-        /Link> <
-        /Button> <
-        /div> <
-        /Login> <
-        /div>
+            }}>
+            <Login>
+                <FloatingLabel
+                    controlId="floatingInput"
+                    label="이메일"
+                    className="mb-3"
+                    onChange={(e) => setEmail(e.target.value)}>
+                    <Form.Control type="email" />
+                </FloatingLabel>{" "}
+                <FloatingLabel
+                    controlId="floatingPassword"
+                    label="비밀번호"
+                    onChange={(e) => setPassword(e.target.value)}>
+                    <Form.Control type="password" />
+                </FloatingLabel>{" "}
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        padding: "20px",
+                    }}>
+                    <Button
+                        type="submit"
+                        style={{
+                            borderRadius: "5px",
+                            backgroundColor: "grey",
+                            borderColor: "grey",
+                        }}
+                        onClick={handleSubmit}>
+                        로그인{" "}
+                    </Button>{" "}
+                    <Button
+                        style={{
+                            marginLeft: "5px",
+                            borderRadius: "5px",
+                            backgroundColor: "grey",
+                            borderColor: "grey",
+                        }}>
+                        <Link
+                            to="/RegisterForm"
+                            style={{
+                                textDecoration: "none",
+                                color: "white",
+                            }}>
+                            회원가입{" "}
+                        </Link>{" "}
+                    </Button>{" "}
+                </div>{" "}
+            </Login>{" "}
+        </div>
     );
 };
 
-const Login = styled.form `
-  padding: 300px;
+const Login = styled.form`
+    padding: 300px;
 `;
 
 export default LoginForm;
