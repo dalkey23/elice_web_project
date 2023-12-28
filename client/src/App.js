@@ -1,13 +1,9 @@
 import './App.css';
-import Footer from './components/Footer/Footers';
-import BodyRoutes from './components/Body/BodyRoutes'
+import Home from './pages/Home';
 
 function App() {
   return (
-    <div>
-    <BodyRoutes />
-    <Footer />
-    </div>
+    <Home />
   )
 }
 
