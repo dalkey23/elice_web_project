@@ -11,3 +11,11 @@ export const login = async (userdata) => {
 export const getUserInfo = async () => {
     return await apiRequest(`/users/mypage`, "get");
 };
+
+export const updateUserInfo = async (userid, userdata) => {
+    return await apiRequest(`/users/edit/${userid}`, "post", userdata);
+};
+
+export const deleteUser = async (userid, userdata) => {
+    return await apiRequest(`/users/delete/${userid}`, "post", userdata);
+};
