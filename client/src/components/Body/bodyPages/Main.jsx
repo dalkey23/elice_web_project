@@ -4,7 +4,7 @@ import {Button, Container} from 'react-bootstrap';
 import BodySlides from '../bodySlides';
 import { useNavigate } from "react-router-dom";
 
-const Home = () => {
+const Main = () => {
   const navigate = useNavigate();
   return (
     <div style = {{
@@ -73,4 +73,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Main;

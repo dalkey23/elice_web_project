@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from 'axios';
+
+
+import { getItem } from "../../../apis/products";
 import { WISHLIST_KEY } from '../../../constants/key'
 import { CARTLIST_KEY } from '../../../constants/key'
 //key.js에서 WISHLIST_KEY설정
@@ -86,8 +88,7 @@ const Details = () => {
     }
 
     useEffect(() => {
-        axios
-            .get(`http://kdt-ai6-team12.elicecoding.com/api/products/${id}`)
+        getItem(id)
             .then((response) => {
                 setData(response.data.searchOne)
             })
