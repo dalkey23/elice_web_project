@@ -1,7 +1,7 @@
 import express from "express";
-import { changeUser, seeMyPage, deleteUser } from "../services/userService";
+import { changeUser, seeMyPage, deleteUser } from "../services/userService.js";
 
-import { getOrder, deleteOrder } from "../services/orderService";
+import { getOrder, deleteOrder } from "../services/orderService.js";
 import { loginRequired } from "../middlewares/loginrequired.js";
 
 const userRouter = express.Router();

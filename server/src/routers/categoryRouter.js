@@ -1,6 +1,6 @@
 import express from "express";
-import { showAllCategories, findOneCategory, addCategory, editCategory, deleteCategory } from "../services/categoryService";
-import { adminOnly } from "../middlewares/adminRequired"
+import { showAllCategories, findOneCategory, addCategory, editCategory, deleteCategory } from "../services/categoryService.js";
+import { adminOnly } from "../middlewares/adminRequired.js"
 const categoryRouter = express.Router();
 
 categoryRouter.get("/", showAllCategories);

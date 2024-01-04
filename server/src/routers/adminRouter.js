@@ -1,6 +1,6 @@
 import express from "express";
-import { getAdmin, handleOrder, handleChange, handleDelete } from "../services/adminService";
-import { adminOnly } from "../middlewares/adminRequired";
+import { getAdmin, handleOrder, handleChange, handleDelete } from "../services/adminService.js";
+import { adminOnly } from "../middlewares/adminRequired.js";
 
 const adminRouter = express.Router();
 

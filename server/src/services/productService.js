@@ -1,5 +1,5 @@
-import Product from "../db/models/productModel";
-import Category from "../db/models/categoryModel";
+import Product from "../db/models/productModel.js";
+import Category from "../db/models/categoryModel.js";
 
 
 //카테고리 상품리스트 전체 보여주기 (포스트맨 작동함)

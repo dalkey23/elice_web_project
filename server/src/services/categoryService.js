@@ -1,4 +1,4 @@
-import Category from "../db/models/categoryModel";
+import Category from "../db/models/categoryModel.js";
 
 
 //카테고리 카테고리리스트 전체 보여주기 (포스트맨 작동함 )
