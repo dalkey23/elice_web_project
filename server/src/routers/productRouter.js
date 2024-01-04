@@ -1,6 +1,6 @@
 import express from "express";
-import { inCategoryAll, findOneProduct, addProduct, editProduct, deleteProduct } from "../services/productService";
-import { adminOnly } from "../middlewares/adminRequired"
+import { inCategoryAll, findOneProduct, addProduct, editProduct, deleteProduct } from "../services/productService.js";
+import { adminOnly } from "../middlewares/adminRequired.js"
 
 const productRouter = express.Router();
 

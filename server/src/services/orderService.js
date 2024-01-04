@@ -1,5 +1,5 @@
-import Order from "../db/models/orderModel";
-import User from "../db/models/userModel";
+import Order from "../db/models/orderModel.js";
+import User from "../db/models/userModel.js";
 //import 주문정보 from "../"
 
 //배송지정보,주문정보 저장

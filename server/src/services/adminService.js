@@ -1,4 +1,4 @@
-import Order from "../db/models/orderModel";
+import Order from "../db/models/orderModel.js";
 
 // 관리자페이지 (필요없을듯)
 export const getAdmin = async (req, res) => {

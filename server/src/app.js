@@ -1,12 +1,12 @@
 import cors from "cors";
 import express from "express";
-import "./db/index";
+//import "./db/index";
 import cookieParser from "cookie-parser";
-import rootRouter from "./routers/rootRouter";
-import userRouter from "./routers/userRouter";
-import adminRouter from "./routers/adminRouter";
-import productRouter from "./routers/productRouter";
-import categoryRouter from "./routers/categoryRouter";
+import rootRouter from "./routers/rootRouter.js";
+import userRouter from "./routers/userRouter.js";
+import adminRouter from "./routers/adminRouter.js";
+import productRouter from "./routers/productRouter.js";
+import categoryRouter from "./routers/categoryRouter.js";
 
 const app = express();
 
