@@ -10,5 +10,5 @@ const CategorySchema = new mongoose.Schema(
   { timestamps: true }
 );
 CategorySchema.plugin(AutoIncrement, { inc_field: "categoryId" });
-export { CategorySchema };
-
+//export { CategorySchema };
+module.exports = { CategorySchema }

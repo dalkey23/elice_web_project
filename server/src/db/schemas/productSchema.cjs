@@ -17,4 +17,5 @@ const ProductSchema = new mongoose.Schema(
   { timestamps: true }
 );
 ProductSchema.plugin(AutoIncrement, { inc_field: "id" });
-export { ProductSchema };
+//export { ProductSchema };
+module.exports = { ProductSchema }
