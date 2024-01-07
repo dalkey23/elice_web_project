@@ -1,5 +1,5 @@
 import "dotenv/config";
-import app from "./src/app";
+import app from "./src/app.js";
 // 테스트용 문구입니다.
 const PORT = process.env.PORT || 8080;
 

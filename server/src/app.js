@@ -1,6 +1,6 @@
 import cors from "cors";
 import express from "express";
-//import "./db/index";
+import "./db/index.js";
 import cookieParser from "cookie-parser";
 import rootRouter from "./routers/rootRouter.js";
 import userRouter from "./routers/userRouter.js";
