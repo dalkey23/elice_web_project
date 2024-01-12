@@ -8,8 +8,9 @@ export const postJoin = async (req, res) => {
 
   //이메일 중복확인
   const user = await User.findOne({ email });
+  console.log(`user:${user}`)
   if (user) {
-    return res.status(400).send("이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.");
+    return res.status(400).send({message:"이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요."});
   }
 
   // 패스워드 해쉬화
