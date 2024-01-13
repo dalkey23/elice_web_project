@@ -6,7 +6,7 @@ import Favorites from "../components/Favorite/Favorites";
 import Main from "../components/Body/bodyPages/Main";
 import CategoryComponents from "../components/Body/bodyPages/CategoryComponents";
 //import RegisterForm from "../components/Register/RegisterForm";
-import LoginForm from "../components/Login/LoginForm";
+// import LoginForm from "../components/Login/LoginForm";
 import ItemInfo from "../components/Body/bodyPages/ItemInfo";
 import Payments from "../components/Body/bodyPages/Payments";
 import Cart from "../components/Body/bodyPages/Cart";
@@ -32,6 +32,7 @@ import Footer from "../components/Footer/Footers";
 
 //auth
 import RegisterForm from "./auth/RegisterForm";
+import LoginForm from "./auth/LoginFrom";
 
 const Home = () => {
     return (
