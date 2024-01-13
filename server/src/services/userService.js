@@ -36,7 +36,8 @@ export const postLogin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).lean();
+    
     if (!user) {
       return res.status(403).send({ message: "해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요." });
     }
