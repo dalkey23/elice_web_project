@@ -8,8 +8,9 @@ export const postJoin = async (req, res) => {
 
   //이메일 중복확인
   const user = await User.findOne({ email });
+  console.log(`user:${user}`)
   if (user) {
-    res.status(400).send("이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.");
+    return res.status(400).send({message:"이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요."});
   }
 
   // 패스워드 해쉬화
@@ -26,7 +27,7 @@ export const postJoin = async (req, res) => {
     });
     return res.send("join");
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 };
 
@@ -35,7 +36,8 @@ export const postLogin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).lean();
+    
     if (!user) {
       return res.status(403).send({ message: "해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요." });
     }
