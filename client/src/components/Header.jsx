@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+
 
 
 import { getCategories } from "../apis/products"
+import * as SC from "../styles/Header.js"
 import logo from "../assets/logo.png"
 
 const Header = () => {
@@ -22,13 +23,13 @@ const Header = () => {
     }, []);
 
     return (
-        <Container>
-            <LogoDiv>
+        <SC.Container>
+            <SC.LogoDiv>
                 <NavLink to="/">
                     <img src={logo} alt="Logo" />
                 </NavLink>
-            </LogoDiv>
-            <NavUl>
+            </SC.LogoDiv>
+            <SC.NavUl>
                 {" "}
                 {categories.map((category) => {
                     return (
@@ -54,8 +55,8 @@ const Header = () => {
                         <></>
                     )}
                 </li>
-            </NavUl>
-            <IconUl>
+            </SC.NavUl>
+            <SC.IconUl>
                 {/* admin일때 사람아이콘 출력 x , 유저일때 usermain, 비회원일때 loginForm >> 삼항 연산자에 삼항 연산자를 넣어서 코드의 가독성이 조금 떨어 질 것 같아서 고민 */}
                 {AdminToken || !AdminToken === "null" ? (
                     <></>
@@ -67,20 +68,21 @@ const Header = () => {
                                     <span className="material-symbols-outlined">
                                         person
                                     </span>
+                                    <p>마이페이지</p>
                                 </NavLink>
                                 <NavLink to="/Favorites">
                                     <span
                                         className="material-symbols-outlined"
-                                        style={{
-                                            margin: "10px",
-                                        }}>
+                                        >
                                         favorite
                                     </span>
+                                    <p>찜하기</p>
                                 </NavLink>
                                 <NavLink to="/payments/cart">
                                     <span className="material-symbols-outlined">
                                         shopping_bag
                                     </span>
+                                    <p>장바구니</p>
                                 </NavLink>
                             </div>
                         ) : (
@@ -89,13 +91,11 @@ const Header = () => {
                                     <span className="material-symbols-outlined">
                                         person
                                     </span>
+                                    <p>로그인</p>
                                 </NavLink>
                                 <NavLink to="/Favorites">
                                     <span
-                                        className="material-symbols-outlined"
-                                        style={{
-                                            margin: "10px",
-                                        }}>
+                                        className="material-symbols-outlined">
                                         favorite
                                     </span>
                                 </NavLink>
@@ -110,64 +110,22 @@ const Header = () => {
                 )}
                 <li>
                     {AdminToken || !AdminToken === "null" ? (
-                        <button
+                        <SC.LogoutButton
                             onClick={() => {
                                 localStorage.removeItem("adminToken");
                                 alert("관리자 로그아웃 되었습니다.");
                                 window.location.href = "/";
-                            }}
-                            style={{
-                                padding: "10px",
-                                borderRadius: "5px",
-                                borderColor: "white",
-                                backgroundColor: "grey",
-                                color: "white",
                             }}>
                             관리자 로그아웃
-                        </button>
+                        </SC.LogoutButton>
                     ) : (
                         <></>
                     )}
                 </li>
-            </IconUl>
-        </Container>
+            </SC.IconUl>
+        </SC.Container>
     );
 };
 
 export default Header;
 
-const Container = styled.div`
-    display: flex;
-    margin: 10px 80px;
-
-    & a {
-        text-decoration: none;
-        color: black;
-    }
-`;
-const LogoDiv = styled.div`
-    margin: 10px 50px;
-    & img {
-        width: 70px;
-        height: 70px;
-    }
-`;
-
-const NavUl = styled.ul`
-    align-self: center;
-    list-style-type: none;
-    & li {
-        margin-right: 20px;
-        display: inline;
-    }
-`;
-
-const IconUl = styled.ul`
-    align-self: center;
-    margin-left: auto;
-    display: flex;
-    list-style-type: none;
-    & li {
-        display: inline;
-    }
-`;
