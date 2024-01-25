@@ -1,10 +1,14 @@
-import './App.css';
-import Home from './pages/Home';
+import { RecoilRoot } from "recoil";
+
+import "./App.css";
+import Home from "./pages/Home";
 
 function App() {
-  return (
-    <Home />
-  )
+    return (
+        <RecoilRoot>
+            <Home />
+        </RecoilRoot>
+    );
 }
 
 export default App;

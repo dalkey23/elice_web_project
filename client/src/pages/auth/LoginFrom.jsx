@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+
 
 import { login } from "../../apis/auth";
 import * as SC from "../../styles/auth/LoginForm"
+import { userAtom } from "../../recoil/userAtom.js";
+
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -10,6 +14,7 @@ const LoginForm = () => {
         email: "",
         password: "",
     });
+    const setUserRole = useSetRecoilState(userAtom);
 
     const changeHadler = (e) => {
         setUserdata((curUserdata) => {
@@ -21,6 +26,7 @@ const LoginForm = () => {
         e.preventDefault();
         login(userdata)
             .then((res) => {
+                setUserRole(res.data.role);
                 if (res.data.role === "admin") {
                     localStorage.setItem("adminToken", res.data.token);
                     alert("관리자 로그인 되었습니다");

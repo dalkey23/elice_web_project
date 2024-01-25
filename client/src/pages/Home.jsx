@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import Favorites from "../components/Favorite/Favorites";
 import Main from "../components/Body/bodyPages/Main";
 import CategoryComponents from "../components/Body/bodyPages/CategoryComponents";
