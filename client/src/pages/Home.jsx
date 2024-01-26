@@ -34,6 +34,9 @@ import Footer from "../components/Footer/Footers";
 import RegisterForm from "./auth/RegisterForm";
 import LoginForm from "./auth/LoginFrom";
 
+//user
+import Mypage from "./user/Mypage";
+
 const Home = () => {
     return (
         <>
@@ -46,7 +49,7 @@ const Home = () => {
                     <Route path="/UserUpdate" element={<UserUpdate />} />
                     <Route path="/UserDelete" element={<UserDelete />} />
                     <Route path="/UserInfo" element={<UserInfo />} />
-                    <Route path="/UserMain" element={<UserMain />} />
+                    <Route path="/Mypage" element={<Mypage />} />
                     <Route path="/LoginForm" element={<LoginForm />} />
                     <Route path="/RegisterForm" element={<RegisterForm />} />
                     <Route

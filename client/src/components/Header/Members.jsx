@@ -10,7 +10,7 @@ const Members = () => {
 
     return (
         <>
-            <NavLink to="/UserMain">
+            <NavLink to="/Mypage">
                 <span className="material-symbols-outlined">person</span>
                 <p>마이페이지</p>
             </NavLink>
