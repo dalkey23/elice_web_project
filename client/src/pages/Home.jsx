@@ -13,8 +13,8 @@ import Cart from "../components/Body/bodyPages/Cart";
 import Order from "../components/Body/bodyPages/Order";
 import OrderComplete from "../components/Body/bodyPages/OrderComplete";
 import OrderList from "../components/Body/bodyPages/OrderList";
-import UserMain from "../components/User/UserMain";
-import UserInfo from "../components/User/UserInfo";
+// import UserMain from "../components/User/UserMain";
+// import UserInfo from "../components/User/UserInfo";
 import UserUpdate from "../components/User/UserUpdate";
 import UserDelete from "../components/User/UserDelete";
 import AdminMain from "../components/Body/Admin/AdminMain";
@@ -36,6 +36,7 @@ import LoginForm from "./auth/LoginFrom";
 
 //user
 import Mypage from "./user/Mypage";
+import UserInfo from "./user/UserInfo";
 
 const Home = () => {
     return (
