@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { formatCurrency } from '../../../lib/utils'
-import { CARTLIST_KEY } from '../../../constants/key'
+import { formatCurrency } from '../../lib/utils'
+import { CARTLIST_KEY } from '../../constants/key'
 
 const Container = styled.form `
     display : flex;
