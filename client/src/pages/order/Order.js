@@ -1,64 +1,13 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+
+
 import { formatCurrency } from '../../lib/utils'
 import { CARTLIST_KEY } from '../../constants/key'
+import * as SC from "../../styles/order/Order.js"
 
-const Container = styled.form `
-    display : flex;
-    padding : 10px 80px;
-`
-const OrderInfo = styled.div `
-    width : 60%;
-    margin : 10px;
-    padding : 10px;
-    box-shadow: 0 5px 10px grey;
-    & h3 {
-        border-bottom: 1px grey solid;
-        padding-bottom: 10px;
-      }
-    & label {
-        display : block;
-        padding-bottom : 20px;
-    }
-
-    & input {
-        width : 80%;
-    }
-
-    & h6 {
-
-        font-weight : bold;
-        weight : 30%;
-
-        
-    }
-`
-
-const PaymentInfo = styled.div `
-  box-shadow: 0 5px 10px grey;
-  padding : 10px;
-  width : 40%;
-  margin : 10px;
-  & h3 {
-    border-bottom: 1px grey solid;
-    padding-bottom: 10px;
-  }
-
-  & h4 {
-    border-top: 1px grey solid;
-    padding-top: 10px;
-  }
-  
-  & button {
-    width : 100%;
-    height : 35px;
-    background : grey;
-    border : none;
-    color : white;
-  }
-`
 
 
 const Order = () => {
@@ -116,8 +65,8 @@ const Order = () => {
 
 
 
-    return <Container onSubmit = { submitHandler } >
-    <OrderInfo >
+    return <SC.Container onSubmit = { submitHandler } >
+    <SC.OrderInfo >
         <h3> 배송지 정보 </h3>
         <label > { /* placeholder로 정보를 보이게 한 후 같은 값의 value를 post로 전송 */ } 
             <h6> 이름 </h6> 
@@ -132,8 +81,8 @@ const Order = () => {
         <h6 > 주소 </h6> 
         <input type = "text" placeholder = { JSON.stringify(data.address) }/> 
         </label> 
-    </OrderInfo> 
-    <PaymentInfo > { /* 풀어서 전달된 값을 저장한 후 formatCurrency */ } 
+    </SC.OrderInfo> 
+    <SC.PaymentInfo > { /* 풀어서 전달된 값을 저장한 후 formatCurrency */ } 
     <h3> 결제정보 </h3> 
     <h5 > 상품수 { TotalCount }개 </h5> 
     <h5 > 상품금액 { formatCurrency(ItemPrice) }원 </h5> 
@@ -142,8 +91,8 @@ const Order = () => {
     <button onClick = {() => {
                       localStorage.removeItem(CARTLIST_KEY)
                   }}>구매하기</button>
-    </PaymentInfo>
-    </Container>
+    </SC.PaymentInfo>
+    </SC.Container>
 }
 
 export default Order;
