@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { CARTLIST_KEY, NO_SHIPPING_FEE_PRICE } from '../../../constants/key'
-import { formatCurrency } from '../../../lib/utils'
+import { CARTLIST_KEY, NO_SHIPPING_FEE_PRICE } from '../../constants/key'
+import { formatCurrency } from '../../lib/utils'
 
 
 const Container = styled.div`

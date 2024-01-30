@@ -5,14 +5,14 @@ import Header from "../components/Header/Header";
 import Favorites from "../components/Favorite/Favorites";
 import Main from "../components/Body/bodyPages/Main";
 import CategoryComponents from "../components/Body/bodyPages/CategoryComponents";
-//import RegisterForm from "../components/Register/RegisterForm";
+// import RegisterForm from "../components/Register/RegisterForm";
 // import LoginForm from "../components/Login/LoginForm";
 import ItemInfo from "../components/Body/bodyPages/ItemInfo";
-import Payments from "../components/Body/bodyPages/Payments";
-import Cart from "../components/Body/bodyPages/Cart";
-import Order from "../components/Body/bodyPages/Order";
-import OrderComplete from "../components/Body/bodyPages/OrderComplete";
-import OrderList from "../components/Body/bodyPages/OrderList";
+// import Payments from "../components/Body/bodyPages/Payments";
+// import Cart from "../components/Body/bodyPages/Cart";
+// import Order from "../components/Body/bodyPages/Order";
+// import OrderComplete from "../components/Body/bodyPages/OrderComplete";
+// import OrderList from "../components/Body/bodyPages/OrderList";
 // import UserMain from "../components/User/UserMain";
 // import UserInfo from "../components/User/UserInfo";
 import UserUpdate from "../components/User/UserUpdate";
@@ -25,8 +25,8 @@ import AddCategory from "../components/Body/Admin/AddCategory";
 import AddProduct from "../components/Body/Admin/AddProduct";
 import EditCategory from "../components/Body/Admin/EditCategory";
 import EditProduct from "../components/Body/Admin/EditProduct";
-import DirectOrder from "../components/Body/bodyPages/DirectOrder";
-import DirectPayments from "../components/Body/bodyPages/DirectPayment";
+// import DirectOrder from "../components/Body/bodyPages/DirectOrder";
+// import DirectPayments from "../components/Body/bodyPages/DirectPayment";
 import Footer from "../components/Footer/Footers";
 
 
@@ -37,6 +37,15 @@ import LoginForm from "./auth/LoginFrom";
 //user
 import Mypage from "./user/Mypage";
 import UserInfo from "./user/UserInfo";
+import UserOrderList from "./user/UserOrderList";
+
+//order
+import Payments from "./order/Payments";
+import Cart from "./order/Cart";
+import Order from "./order/Order";
+import OrderComplete from "./order/OrderComplete.js"
+import DirectOrder from "./order/DirectOrder";
+import DirectPayments from "./order/DirectPayment";
 
 const Home = () => {
     return (
@@ -45,7 +54,7 @@ const Home = () => {
                 <Header />
                 <Routes>
                     <Route path="/" element={<Main />} />
-                    <Route path="/OrderList" element={<OrderList />} />
+                    <Route path="/OrderList" element={<UserOrderList />} />
                     <Route path="/Favorites" element={<Favorites />} />
                     <Route path="/UserUpdate" element={<UserUpdate />} />
                     <Route path="/UserDelete" element={<UserDelete />} />
