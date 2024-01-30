@@ -44,17 +44,17 @@ const Order = () => {
 
         createOrder(formData)
             .then((res) => {
-                console.log(res.data)
-                alert("주문완료!")
-                navigate('/orderComplete')
+                console.log(res.data);
+                localStorage.removeItem(CARTLIST_KEY);
+                alert("주문완료!");
+                navigate("/orderComplete");
             })
             .catch((error) => {
-                console.log(error)
-                alert('에러가 발생했습니다. 다시 시도해 주세요.');
+                console.log(error);
+                alert("에러가 발생했습니다. 다시 시도해 주세요.");
             });
     };
 
-   
     return (
         <SC.Container onSubmit={submitHandler}>
             <SC.OrderInfo>
@@ -63,24 +63,15 @@ const Order = () => {
                     {" "}
                     {/* placeholder로 정보를 보이게 한 후 같은 값의 value를 post로 전송 */}
                     <h6> 이름 </h6>
-                    <input
-                        type="text"
-                        placeholder={name}
-                    />
+                    <input type="text" placeholder={name} />
                 </label>
                 <label>
                     <h6> 연락처 </h6>
-                    <input
-                        type="tel"
-                        placeholder={phoneNumber}
-                    />
+                    <input type="tel" placeholder={phoneNumber} />
                 </label>
                 <label>
                     <h6> 주소 </h6>
-                    <input
-                        type="text"
-                        placeholder={address}
-                    />
+                    <input type="text" placeholder={address} />
                 </label>
             </SC.OrderInfo>
             <SC.PaymentInfo>
@@ -91,12 +82,7 @@ const Order = () => {
                 <h5> 상품금액 {formatCurrency(ItemPrice)}원 </h5>
                 <h5> 배송비 {formatCurrency(ShippingFee)}원 </h5>
                 <h4> 총 결제금액 {formatCurrency(TotalItemPrice)}원</h4>
-                <button
-                    onClick={() => {
-                        localStorage.removeItem(CARTLIST_KEY);
-                    }}>
-                    구매하기
-                </button>
+                <button>구매하기</button>
             </SC.PaymentInfo>
         </SC.Container>
     );
