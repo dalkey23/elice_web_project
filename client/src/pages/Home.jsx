@@ -7,7 +7,7 @@ import Main from "../components/Body/bodyPages/Main";
 // import CategoryComponents from "../components/Body/bodyPages/CategoryComponents";
 // import RegisterForm from "../components/Register/RegisterForm";
 // import LoginForm from "../components/Login/LoginForm";
-import ItemInfo from "../components/Body/bodyPages/ItemInfo";
+// import ItemInfo from "../components/Body/bodyPages/ItemInfo";
 // import Payments from "../components/Body/bodyPages/Payments";
 // import Cart from "../components/Body/bodyPages/Cart";
 // import Order from "../components/Body/bodyPages/Order";
@@ -41,6 +41,7 @@ import UserOrderList from "./user/UserOrderList";
 
 //product
 import ProductList from "./product/productList.jsx";
+import ProductDetail from "./product/productDetail.jsx";
 
 //order
 import Payments from "./order/Payments";
@@ -69,7 +70,7 @@ const Home = () => {
                         path="/categories/:categoryId"
                         element={<ProductList />}
                     />
-                    <Route path="/itemInfo/:id" element={<ItemInfo />} />
+                    <Route path="/itemInfo/:id" element={<ProductDetail />} />
                     <Route path="orderComplete" element={<OrderComplete />} />
                     <Route path="/payments/*" element={<Payments />}>
                         <Route path="cart" element={<Cart />} />
