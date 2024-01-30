@@ -1,90 +1,11 @@
 import React, { useState, useEffect, useMemo } from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+
 import { CARTLIST_KEY, NO_SHIPPING_FEE_PRICE } from '../../constants/key'
 import { formatCurrency } from '../../lib/utils'
+import * as SC from "../../styles/order/Cart.js"
 
 
-const Container = styled.div`
-    display : flex;
-    padding : 10px 80px;
-`
-const CartInfo = styled.div`
-    width : 60%;
-    margin : 10px;
-    padding : 10px;
-    box-shadow: 0 5px 10px grey;
-    & h3 {
-        border-bottom: 1px grey solid;
-        padding-bottom: 10px;
-      }
-    & label {
-        display : block;
-        padding-bottom : 20px;
-    }
-
-    & input {
-        width : 80%;
-    }
-
-    & h6 {
-
-        font-weight : bold;
-        weight : 30%;
-
-        
-    }
-`
-const CartItem = styled.div`
-    border : 1px solid gray;
-    & div {
-        display : inline;
-        margin :5px;
-    }
-    & input {
-        width: 30px;
-        margin : 5px;
-    }
-`
-
-const ImgDiv = styled.div`
-
-    & img {
-        width : 100px;
-    }
-`
-
-const FormPaymentInfo = styled.form`
-  box-shadow: 0 5px 10px grey;
-  padding : 10px;
-  width : 40%;
-  margin : 10px;
-  & h3 {
-    border-bottom: 1px grey solid;
-    padding-bottom: 10px;
-  }
-
-  & h4 {
-    border-top: 1px grey solid;
-    padding-top: 10px;
-  }
-  
-  & button {
-    width : 100%;
-    height : 35px;
-    background : grey;
-    border : none;
-    color : white;
-  }
-`
-const DeleteAllBtn = styled.button`
-    margin : 20px 0 0 0 ;
-    padding : 10px;
-    border-radius : 5px;
-    border-color : white;
-    background-color : grey;
-    color : white;
-`
 
 const Cart = ()=>{
     const navigate = useNavigate();
@@ -167,11 +88,11 @@ const Cart = ()=>{
     if (!isLoaded) return <></>
 
     return <>
-    <Container>
-        <CartInfo>
+    <SC.Container>
+        <SC.CartInfo>
             {items.map((item)=>{
-                return <CartItem>
-                    <ImgDiv><img src={item.imgUrl} alt="썸네일" /></ImgDiv>
+                return <SC.CartItem>
+                    <SC.ImgDiv><img src={item.imgUrl} alt="썸네일" /></SC.ImgDiv>
                     <div>{item.productName}</div>
                     <div>{item.price}원</div>{" X "}
                      <input type="number" name="sku" onChange={(e) => {
@@ -182,27 +103,27 @@ const Cart = ()=>{
                         setCountObject(newCountObject)
                     }} defaultValue={countObject[item.id]}/>{" = "}
                     <div>{item.price*countObject[item.id]}원</div>
-                    <DeleteAllBtn onClick = {() => deleteHandler(item.id)}>삭제하기</DeleteAllBtn>
-                </CartItem>
+                    <SC.DeleteAllBtn onClick = {() => deleteHandler(item.id)}>삭제하기</SC.DeleteAllBtn>
+                </SC.CartItem>
             })}
-            <DeleteAllBtn
+            <SC.DeleteAllBtn
                   onClick = {() => {
                       localStorage.removeItem(CARTLIST_KEY)
                       alert('장바구니 목록이 모두 삭제되었습니다.')
                       // 로컬스토리지에 토큰이 삭제된 상태를 인식시키기 위하여 새로고침으로 href로 이동
                       window.location.href = '/payments/cart'
                   }}
-                  >전체삭제</DeleteAllBtn>
-        </CartInfo>
-        <FormPaymentInfo onSubmit={SubmitHandler}>
+                  >전체삭제</SC.DeleteAllBtn>
+        </SC.CartInfo>
+        <SC.FormPaymentInfo onSubmit={SubmitHandler}>
             <h3>결제정보</h3>
             <h5>상품수   {totalCount} 개</h5>
             <h5>상품금액  {formatCurrency(totalItemPrice)}원</h5>
             <h5>배송비  {formatCurrency(shippingFee)}원</h5>
             <h4>총 결제금액 {formatCurrency(totalPrice)}원</h4>
             <button>구매하기</button>
-        </FormPaymentInfo>
-    </Container>
+        </SC.FormPaymentInfo>
+    </SC.Container>
     </>
 }
 
