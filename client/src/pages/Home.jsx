@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Favorites from "../components/Favorite/Favorites";
 import Main from "../components/Body/bodyPages/Main";
-import CategoryComponents from "../components/Body/bodyPages/CategoryComponents";
+// import CategoryComponents from "../components/Body/bodyPages/CategoryComponents";
 // import RegisterForm from "../components/Register/RegisterForm";
 // import LoginForm from "../components/Login/LoginForm";
 import ItemInfo from "../components/Body/bodyPages/ItemInfo";
@@ -39,6 +39,9 @@ import Mypage from "./user/Mypage";
 import UserInfo from "./user/UserInfo";
 import UserOrderList from "./user/UserOrderList";
 
+//product
+import ProductList from "./product/productList.jsx";
+
 //order
 import Payments from "./order/Payments";
 import Cart from "./order/Cart";
@@ -64,7 +67,7 @@ const Home = () => {
                     <Route path="/RegisterForm" element={<RegisterForm />} />
                     <Route
                         path="/categories/:categoryId"
-                        element={<CategoryComponents />}
+                        element={<ProductList />}
                     />
                     <Route path="/itemInfo/:id" element={<ItemInfo />} />
                     <Route path="orderComplete" element={<OrderComplete />} />
