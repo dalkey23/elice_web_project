@@ -7,7 +7,7 @@ import { WISHLIST_KEY, CARTLIST_KEY } from "../../constants/key.js";
 import * as SC from "../../styles/product/productDetail.js";
 
 const ProductDetail = () => {
-    const [data, setData] = useState("");
+    const [product, setProduct] = useState("");
     const [count, setCount] = useState(1);
     const { id } = useParams();
     const Token = localStorage.getItem("accessToken");
@@ -20,33 +20,43 @@ const ProductDetail = () => {
     useEffect(() => {
         getProduct(id)
             .then((response) => {
-                setData(response.data.searchOne);
+                setProduct(response.data.searchOne);
             })
             .catch((error) => {
                 alert(error);
             });
     }, []);
 
+    console.log(product);
+
     const clickCartHandler = () => {
-        alert("장바구니 담기 완료!");
+        //장바구니에 저장할 상품id와 수량 저장
+        const clickedProduct = { productInfo: product, count: count };
+
+        //'elice_cartList' 값 가져오고
         const savedCartList = localStorage.getItem(CARTLIST_KEY);
-        //'elice_wishlist' 값 가져오고
+
+        //cartList 는 elice_cartList 있으면 JSON.parse 아니면 빈배열
         const cartList = savedCartList ? JSON.parse(savedCartList) : [];
-        //wishList 는 elice_wishlist 있으면 JSON.parse 아니면 빈배열로 data.push
-        cartList.push(data);
+
+        //push 후 'elice_cartList'로 다시 setItem
+        cartList.push(clickedProduct);
         localStorage.setItem(CARTLIST_KEY, JSON.stringify(cartList));
-        //push 후 'elice_wishlist'로 다시 setItem
+
+        alert("장바구니 담기 완료!");
     };
 
     const clickWishHandler = () => {
-        alert("찜하기 완료!");
+        const clickedProduct = { productId: id, count: count };
 
         const savedWishList = localStorage.getItem(WISHLIST_KEY);
 
         const wishList = savedWishList ? JSON.parse(savedWishList) : [];
 
-        wishList.push(data);
+        wishList.push(clickedProduct);
         localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishList));
+
+        alert("찜하기 완료!");
     };
 
     const SubmitHandler = (e) => {
@@ -57,23 +67,15 @@ const ProductDetail = () => {
     return (
         <SC.Container onSubmit={SubmitHandler}>
             <SC.ProductImg>
-                <img src={data.imgUrl} alt="상품이미지" />
+                <img src={product.imgUrl} alt="상품이미지" />
                 <SC.Wrapper>
-                    <SC.ManufacturerInput
-                        type="text"
-                        name="manufacturer"
-                        value={data.manufacturer}
-                    />
-                    <SC.ProductInput
-                        type="text"
-                        name="productName"
-                        value={data.productName}
-                    />
-                    <SC.PriceInput
-                        type="text"
-                        name="price"
-                        value={`${data.price}원`}
-                    />
+                    <SC.ManufacturerDiv>
+                        {product.manufacturer}
+                    </SC.ManufacturerDiv>
+                    <SC.ProductDiv>{product.productName}</SC.ProductDiv>
+
+                    <SC.PriceDiv>{product.price}원</SC.PriceDiv>
+
                     <SC.SkuDiv>
                         <input
                             type="number"
@@ -102,7 +104,7 @@ const ProductDetail = () => {
                 </SC.Wrapper>
             </SC.ProductImg>
             <SC.DetailImg>
-                <img src={data.shortDesc} alt="상품이미지" />
+                <img src={product.shortDesc} alt="상품이미지" />
             </SC.DetailImg>
         </SC.Container>
     );
