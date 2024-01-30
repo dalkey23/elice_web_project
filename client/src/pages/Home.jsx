@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Favorites from "../components/Favorite/Favorites";
 import Main from "../components/Body/bodyPages/Main";
-import CategoryComponents from "../components/Body/bodyPages/CategoryComponents";
+// import CategoryComponents from "../components/Body/bodyPages/CategoryComponents";
 // import RegisterForm from "../components/Register/RegisterForm";
 // import LoginForm from "../components/Login/LoginForm";
-import ItemInfo from "../components/Body/bodyPages/ItemInfo";
+// import ItemInfo from "../components/Body/bodyPages/ItemInfo";
 // import Payments from "../components/Body/bodyPages/Payments";
 // import Cart from "../components/Body/bodyPages/Cart";
 // import Order from "../components/Body/bodyPages/Order";
@@ -39,6 +39,10 @@ import Mypage from "./user/Mypage";
 import UserInfo from "./user/UserInfo";
 import UserOrderList from "./user/UserOrderList";
 
+//product
+import ProductList from "./product/productList.jsx";
+import ProductDetail from "./product/productDetail.jsx";
+
 //order
 import Payments from "./order/Payments";
 import Cart from "./order/Cart";
@@ -64,9 +68,9 @@ const Home = () => {
                     <Route path="/RegisterForm" element={<RegisterForm />} />
                     <Route
                         path="/categories/:categoryId"
-                        element={<CategoryComponents />}
+                        element={<ProductList />}
                     />
-                    <Route path="/itemInfo/:id" element={<ItemInfo />} />
+                    <Route path="/itemInfo/:id" element={<ProductDetail />} />
                     <Route path="orderComplete" element={<OrderComplete />} />
                     <Route path="/payments/*" element={<Payments />}>
                         <Route path="cart" element={<Cart />} />
