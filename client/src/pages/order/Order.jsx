@@ -18,8 +18,18 @@ const Order = () => {
     const TotalCount = location.state.ItemTotalCount;
     const ItemPrice = location.state.ItemPrice;
     const ShippingFee = location.state.ItemShippingFee;
+    const ItemList = location.state.ItemList;
     // 값의 계산식을 위하여 parseInt로 계산
     const TotalItemPrice = parseInt(ItemPrice) + parseInt(ShippingFee);
+
+    const products = ItemList.reduce((acc, current) => {
+        acc.push({
+            productName: current.productInfo.productName,
+            quantity: current.count,
+        });
+
+        return acc;
+    }, []);
 
     useEffect(() => {
         getUserInfo()
@@ -40,6 +50,8 @@ const Order = () => {
             name,
             phoneNumber,
             address,
+            products,
+            total: TotalItemPrice,
         };
 
         createOrder(formData)
