@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
     margin: 8em;
     text-align: center;
-    h2 {
+    & h2 {
         padding: 2em;
     }
-    a {
+    & a {
         text-decoration: none;
         color: black;
         border: 1px solid grey;

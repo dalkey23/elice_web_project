@@ -47,7 +47,7 @@ import ProductDetail from "./product/productDetail.jsx";
 import Payments from "./order/Payments";
 import Cart from "./order/Cart";
 import Order from "./order/Order";
-import OrderComplete from "./order/OrderComplete.js"
+import OrderComplete from "./order/OrderComplete.jsx"
 import DirectOrder from "./order/DirectOrder";
 import DirectPayments from "./order/DirectPayment";
 
