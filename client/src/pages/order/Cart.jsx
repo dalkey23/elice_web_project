@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { CARTLIST_KEY, NO_SHIPPING_FEE_PRICE } from "../../constants/key";
 import { formatCurrency } from "../../lib/utils";
 import * as SC from "../../styles/order/Cart.js";
+import EmptyCart from "../../components/EmptyCart.jsx";
 
 const Cart = () => {
     const navigate = useNavigate();
@@ -90,6 +91,7 @@ const Cart = () => {
         }
     };
     if (!isLoaded) return <></>;
+    if( items.length === 0) return <EmptyCart />
 
     return (
         <>
