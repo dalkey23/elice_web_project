@@ -2,8 +2,8 @@ import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { NO_SHIPPING_FEE_PRICE } from '../../../constants/key'
-import { formatCurrency } from '../../../lib/utils'
+import { NO_SHIPPING_FEE_PRICE } from '../../constants/key'
+import { formatCurrency } from '../../lib/utils'
 
 const Container = styled.form `
     display : flex;

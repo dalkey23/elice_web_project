@@ -4,10 +4,10 @@ export const getCategories = async () => {
     return await apiRequest(`/categories`, "get");
 };
 
-export const getItemList = async (categoryId) => {
+export const getProductList = async (categoryId) => {
     return await apiRequest(`/products/all/${categoryId}`, "get");
 };
 
-export const getItem = async (id) => {
+export const getProduct = async (id) => {
     return await apiRequest(`/products/${id}`, "get");
 };
