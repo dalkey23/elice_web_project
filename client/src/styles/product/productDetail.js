@@ -27,7 +27,7 @@ export const Wrapper = styled.div `
     width : 50%;
 `
 
-export const ManufacturerInput = styled.input `
+export const ManufacturerDiv = styled.div `
     display : block;
     width : 30%;
     margin : 10px;
@@ -35,7 +35,7 @@ export const ManufacturerInput = styled.input `
 
 `
 
-export const ProductInput = styled.input `
+export const ProductDiv = styled.div `
     display : block;
     width : 75%;
     margin : 10px;
@@ -45,7 +45,7 @@ export const ProductInput = styled.input `
 
 `
 
-export const PriceInput = styled.input `
+export const PriceDiv = styled.div `
     display : block;
     width : 30%;
     margin : 10px;
