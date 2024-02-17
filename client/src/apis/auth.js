@@ -1,7 +1,11 @@
 import { apiRequest } from "./index";
 
 export const createUser = async (userdata) => {
-    return await apiRequest("/join", "post", userdata);
+    try {
+        return await apiRequest("/join", "post", userdata);
+    } catch (error) {
+        throw error; // 에러를 다시 throw하여 호출하는 쪽으로 전파
+    }
 };
 
 export const login = async (userdata) => {
