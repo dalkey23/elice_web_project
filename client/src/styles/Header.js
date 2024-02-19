@@ -31,15 +31,15 @@ export const IconUl = styled.ul`
     margin-left: auto;
     display: flex;
     list-style-type: none;
-    & li {
-        display: inline;
+    & a {
+        text-align: center;
+        margin : 0.375em;
     }
 `;
 
 export const LogoutButton = styled.button`
-    padding: "10px",
-    borderRadius: "5px",
-    borderColor: "white",
-    backgroundColor: "grey",
-    color: "white",
+    padding: 10px;
+    border-radius : 1em;
+    border : none;
+    background-color : white;
 `;

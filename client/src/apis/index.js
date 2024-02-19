@@ -41,6 +41,6 @@ export const apiRequest = async (url, method, data) => {
         });
         return response;
     } catch (error) {
-        console.log(error);
+      throw error
     }
 };

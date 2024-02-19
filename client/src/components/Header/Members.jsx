@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 
 import { userAtom } from "../../recoil/userAtom.js";
+import * as SC from "../../styles/Header.js";
 
 //회원 메뉴 : 마이페이지, 찜하기, 장바구니, 로그아웃
 const Members = () => {
@@ -22,7 +23,7 @@ const Members = () => {
                 <span className="material-symbols-outlined">shopping_bag</span>
                 <p>장바구니</p>
             </NavLink>
-            <button
+            <SC.LogoutButton
                 onClick={() => {
                     localStorage.removeItem("accessToken");
                     setUserRole("");
@@ -30,7 +31,7 @@ const Members = () => {
                     navigate("/");
                 }}>
                 로그아웃
-            </button>
+            </SC.LogoutButton>
         </>
     );
 };
