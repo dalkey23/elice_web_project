@@ -19,11 +19,11 @@ import UserUpdate from "../components/User/UserUpdate";
 import UserDelete from "../components/User/UserDelete";
 import AdminMain from "../components/Body/Admin/AdminMain";
 import AdminOrders from "../components/Body/Admin/AdminOrders";
-import AdminCategories from "../components/Body/Admin/AdminCategories";
+//import AdminCategories from "../components/Body/Admin/AdminCategories";
 import AdminProducts from "../components/Body/Admin/AdminProducts";
-import AddCategory from "../components/Body/Admin/AddCategory";
+//import AddCategory from "../components/Body/Admin/AddCategory";
 import AddProduct from "../components/Body/Admin/AddProduct";
-import EditCategory from "../components/Body/Admin/EditCategory";
+// import EditCategory from "../components/Body/Admin/EditCategory";
 import EditProduct from "../components/Body/Admin/EditProduct";
 // import DirectOrder from "../components/Body/bodyPages/DirectOrder";
 // import DirectPayments from "../components/Body/bodyPages/DirectPayment";
@@ -50,6 +50,11 @@ import Order from "./order/Order";
 import OrderComplete from "./order/OrderComplete.jsx"
 import DirectOrder from "./order/DirectOrder";
 import DirectPayments from "./order/DirectPayment";
+
+//admin
+import AdminCategories from "./admin/AdminCategories.jsx";
+import AddCategory from "./admin/AddCategory.jsx"
+import EditCategory from "./admin/EditCategory.jsx";
 
 const Home = () => {
     return (
